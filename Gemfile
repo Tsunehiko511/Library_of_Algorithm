@@ -1,6 +1,6 @@
-source :rubygems
-source 'https://rubygems.org'
 ruby '2.2.4'
+source :rubygems
 
 gem 'sinatra'
-gem 'heroku'
+gem 'sinatra-contrib'
+#gem 'heroku'
