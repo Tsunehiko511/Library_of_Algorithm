@@ -1,4 +1,61 @@
-p {
-    color : blue ;
-    line-height : 1.5 ;
+#A0,#A1,#A2,#A3,#A4,#A5,#A6 {
+	border-radius: 50%;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  color: #fff;
 }
+#A0,#A1,#A2,#A3{
+  background: blue;
+}
+#A4,#A5,#A6 {
+  background: red;
+}
+
+#A0{
+	top:20px;
+	left:30px;
+}
+#A1{
+	top:20px;
+	left:30px;
+}
+#A2{
+	top:20px;
+	left:30px;
+}
+#A3{
+	top:20px;
+	left:30px;
+}
+#A4{
+	top:20px;
+	left:30px;
+}
+#A5{
+	top:20px;
+	left:30px;
+}
+#A6{
+	top:20px;
+	left:30px;
+}
+
+
+
+#X {
+	border-radius: 50%;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background: green;
+}
+
+#obj {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: #44A5CB;
+  color: #fff;
+}
+
