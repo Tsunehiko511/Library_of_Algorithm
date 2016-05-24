@@ -19,3 +19,22 @@ end
 get '/que_kmean' do
 	erb :que_kmean
 end
+
+post '/ans_kmean' do
+  @answer = params[:answer]
+  @solution = [1,1,1]
+  @count = 0
+  for i in 0...3 do
+  	if @answer[2*i+1].to_i==@solution[i]
+  		@count+=1
+  	end
+  end
+  @rate = @count*100/3
+
+  if @rate >= 80
+  	@judge = "good"
+  else
+  	@judge = "but"
+  end
+	erb :ans_kmean
+end

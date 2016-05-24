@@ -1,14 +1,24 @@
+#container {
+		overflow: hidden;
+}
 #code,#define{
 	float : left;
-	background-color: red;
+	width: 33%;
+	/*background-color: red;*/
 }
 #anime{
-	background-color: pink;
+	float : right;
+	width: 66%;
+	/*background-color: pink;*/
+}
+#sample {
+	/*background-color: yellow;*/	
 }
 #footer{
 }
 #code{
-	font-family: "ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+	font-size: 18px;
+	font-family: sans-serif,"ＭＳ Ｐゴシック","MS PGothic";
 }
 
 #A0,#A1,#A2,#A3,#A4,#A5,#A6,#X{

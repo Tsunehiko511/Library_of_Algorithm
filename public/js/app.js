@@ -232,10 +232,12 @@ function color_lines(times){
 }
 
 function color_line(){
-	if(count > 1){
-		var num = count -1;
-		document.getElementById('code'+ num).style.backgroundColor = 'transparent';
-	}
+    for(var i=count-1;i>0;i--){
+        document.getElementById('code'+ i).style.backgroundColor = 'transparent';
+    }
+    for(var i=count+1;i<14;i++){
+        document.getElementById('code'+ i).style.backgroundColor = 'transparent';
+    }
 	if(count>13){
 		count = 1;
 	}
