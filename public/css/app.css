@@ -1,9 +1,22 @@
-#A0,#A1,#A2,#A3,#A4,#A5,#A6 {
+#code,#define{
+	float : left;
+	background-color: red;
+}
+#anime{
+	background-color: pink;
+}
+#footer{
+}
+#code{
+	font-family: "ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+}
+
+#A0,#A1,#A2,#A3,#A4,#A5,#A6,#X{
+	float : left;
 	border-radius: 50%;
   position: relative;
   width: 20px;
   height: 20px;
-  color: #fff;
 }
 #A0,#A1,#A2,#A3{
   background: blue;
@@ -13,43 +26,41 @@
 }
 
 #A0{
-	top:20px;
-	left:30px;
+	top:80px;
+	left:360px;
 }
 #A1{
-	top:20px;
-	left:30px;
+	top:130px;
+	left:450px;
 }
 #A2{
-	top:20px;
-	left:30px;
+	top:160px;
+	left:370px;
 }
 #A3{
-	top:20px;
-	left:30px;
+	top:150px;
+	left:300px;
 }
 #A4{
-	top:20px;
-	left:30px;
+	top:190px;
+	left:450px;
 }
 #A5{
-	top:20px;
-	left:30px;
+	top:220px;
+	left:450px;
 }
 #A6{
-	top:20px;
-	left:30px;
+	top:290px;
+	left:490px;
 }
-
-
-
 #X {
-	border-radius: 50%;
-  position: relative;
-  width: 20px;
-  height: 20px;
   background: green;
+  top:120px;
+	left:330px;
 }
+
+
+
 
 #obj {
   position: relative;

@@ -3,7 +3,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 get '/' do
-	@title = 'Library of Algorithm'
+	@title = 'Library of Algorithms'
 	@subtitle = 'Algorithm is fun!!!'
 	erb :index
 end
