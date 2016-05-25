@@ -1,50 +1,24 @@
-<div id="header">
-	<!-- <div id="footerNavLink"><a href="#footerNav"></a></div> -->
-	<!--<div id="footerNavLink"><a href="#footerNav"></a></div>-->
-	
-	<h1></h1>
-</div><!-- /header -->
-
 <div id="container">
 <div id="main">
-		<h1>Library of Algorithms</h1>
-		<br>
 </div><!-- /main -->
 <div id="define">
 	<h3>k近傍方</h3>
-	<p>テストデータとの距離が短い順にk個の判定用データを取り出し、</br>多数決によってテストデータが所属するカテゴリーを推定する方法です。</p>
+	<p>訓練データとの距離が短い順にk個の判定用データを取り出し、</br>多数決によってテストデータが所属するカテゴリーを推定する方法。</p>
 </div>
 <div id="anime">
-	<span id="A0">0</span><br>
-	<span id="A1">1</span><br>
-	<span id="A2">2</span><br>
-	<span id="A3">3</span><br>
-	<span id="A4">4</span><br>
-	<span id="A5">5</span><br>
-	<span id="A6">6</span><br>
-	<span id="X"></span><br>
+	<canvas width="700" height="450" id="sample">
+	図形を表示するには、canvasタグをサポートしたブラウザが必要です。
+	</canvas>
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	アニメーション
-	<input type="button" value="再生" onclick="startAnimation();"/><br />
-	<h2>Canvasで図形を描く</h2>
-		<canvas width="300" height="150" id="sample" style="background-color:yellow;">
-		図形を表示するには、canvasタグをサポートしたブラウザが必要です。
-		</canvas>
-		<p>
-			<input type="button" value="線分" onClick="test()">
-		</p>
+	<p>
+		<input type="button" value="ステップ" onClick="anime(3)">
+	</p>
+
 </div><!-- /anime -->
 
 <div id="sub">

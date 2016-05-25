@@ -1,6 +1,7 @@
 onload = function() {
 	draw_base();
 };
+
 var count_anime = 0;
 function anime(k){
 
@@ -63,9 +64,9 @@ function anime(k){
 	}
 }
 function delet(){
-	var canvas = document.getElementById("sample");
-	var context = canvas.getContext('2d');
-  context.clearRect(0,0,canvas.width,canvas.height);
+    var canvas = document.getElementById("sample");
+    var context = canvas.getContext('2d');
+    context.clearRect(0,0,canvas.width,canvas.height);
 }
 
 function draw_base() {
@@ -85,49 +86,49 @@ function draw_base() {
     context.fillStyle = "red";
     context.fill();
     context.fillStyle = "black";
-    context.fillText('3',400,200);
+    context.fillText('a3,b3',400,185);
     //1
     context.beginPath();
     context.arc(400,280, 15, 0, Math.PI*2, false);
     context.fillStyle = "red";
     context.fill();
     context.fillStyle = "black";
-    context.fillText('2',400,280);
+    context.fillText('a2,b2',400,265);
     // 2
     context.beginPath();
     context.arc(270,280, 15, 0, Math.PI*2, false);
     context.fillStyle = "blue";
     context.fill();
     context.fillStyle = "black";
-    context.fillText('4',270,280);
+    context.fillText('a4,b4',270,265);
     // 3
     context.beginPath();
     context.arc(210,240, 15, 0, Math.PI*2, false);
     context.fillStyle = "blue";
     context.fill();
     context.fillStyle = "black";
-    context.fillText('5',210,240);
+    context.fillText('a5,b5',210,225);
     // 4
     context.beginPath();
     context.arc(300,60, 15, 0, Math.PI*2, false);
     context.fillStyle = "blue";
     context.fill();
     context.fillStyle = "black";
-    context.fillText('1',300,60);
+    context.fillText('a1,b1',300,45);
     // 5
     context.beginPath();
     context.arc(400,30, 15, 0, Math.PI*2, false);
     context.fillStyle = "red";
     context.fill();
     context.fillStyle = "black";
-    context.fillText('0',400,30);
+    context.fillText('a0,b0',400,15);
     // 6
     context.beginPath();
     context.arc(500,20, 15, 0, Math.PI*2, false);
     context.fillStyle = "red";
     context.fill();
     context.fillStyle = "black";
-    context.fillText('6',500,20);
+    context.fillText('a6,b6',500,45);
   }
 }
 function draw_line(){
@@ -135,6 +136,7 @@ function draw_line(){
   if (canvas.getContext) {
     var context = canvas.getContext('2d');
     context.beginPath();
+    context.lineWidth = 1;
     context.strokeStyle = "black";
     context.moveTo(350,220);
     // 1
@@ -194,11 +196,13 @@ function draw_neighbor(k){
     //ここに具体的な描画内容を指定する
     context.beginPath();
     if(k==3){
-    	context.arc(350,220, 100, 0, Math.PI*2, false);
+    	context.arc(350,220, 120, 0, Math.PI*2, false);
     }else if(k==5){
     	context.arc(350,220, 180, 0, Math.PI*2, false);    	
     }
-    context.strokeStyle = "green";
+    context.strokeStyle = "black";
+    context.lineWidth = 3;
+    context.fillText('k=3',450,120);
     context.stroke();
     context.closePath();
   }
@@ -227,7 +231,7 @@ function color_lines(times){
 	}
 
 	if(times<=13){
-		document.getElementById('code'+ times).style.backgroundColor = '#FEFEC8';
+		document.getElementById('code'+ times).style.backgroundColor = 'Yellow';
 	}
 }
 

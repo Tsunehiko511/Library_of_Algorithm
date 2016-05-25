@@ -36,5 +36,5 @@ post '/ans_kmean' do
   else
   	@judge = "but"
   end
-	erb :ans_kmean
+	erb :que_kmean
 end

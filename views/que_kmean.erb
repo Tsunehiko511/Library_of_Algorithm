@@ -1,21 +1,14 @@
-<div id="header">
-	<!-- <div id="footerNavLink"><a href="#footerNav"></a></div> -->
-	<!--<div id="footerNavLink"><a href="#footerNav"></a></div>-->
-	
-	<h1></h1>
-</div><!-- /header -->
-
 <div id="container">
 <div id="main">
-		<h1>Library of Algorithms</h1>
 		<div id="subNav">
 			<h3>k近傍方</h3>
-			<p>テストデータとの距離が短い順にk個の判定用データを取り出し、</br>多数決によってテストデータが所属するカテゴリーを推定する方法。</p>
+			<p>訓練データとの距離が短い順にk個のデータを取り出し、</br>多数決によってテストデータが所属するカテゴリーを推定する方法。</p>
 		</div>
+		<a href="/anime_kmean">戻る</a>　　<a href="/">ホーム</a>
 </div><!-- /main -->
 <div id="question">
   <h3>問題</h3>
-  <p>テストデータとの距離が短い順にk個の判定用データを取り出し、</br>多数決によってテストデータが所属するカテゴリーを推定する方法。</p>
+  <p>ダミー</p>
 </div><!-- /question -->
 <div id="send_form">
   <form action="ans_kmean" method="POST">
@@ -27,10 +20,18 @@
     </div>
   </form>
 </div><!-- /send_form -->
-
+  <div>
+    <div>
+      正誤: <%=@judge%> : <%=@rate%>%
+    </div>
+  </div>
+<hr>
 <div id="sub">
-	<a href="https://www.kaggle.com/c/sf-crime">kaggle</a>
-	<a href="/anime_kmean">戻る</a>
-	<a href="/">ホーム</a>
+	<h3>他の問題へチャレンジ</h3>
+	<a href="https://www.kaggle.com/c/sf-crime">kaggle(データ分析のコンペサイト)</a>のサンフランシスコ犯罪カテゴリー推定問題
+	<h3>参考文献</h3>
+	<a href="https://ja.wikipedia.org/wiki/K近傍法">k近傍法 - Wikipedia</a><br>
+	<a href="http://qiita.com/yshi12/items/26771139672d40a0be32">K近傍法(多クラス分類)</a>
+	<hr>
 </div><!-- /sub -->
 </div><!-- /container -->
