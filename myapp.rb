@@ -35,7 +35,7 @@ post '/ans_kmean' do
       @count_zero+=1
     end
   end
-  if @count_zero == 35 @L < 71
+  if @count_zero == 35 or @L<71
     @rate = 0
   else
     @rate = @count*100/35
