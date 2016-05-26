@@ -2,64 +2,100 @@ onload = function() {
 	draw_base();
 };
 
+function runLines(times){
+    for (var t = 0; t<=times;t++){
+        setTimeout("draw_line("+t+",1,'black')", t*250)
+    }
+}
+
 var count_anime = 0;
 function anime(k){
 
 	switch(count_anime){
 		case 0:
-			draw_line();
-			color_lines(3);
+			runLines(6);
+            setColorLine(1);
+			setColorLine(2);
 			count_anime += 1;
 			break;
-		case 1:
-			draw_neighbor(k);
-			color_lines(5);
-			count_anime += 1;
-			break;
+        case 1:
+            for (var t = 0; t<=6;t++){
+                draw_line(t,1,'black');
+            }
+            deleteColorLine(1)
+            deleteColorLine(2)
+            setColorLine(3);
+            count_anime += 1;
+            break;
+        case 2:
+            draw_neighbor(k);
+            deleteColorLine(3)
+            setColorLine(4);
+            count_anime += 1;
+            break;
 		// 数を数える(赤)
-		case 2:
-			color_lines(6);
-			count_anime += 1;
-			break;
 		case 3:
-			color_lines(7);
+            deleteColorLine(4)
+            setColorLine(5);
+            setColorLine(6);
+            draw_line(3,5,"orange");
 			count_anime += 1;
 			break;
 		case 4:
-			color_lines(6);
+            deleteColorLine(6);
+            setColorLine(7);
 			count_anime += 1;
 			break;
 		case 5:
-			color_lines(7);
+            deleteColorLine(7);
+            setColorLine(6);
+            draw_line(2,5,"orange");
 			count_anime += 1;
 			break;
 		case 6:
-			color_lines(8);
+            deleteColorLine(6);
+            setColorLine(7);
 			count_anime += 1;
 			break;
 		case 7:
-			color_lines(9);
+            deleteColorLine(7);
+            setColorLine(8);
+            draw_line(4,5,"orange");
 			count_anime += 1;
 			break;
 		case 8:
-			color_lines(10);
-			count_anime += 1;
+            deleteColorLine(8);
+            setColorLine(9);
+            count_anime += 1;
 			break;
 		case 9:
+            deleteColorLine(5);
+            deleteColorLine(9);
+            setColorLine(10);
+			count_anime += 1;
+			break;
+		case 10:
 			if(k==3){
 				draw_fact("red");
-				color_lines(11);
+                deleteColorLine(10);
+                setColorLine(11);
 			}else if(k==5){
 				draw_fact("blue");
-				color_lines(13);
+                deleteColorLine(10);
+                setColorLine(13);
 			}
 			count_anime += 1;
 			break;
+        case 11:
+            deleteColorLine(11);
+            setColorLine(14);
+            count_anime += 1;
+            break;
 		default:
 			delet();
 			draw_base();
 			count_anime = 0;
-			color_lines(14);
+			color_lines(15);
 			break;
 	}
 }
@@ -129,65 +165,49 @@ function draw_base() {
     context.fill();
     context.fillStyle = "black";
     context.fillText('a6,b6',500,45);
+    context.closePath();
   }
 }
-function draw_line(){
-  var canvas = document.getElementById('sample');
-  if (canvas.getContext) {
-    var context = canvas.getContext('2d');
-    context.beginPath();
-    context.lineWidth = 1;
-    context.strokeStyle = "black";
-    context.moveTo(350,220);
-    // 1
-    context.lineTo(400,200);
-    context.closePath();
-    context.stroke();
-    // 2
-    context.beginPath();
-    context.moveTo(350,220);
-    //座標を指定してラインを引いていく
-    context.lineTo(400,280);
-    context.closePath();
-    context.stroke();
-    // 3
-    context.beginPath();
-    context.moveTo(350,220);
-    //座標を指定してラインを引いていく
-    context.lineTo(270,280);
-    context.closePath();
-    context.stroke();
-    // 4
-    context.beginPath();
-    context.moveTo(350,220);
-    //座標を指定してラインを引いていく
-    context.lineTo(210,240);
-    context.closePath();
-    context.stroke();
-    // 5
-    context.beginPath();
-    context.moveTo(350,220);
-    //座標を指定してラインを引いていく
-    context.lineTo(300,60);
-    context.closePath();
-    context.stroke();
-    // 6
-    context.beginPath();
-    context.moveTo(350,220);
-    //座標を指定してラインを引いていく
-    context.lineTo(400,30);
-    context.closePath();
-    context.stroke();
-    // 7
-    context.beginPath();
-    context.moveTo(350,220);
-    //座標を指定してラインを引いていく
-    context.lineTo(500,20);
-    context.closePath();
-    context.stroke();
-  }
-  draw_base();
+function position(n){
+    switch(n){
+        case -1:
+        return {x:350,y:220};
+        case 0:
+        return {x:400,y:30};
+        case 1:
+        return {x:300,y:60};
+        case 2:
+        return {x:400,y:280};
+        case 3:
+        return {x:400,y:200};
+        case 4:
+        return {x:270,y:280};
+        case 5:
+        return {x:210,y:240};
+        case 6:
+        return {x:500,y:20};
+        default:
+        return {x:350,y:220};
+    }
 }
+
+
+function draw_line(n,width,color){
+    var canvas = document.getElementById('sample');
+    if (canvas.getContext) {
+        var context = canvas.getContext('2d');
+        context.beginPath();
+        context.lineWidth = width;
+        context.strokeStyle = color;
+        context.moveTo(position(-1).x,position(-1).y);
+        // 1
+        context.lineTo(position(n).x,position(n).y);
+        context.stroke();
+        context.closePath();
+    }
+    draw_base();
+}
+
 
 function draw_neighbor(k){
   var canvas = document.getElementById('sample');
@@ -222,6 +242,13 @@ function draw_fact(color){
 
 var count = 1;
 
+function setColorLine(n){
+    document.getElementById('code'+ n).style.backgroundColor = 'Yellow';
+}
+function deleteColorLine(n){
+    document.getElementById('code'+ n).style.backgroundColor = 'transparent';
+}
+
 function color_lines(times){
 	for(var i=times-1;i>0;i--){
 		document.getElementById('code'+ i).style.backgroundColor = 'transparent';
@@ -230,7 +257,7 @@ function color_lines(times){
 		document.getElementById('code'+ i).style.backgroundColor = 'transparent';
 	}
 
-	if(times<=13){
+	if(times<=14){
 		document.getElementById('code'+ times).style.backgroundColor = 'Yellow';
 	}
 }
@@ -242,7 +269,7 @@ function color_line(){
     for(var i=count+1;i<14;i++){
         document.getElementById('code'+ i).style.backgroundColor = 'transparent';
     }
-	if(count>13){
+	if(count>14){
 		count = 1;
 	}
 	document.getElementById('code'+ count).style.backgroundColor = '#FEFEC8';

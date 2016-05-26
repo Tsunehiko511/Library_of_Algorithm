@@ -17,11 +17,11 @@
 		<span>&emsp;<FONT color="green">●</FONT>が<FONT color="red">赤</FONT>か<FONT color="blue">青</FONT>か予測する</span>
 	<p></p>
 	<b>処理</b><br>
-	<span id="code2">&emsp;for i=0〜6:</span><br>
-	<span id="code3">&emsp;&emsp;di := 距離(<FONT color="green">●</FONT>,(ai,bi))</span><p></p>
-	<span id="code4">&emsp;距離が近い順番 near:= [3,2,4,5,1,0,6]</span>
+	<span id="code1">&emsp;for i=0〜6:</span><br>
+	<span id="code2">&emsp;&emsp;di := 距離(<FONT color="green">●</FONT>,(ai,bi))</span><p></p>
+	<span id="code3">&emsp;距離が近い順番 near:= [3,2,4,5,1,0,6]</span>
 	<p></p>
-	<span id="code1">&emsp;k := 近傍の大きさ</span><br>
+	<span id="code4">&emsp;k := 近傍の大きさ</span><br>
 	<span id="code5">&emsp;for i =0〜k-1:</span><br>
 	<span id="code6">&emsp;&emsp;if カテゴリ[near[i]] == <FONT color="red">赤</FONT>:</span><br>
 	<span id="code7">&emsp;&emsp;&emsp;<FONT color="red">赤</FONT>の数 += 1</span><br>
@@ -32,6 +32,7 @@
 	<span id="code11">&emsp;&emsp;print "<FONT color="green">●</FONT>は<FONT color="red">赤</FONT>"</span><br>
 	<span id="code12">&emsp;else if <FONT color="red">赤</FONT>の数 < <FONT color="blue">青</FONT>の数:</span><br>
 	<span id="code13">&emsp;&emsp;print "<FONT color="green">●</FONT>は<FONT color="blue">青</FONT>"</span><br>
+	<span id="code14">終了</span><br>
 	<!--
 	<p>
 		<input type="button" value="ステップ" onClick="start()">
