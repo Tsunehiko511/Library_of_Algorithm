@@ -25,6 +25,7 @@ post '/ans_kmean' do
   @solution = [1,2,1,0,2,0,2,0,0,2,0,2,1,1,1,2,2,1,1,0,1,2,2,0,1,1,1,1,0,0,0,2,1,2,0]
   @count = 0
   @count_zero = 0
+  @L = @answer.length 
 
   for i in 0...35 do
   	if @answer[2*i+1].to_i==@solution[i]
@@ -34,7 +35,7 @@ post '/ans_kmean' do
       @count_zero+=1
     end
   end
-  if @count_zero == 35
+  if @count_zero == 35 @L < 71
     @rate = 0
   else
     @rate = @count*100/35
