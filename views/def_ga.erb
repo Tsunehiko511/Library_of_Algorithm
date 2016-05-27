@@ -1,0 +1,48 @@
+<div id="container">
+<div id="main">
+		<div id="subNav">
+			<h3 onclick="test_alert()">遺伝的アルゴリズム</h3>
+			<p>試行錯誤を繰り返して解を求めるアルゴリズム</p>
+			<p>生物の進化過程では，ある世代を形成している個体の集合の中で環境に適応した個体が高い確率で生き残り，次の世代に子を残す．このメカニズムをモデル化し，環境に対して最もよく適応した個体，すなわち目的関数に対して最適値を与えるような解を求める。</p>
+		</div>
+		<a href="/">戻る</a>　　<a href="/anime_ga">コード</a>　	　<a href="/">ホーム</a>
+</div><!-- /main -->
+<hr>
+<div id="code" class="codes">
+	<b>データ</b><br>
+		<span>&emsp;ナップザック=15</span><br>
+		<span>&emsp;入れ物=[a,b,c,d,e]</span><br>
+		<span>&emsp;&emsp;重さ=[12,2,1,&nbsp;&nbsp;4,1]</span><br>
+		<span>&emsp;&emsp;価値=[&nbsp;&nbsp;4,2,1,10,2]</span><br>
+	<p></p>
+	<b>目的</b><br>
+		<span>&emsp;ナップザック内の価値が高くなる入れ物リストを求める</span>
+	<p></p>
+	<b>処理</b><br>
+	<span id="code1">&emsp;初期設定</span><br>
+	<span id="code2">&emsp;以下指定回数繰り返す</span><br>
+	<span id="code3">&emsp;&emsp;評価</span><br>
+	<span id="code4">&emsp;&emsp;選択</span><br>
+	<span id="code5">&emsp;&emsp;交叉</span><br>
+	<span id="code6">&emsp;&emsp;突然変異</span><br>
+	<span id="code7">&emsp;結果</span><br>
+	<span id="code8">終了</span><br>
+	<br><br><br><br><br><br><br><br>
+	<!--
+	<p>
+		<input type="button" value="ステップ" onClick="start()">
+	</p>
+	-->
+</div><!-- /code -->
+
+<div id="anime">
+	<img id="ga_nap_png" width="800" height="480" onclick="changeIMG();changeLINE();" src="/img/ga_nap/ga_nap.1.png">
+
+</div><!-- /anime -->
+<div id="sub">
+
+</div><!-- /sub -->
+</div><!-- /container -->
+<hr>
+<script src="/js/ga_nap.js" type="text/javascript" ></script>
+

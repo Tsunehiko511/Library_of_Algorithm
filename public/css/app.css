@@ -1,20 +1,33 @@
 #container {
 		overflow: hidden;
 }
+#main,#subNav{
+	z-index: 2;
+}
+#anime{
+
+	float : right;
+	width: 66%;
+	background-color: pink;
+}
+
+#ga_nap_png {
+	/*z-index: -1;*/
+	position: fixed;
+	top: 200px;
+	right:-80px;
+
+	background-color: green;
+}
 #code,#define{
 	float : left;
 	width: 33%;
-	/*background-color: red;*/
-}
-#anime{
-	float : right;
-	width: 66%;
-	/*background-color: pink;*/
+	background-color: red;
 }
 #sample {
 	position: relative;
 	top: 100px;
-	/*background-color: yellow;*/
+	background-color: yellow;
 }
 #footer{
 	 position:relative;
@@ -24,65 +37,6 @@
 	font-size: 18px;
 	font-family: sans-serif,"ＭＳ Ｐゴシック","MS PGothic";
 }
-#testposition {
-	background-color: yellow;	
+.avoid-clicks{
+  pointer-events: none;
 }
-#A0,#A1,#A2,#A3,#A4,#A5,#A6,#X{
-	float : left;
-	border-radius: 50%;
-  position: relative;
-  width: 20px;
-  height: 20px;
-}
-#A0,#A1,#A2,#A3{
-  background: blue;
-}
-#A4,#A5,#A6 {
-  background: red;
-}
-
-#A0{
-	top:80px;
-	left:360px;
-}
-#A1{
-	top:130px;
-	left:450px;
-}
-#A2{
-	top:160px;
-	left:370px;
-}
-#A3{
-	top:150px;
-	left:300px;
-}
-#A4{
-	top:190px;
-	left:450px;
-}
-#A5{
-	top:220px;
-	left:450px;
-}
-#A6{
-	top:290px;
-	left:490px;
-}
-#X {
-  background: green;
-  top:120px;
-	left:330px;
-}
-
-
-
-
-#obj {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  background: #44A5CB;
-  color: #fff;
-}
-

@@ -8,19 +8,22 @@ get '/' do
 	erb :index
 end
 
-get '/def_kmean' do
-	erb :def_kmean
+get '/def_ga' do
+  erb :def_ga
 end
 
-get '/anime_kmean' do
-	erb :anime_kmean
+get '/anime_knn' do
+  erb :anime_knn
+end
+get '/anime_ga' do
+  erb :anime_ga
 end
 
-get '/que_kmean' do
-	erb :que_kmean
+get '/que_knn' do
+	erb :que_knn
 end
 
-post '/ans_kmean' do
+post '/ans_knn' do
   @answer = params[:answer]
   @solution = [1,2,1,0,2,0,2,0,0,2,0,2,1,1,1,2,2,1,1,0,1,2,2,0,1,1,1,1,0,0,0,2,1,2,0]
   @count = 0
@@ -45,5 +48,5 @@ post '/ans_kmean' do
   else
   	@judge = "but"
   end
-	erb :que_kmean
+	erb :que_knn
 end
