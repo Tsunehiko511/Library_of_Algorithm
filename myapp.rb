@@ -24,7 +24,11 @@ get '/anime_ga' do
 end
 
 get '/que_knn' do
-	erb :que_knn
+  erb :que_knn
+end
+
+get '/anime_roulette_selection' do
+  erb :anime_roulette_selection
 end
 
 post '/ans_knn' do

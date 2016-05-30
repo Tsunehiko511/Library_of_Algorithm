@@ -7,28 +7,22 @@
 #anime{
 
 	float : right;
-	width: 66%;
+	width: 50%;
 	/*background-color: pink;*/
 }
-
-#ga_nap_png {
-	/*z-index: -1;*/
-	position: fixed;
-	top: 200px;
-	right:-80px;
-
-	background-color: green;
+#roulette_png,#ga_nap_png{
+	position: relative;
+	/*background-color: green;*/
 }
+
 #code,#define{
 	float : left;
-	width: 33%;
-	/*background-color: red;*/
+	width: 50%;
+	overflow: scroll;   /* スクロール表示 */ 
+  height: 600px;
+ /*background-color: red;*/
 }
-#sample {
-	position: relative;
-	top: 100px;
-	/*background-color: yellow;*/
-}
+
 #footer{
 	 position:relative;
 	 bottom:0;

@@ -6,28 +6,25 @@ var editor = ace.edit("editor");
 var img = new Array();
 
 img[0] = new Image();
-img[0].src = "/img/ga_nap/ga_nap.1.png";
-for(var i=1; i<=15;i++){
+img[0].src = "/img/roulette/roulette.1.png";
+for(var i=1; i<=7;i++){
 	img[i] = new Image();
-	img[i].src = "/img/ga_nap/ga_nap."+i+".png";
+	img[i].src = "/img/roulette/roulette."+i+".png";
 }
-img[16] = new Image();
-img[16].src = "/img/ga_nap/ga_nap.15.png";
-
 //画像番号用のグローバル変数
 var cnt=1;
 
 //画像切り替え関数
 function changeIMG(){
   //画像番号を進める
-  if (cnt == 16){
+  if (cnt == 7){
   	cnt=1;
   }
   else{
   	cnt++;
   }
   //画像を切り替える
-  document.getElementById("ga_nap_png").src=img[cnt].src;
+  document.getElementById("roulette_png").src=img[cnt].src;
 }
 function changeLINE(){
 	if(cnt==1){
@@ -68,8 +65,9 @@ function changeLINE(){
 	}
 }
 function setCodeLine(){
-	var startline = getCodeHighlight(cnt)[0];
-	var endline = getCodeHighlight(cnt)[1];
+	var hlt = getCodeHighlight(cnt);
+	var startline = hlt[0];
+	var endline = hlt[1];
 	var range = editor.getSession().highlightLines(startline, endline, "code_highlight");
 	console.log(range.id);
 	if(range.id>3){
@@ -92,18 +90,15 @@ function getCnt(){
 	return cnt;
 }
 function getCodeHighlight(k){
+	console.log(k);
 	if(k==1){
-		return [9,16];
-	}else if(k<=5){
-		return [23,32];
-	}else if(k==6){
-		return [33,34];
-	}else if(k<=10){
-		return [36,56];
-	}else if(k<=13){
-		return [58,64];
-	}else if(k==15){
-		return [70,70];
+		return [8,12];
+	}else if(k==2){
+		return [14,15];
+	}else if(k<=6){
+		return [18,20];
+	}else if(k<=7){
+		return [21,21];
 	}else{
 		return [-1,-1];
 	}

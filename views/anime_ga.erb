@@ -5,11 +5,12 @@
 			<p>試行錯誤を繰り返して解を求めるアルゴリズム</p>
 			<p>生物の進化過程では，ある世代を形成している個体の集合の中で環境に適応した個体が高い確率で生き残り，次の世代に子を残す．このメカニズムをモデル化し，環境に対して最もよく適応した個体，すなわち目的関数に対して最適値を与えるような解を求める。</p>
 		</div>
-		<a href="/def_ga">戻る</a>　　<a>演習</a>　	　<a href="/">ホーム</a>
+		<a href="/def_ga">戻る</a>　<a href="/anime_roulette_selection">ルーレット選択</a>
+　<a>演習</a>　	　<a href="/">ホーム</a>
 </div><!-- /main -->
 <hr>
 <div id="code" class="codes">
-<div id="editor" class="avoid-clicks" style="width:500px; height: 1200px"><b>//データ</b>
+<div id="editor" class="avoid-clicks" style="width:100%; height: 1200px"><b>//データ</b>
 <span>ナップザック容量=15</span>
 <span>入れ物=[a,b,c,d,e]</span>
 	<span>重さ=[12,2,1, 4,1]</span>
@@ -42,8 +43,8 @@ for(g=0;g&lt;繰り返し世代数;g++){
             リスト[i]の総価値 = 0;
         };
     };
-    // 選択 エリート選択・ルーレット選択参照
-    親リストの決定
+    // 選択 (ルーレット選択参照)
+    親リスト=ルーレット選択により決定
 
     //交叉(一定確率)
     for(２組ずつ選びその回数繰り返す(今はx=0,2とする)){
@@ -82,23 +83,10 @@ for(g=0;g&lt;繰り返し世代数;g++){
 最後の世代で総価値が最大のものが解となる
 
 </div>
-	<!--
-	<p>
-		<input type="button" value="ステップ" onClick="start()">
-	</p>
-	-->
-<span id="code1"></span>
-<span id="code2"></span>
-<span id="code3"></span>
-<span id="code4"></span>
-<span id="code5"></span>
-<span id="code6"></span>
-<span id="code7"></span>
-<span id="code8"></span>
 </div><!-- /code -->
 
 <div id="anime">
-	<img id="ga_nap_png" width="60%" height="60%" onclick="changeIMG();changeLINE();" src="/img/ga_nap/ga_nap.1.png">
+	<img id="ga_nap_png" width="100%" height="450px" onclick="changeIMG();setCodeLine()" src="/img/ga_nap/ga_nap.1.png">
 
 </div><!-- /anime -->
 <div id="sub">
