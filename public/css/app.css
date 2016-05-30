@@ -22,12 +22,12 @@
 #code,#define{
 	float : left;
 	width: 33%;
-	background-color: red;
+	/*background-color: red;*/
 }
 #sample {
 	position: relative;
 	top: 100px;
-	background-color: yellow;
+	/*background-color: yellow;*/
 }
 #footer{
 	 position:relative;
@@ -40,3 +40,9 @@
 .avoid-clicks{
   pointer-events: none;
 }
+
+.code_highlight {
+    background-color:#000066;
+    position: absolute;
+}
+

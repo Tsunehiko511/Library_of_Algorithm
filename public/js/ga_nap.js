@@ -1,5 +1,7 @@
 setColorLine(1);
 
+var editor = ace.edit("editor");
+
 //画像を配列に格納する
 var img = new Array();
 
@@ -40,6 +42,7 @@ function changeLINE(){
 	else if(cnt==6){
 		deleteColorLine(3);
 		setColorLine(4);
+
 	}
 	else if(cnt<=10){
 		deleteColorLine(4);
@@ -63,6 +66,13 @@ function changeLINE(){
 	else{
 		deleteColorLine(8);
 	}
+	var startline = getCodeHighlight(cnt)[0];
+	var endline = getCodeHighlight(cnt)[1];
+	var range = editor.getSession().highlightLines(startline, endline, "code_highlight");
+	console.log(range.id);
+	if(range.id>3){
+		editor.getSession().removeMarker(range.id-1);
+	}
 }
 
 function setColorLine(n){
@@ -77,3 +87,26 @@ function deleteColorLine(n){
 	}
 	document.getElementById('code'+ n).style.backgroundColor = 'transparent';
 }
+function getCnt(){
+	return cnt;
+}
+function getCodeHighlight(k){
+	if(k==0){
+		return [9,16];
+	}else if(k<=5){
+		return [23,32];
+	}else if(k==6){
+		return [33,34];
+	}else if(k<=10){
+		return [36,56];
+	}else if(k<=13){
+		return [58,64];
+	}else{
+		return [-1,-1];
+	}
+}
+
+
+
+
+
