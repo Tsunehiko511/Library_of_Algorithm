@@ -12,6 +12,10 @@ get '/def_ga' do
   erb :def_ga
 end
 
+get '/maxvalue' do
+  erb :maxvalue
+end
+
 get '/anime_knn' do
   erb :anime_knn
 end

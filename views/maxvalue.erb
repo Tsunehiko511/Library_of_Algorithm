@@ -1,0 +1,32 @@
+﻿<link rel="stylesheet" href="/css/maxvalue.css">
+<div id="container">
+	<div id="main">
+		<div id="subNav">
+			<h3>最大値</h3>
+			<p>配列の中の最大値を求める。</p>
+		</div>
+		<a href="/">戻る</a>　　<a>演習</a>　	　<a href="/">ホーム</a>
+	</div><!-- /main -->
+	<hr>
+	<div id="code">
+		<span class='bold'>データ</span><br>
+		<span>&emsp;入力 := [a0,a1,a2,...,a9]</span><br>
+		<p></p>
+		<span class='bold'>処理</span><br>
+		<span id='code0'>&emsp;max := 0</span><br><br>
+		<span id='code1'>&emsp;for i=1〜9:</span><br>
+		<span id='code2'>&emsp;&emsp;if 入力[max] &lt; 入力[i]:</span><br>
+		<span id='code3'>&emsp;&emsp;&emsp;max := i</span><br>
+		<p></p>
+		<span id='code4'>&emsp;print "最大値は 入力[max]"</span><br>
+		<span id='code5'>終了</span><br>
+	</div><!-- /code -->
+
+	<div id="anime">
+		<p>画面クリックで説明</p>
+		<canvas width="700" height="450" id="sample">
+			図形を表示するには、canvasタグをサポートしたブラウザが必要です。
+		</canvas>
+	</div><!-- /anime -->
+</div><!-- /container -->
+<script src='/js/maxvalue.js'></script>
