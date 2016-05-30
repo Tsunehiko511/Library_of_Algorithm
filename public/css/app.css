@@ -7,7 +7,7 @@
 #anime{
 
 	float : right;
-	width: 50%;
+	width: 55%;
 	/*background-color: pink;*/
 }
 #roulette_png,#ga_nap_png{
@@ -17,7 +17,7 @@
 
 #code,#define{
 	float : left;
-	width: 50%;
+	width: 45%;
 	overflow: scroll;   /* スクロール表示 */ 
   height: 600px;
  /*background-color: red;*/
@@ -34,6 +34,8 @@
 .avoid-clicks{
   pointer-events: none;
 }
+
+
 
 .code_highlight {
     background-color:#000066;
