@@ -17,10 +17,10 @@
 
 #code,#define{
 	float : left;
-	width: 45%;
+	width: 44%;
 	overflow: scroll;   /* スクロール表示 */ 
   height: 600px;
- /*background-color: red;*/
+  /*background-color: red;*/
 }
 
 #footer{

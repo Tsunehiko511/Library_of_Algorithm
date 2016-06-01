@@ -1,0 +1,23 @@
+#container{
+	overflow: hidden;
+}
+#code{
+	display: inline-block;
+	margin-right: 10px;
+	font-size: 18px;
+	font-family: sans-serif,"ＭＳ Ｐゴシック","MS PGothic";
+}
+#anime{
+	display: inline-block;
+	text-align: center;
+}
+#sample {
+	cursor: pointer;
+}
+#footer{
+	 position:relative;
+	 bottom: 0;
+}
+.bold{
+	font-weight: bold;
+}
