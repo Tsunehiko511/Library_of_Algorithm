@@ -14,12 +14,17 @@
 	position: relative;
 	/*background-color: green;*/
 }
+#ga_nap_png{
+	position: relative;
+	top: 150px;
+	/*background-color: green;*/
+}
 
 #code,#define{
 	float : left;
 	width: 44%;
-	overflow: scroll;   /* スクロール表示 */ 
-  height: 600px;
+	/*overflow: scroll;*/   /* スクロール表示 */ 
+  height: 800px;
   /*background-color: red;*/
 }
 
@@ -31,6 +36,9 @@
 	font-size: 18px;
 	font-family: sans-serif,"ＭＳ Ｐゴシック","MS PGothic";
 }
+#editor{
+	font-size: 14px;
+}
 .avoid-clicks{
   pointer-events: none;
 }
@@ -39,6 +47,7 @@
 
 .code_highlight {
     background-color:#000066;
+    /*background-color:yellow;*/
     position: absolute;
 }
 

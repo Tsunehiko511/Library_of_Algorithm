@@ -19,6 +19,7 @@ function anime(k){
 			count_anime += 1;
 			break;
         case 1:
+            delet();
             for (var t = 0; t<=6;t++){
                 draw_line(t,1,'black');
             }
@@ -35,6 +36,7 @@ function anime(k){
             break;
 		// 数を数える(赤)
 		case 3:
+            delet();
             deleteColorLine(4)
             setColorLine(5);
             setColorLine(6);
@@ -47,6 +49,7 @@ function anime(k){
 			count_anime += 1;
 			break;
 		case 5:
+            delet();
             deleteColorLine(7);
             setColorLine(6);
             draw_line(2,5,"orange");
@@ -58,6 +61,7 @@ function anime(k){
 			count_anime += 1;
 			break;
 		case 7:
+            delet();
             deleteColorLine(7);
             setColorLine(8);
             draw_line(4,5,"orange");

@@ -5,81 +5,48 @@
 			<p>試行錯誤を繰り返して解を求めるアルゴリズム</p>
 			<p>生物の進化過程では，ある世代を形成している個体の集合の中で環境に適応した個体が高い確率で生き残り，次の世代に子を残す．このメカニズムをモデル化し，環境に対して最もよく適応した個体，すなわち目的関数に対して最適値を与えるような解を求める。</p>
 		</div>
-		<a href="/def_ga">戻る</a>　<a href="/anime_roulette_selection">ルーレット選択</a>
-　<a>演習</a>　	　<a href="/">ホーム</a>
+		<a href="/def_ga">戻る</a>  <a>演習</a>　	　<a href="/">ホーム</a>
 </div><!-- /main -->
 <hr>
 <div id="code" class="codes">
 <div id="editor" class="avoid-clicks" style="width:100%; height: 1200px"><b>//データ</b>
-<span>ナップザック容量=15</span>
-<span>入れ物=[a,b,c,d,e]</span>
-	<span>重さ=[12,2,1, 4,1]</span>
-	<span>価値=[ 4,2,1,10,2]</span>
+<span>ナップザック容量 = 15</span>
+<span>入れ物群 = [a,b,c,d,e]</span>
+	<span>重さ群 = [12,2,1, 4,1]</span>
+	<span>価値群 = [ 4,2,1,10,2]</span>
 <b>//目的</b>
-//<span>ナップザック内の価値が高くなる入れ物リストを求める</span>
-
+<span>ナップザック内の価値が高くなる入れ物リストを求める</span>
 <b>//処理</b>
-//個体の初期設定
-リスト数 = 4，入れ物数 = 5;
-//リスト[i][j]:i番目リストのj番目の欄
-for(i=0;i&lt;リスト数;i++){
-    for(j=0;j&lt;入れ物数;j++){
-        リスト[i][j] = 入れる or 入れない;
-    };
-};
-
-//操作を指定回繰り返す
-繰り返し世代数 = 20;
-for(g=0;g&lt;繰り返し世代数;g++){
+リスト群 = [[有,無,有,無,無],...,[無,有,無,有,有]]
+while 世代数&lt;指定数:
     // 評価
-    for(i=0;i&lt;リスト数;i++){
-        for(j=0;j&lt;入れ物数;j++){
-            if(リスト[i][j] == 入れる){
-            　　リスト[i]の総重量 += 重さ[j];
-            　　リスト[i]の総価値 += 価値[j];
-            };
-        };
-        if(リスト[i]の総重量>ナップザック容量){
-            リスト[i]の総価値 = 0;
-        };
-    };
-    // 選択 (ルーレット選択参照)
-    親リスト=ルーレット選択により決定
-
-    //交叉(一定確率)
-    for(２組ずつ選びその回数繰り返す(今はx=0,2とする)){
-        交叉確率 = 1〜100のどれか;
-        if(交叉確率&lt;95){
-            //交叉範囲(start〜end)の染色体を入れ替える
-            start = 0〜(入れ物の数-1)のどれか;
-            end = start〜(入れ物の数-1)のどれか
-            for(i=0;i&lt;入れ物の数;i++){
-                if(start&lt;=i &amp;&amp; i&lt;=end){
-                    子供[0][i] = 親リスト[x+1][i];
-                    子供[1][i] = 親リスト[x][i];
-                }else{
-                    子供[0][i] = 親リスト[x][i];
-                    子供[1][i] = 親リスト[x+1][i];
-                };
-            };
-            //子供を子供世代に入れる
-                子供世代[x] = 子供[0];
-                子供世代[x+1] = 子供[1];
-            };
-        }
-        //突然変異
-        for(i=0;i&lt;リスト数;i++){
-            突然変異率 = 0〜100のどれか;
-            if(突然変異率&lt;3){
-                変更点 = ランダム;
-                子供世代[i][変更点] = 入れる or 入れない;
-            };
-        };
-    };
-    //子供世代を親世代とする
-    リスト=子供世代
-};
-
+    for リスト in リスト群:
+        リストから総重量を取得
+        リストから総価値を取得
+        if 総価値>ナップザック容量:
+            総価値 = 0
+    // 選択 (ルーレット選択)
+    while 親リストの数&lt;指定数:
+        的 = 総価値の合計
+        矢の場所 = ランダム(0〜的)
+        ルーレット上のリストごとの領域 = 0
+        for リスト in リスト群:
+            ルーレット上のリストごとの領域 += リストの総価値
+            if 矢の場所&lt;ルーレット上のリストの領域:
+                リストを親リスト群に追加
+    // 交叉（２点交叉）
+    for 親1,親2 in 親リスト群:
+        if 一定確率:
+            子供1 = 親1のどこかを親2に入れる
+            子供2 = 親2のどこかを親1に入れる
+            子供1,子供2を子供世代に追加
+    // 突然変異
+    for 子供 in 子供世代:
+        if 一定確率:
+            変更点 = ランダム;
+            子供[変更点] = 入れる or 入れない;
+    // 世代交代
+    リスト群 = 子供世代
 最後の世代で総価値が最大のものが解となる
 
 </div>
@@ -94,7 +61,7 @@ for(g=0;g&lt;繰り返し世代数;g++){
 </div><!-- /sub -->
 </div><!-- /container -->
 <hr>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+<script src="/js/src-min/ace.js"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>-->
 <script src="/js/ga_nap.js" type="text/javascript" ></script>
 <script>
@@ -106,6 +73,6 @@ for(g=0;g&lt;繰り返し世代数;g++){
     //enableSnippets: true,
     //_enableLiveAutocompletion: true
   });
-  editor.setTheme("ace/theme/monokai");
+  editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
   editor.getSession().setMode("ace/mode/javascript");
 </script>
