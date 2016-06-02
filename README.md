@@ -1,2 +1,12 @@
 # Library_of_Algorithm
-アルゴリズム学習サイト「Library of Algorithm」
+アルゴリズムを絵と擬似コードで理解するサイト「Library of Algorithm」
+
+現在の上がっているアルゴリズム
+・最大値
+・ダイクストラ法
+・k近傍法
+・遺伝的アルゴリズム（ナップザック問題）
+
+追加したいアルゴリズム
+・ベイジアンフィルター
+・Bitcoinの採掘
