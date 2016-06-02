@@ -37,6 +37,7 @@ function anime(k){
 		// 数を数える(赤)
 		case 3:
             delet();
+            draw_neighbor(k);
             deleteColorLine(4)
             setColorLine(5);
             setColorLine(6);
@@ -50,6 +51,7 @@ function anime(k){
 			break;
 		case 5:
             delet();
+            draw_neighbor(k);
             deleteColorLine(7);
             setColorLine(6);
             draw_line(2,5,"orange");
@@ -62,6 +64,7 @@ function anime(k){
 			break;
 		case 7:
             delet();
+            draw_neighbor(k);
             deleteColorLine(7);
             setColorLine(8);
             draw_line(4,5,"orange");

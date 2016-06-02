@@ -29,10 +29,10 @@ while 世代数&lt;指定数:
     while 親リストの数&lt;指定数:
         的 = 総価値の合計
         矢の場所 = ランダム(0〜的)
-        ルーレット上のリストごとの領域 = 0
+        価値ごとの色塗り領域 = 0
         for リスト in リスト群:
-            ルーレット上のリストごとの領域 += リストの総価値
-            if 矢の場所&lt;ルーレット上のリストの領域:
+            価値ごとの色塗り領域 += リストの総価値
+            if 矢の場所&lt;価値ごとの色塗り領域:
                 リストを親リスト群に追加
     // 交叉（２点交叉）
     for 親1,親2 in 親リスト群:
@@ -53,7 +53,7 @@ while 世代数&lt;指定数:
 </div><!-- /code -->
 
 <div id="anime">
-	<img id="ga_nap_png" width="100%" height="450px" onclick="changeIMG();setCodeLine()" src="/img/ga_nap/ga_nap.1.png">
+	<img id="ga_nap_png" width="100%" height="450px" onclick="changeIMG();setCodeLine()" src="/img/ga_nap_anime/ga_nap_anime.1.png">
 
 </div><!-- /anime -->
 <div id="sub">
@@ -63,7 +63,7 @@ while 世代数&lt;指定数:
 <hr>
 <script src="/js/src-min/ace.js"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>-->
-<script src="/js/ga_nap.js" type="text/javascript" ></script>
+<script src="/js/ga_nap_anime.js" type="text/javascript" ></script>
 <script>
   var editor = ace.edit("editor");
   editor.renderer.setShowGutter(false);

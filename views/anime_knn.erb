@@ -11,28 +11,28 @@
 <hr>
 <div id="code" class="codes">
 	<b>データ</b><br>
-		<span>&emsp;訓練 := [(a0,b0),(a1,b1),...,,(a6,b6)]</span><br>
+		<span>&emsp;訓練データ := [(a0,b0),(a1,b1),...,,(a6,b6)]</span><br>
 		<span>&emsp;カテゴリ := [<FONT color="red">赤</FONT>,<FONT color="blue">青</FONT>,...,<FONT color="red">赤</FONT>]</span>
 	<p></p>
 	<b>目的</b><br>
 		<span>&emsp;<FONT color="green">●</FONT>が<FONT color="red">赤</FONT>か<FONT color="blue">青</FONT>か予測する</span>
 	<p></p>
 	<b>処理</b><br>
-	<span id="code1">&emsp;for i=0〜6:</span><br>
-	<span id="code2">&emsp;&emsp;di := 距離(<FONT color="green">●</FONT>,(ai,bi))</span><p></p>
-	<span id="code3">&emsp;距離が近い順番 near:= [3,2,4,5,1,0,6]</span>
+	<span id="code1">&emsp;for データ in 訓練データ:</span><br>
+	<span id="code2">&emsp;&emsp;各距離 = データと<FONT color="green">●</FONT>の距離</span><p></p>
+	<span id="code3"></span>
 	<p></p>
-	<span id="code4">&emsp;k := 近傍の大きさ</span><br>
-	<span id="code5">&emsp;for i =0〜k-1:</span><br>
-	<span id="code6">&emsp;&emsp;if カテゴリ[near[i]] == <FONT color="red">赤</FONT>:</span><br>
+	<span id="code4">&emsp;近傍の大きさ = ここでは3</span><br>
+	<span id="code5">&emsp;for 近傍内の要素:</span><br>
+	<span id="code6">&emsp;&emsp;if 要素のカテゴリ == <FONT color="red">赤</FONT>:</span><br>
 	<span id="code7">&emsp;&emsp;&emsp;<FONT color="red">赤</FONT>の数 += 1</span><br>
-	<span id="code8">&emsp;&emsp;else if カテゴリ[near[i]] == <FONT color="blue">青</FONT>:</span><br>
+	<span id="code8">&emsp;&emsp;else if 要素のカテゴリ == <FONT color="blue">青</FONT>:</span><br>
 	<span id="code9">&emsp;&emsp;&emsp;<FONT color="blue">青</FONT>の数 += 1</span>
 	<p></p>
 	<span id="code10">&emsp;if <FONT color="red">赤</FONT>の数 > <FONT color="blue">青</FONT>の数:</span><br>
-	<span id="code11">&emsp;&emsp;print "<FONT color="green">●</FONT>は<FONT color="red">赤</FONT>"</span><br>
-	<span id="code12">&emsp;else if <FONT color="red">赤</FONT>の数 < <FONT color="blue">青</FONT>の数:</span><br>
-	<span id="code13">&emsp;&emsp;print "<FONT color="green">●</FONT>は<FONT color="blue">青</FONT>"</span><br>
+	<span id="code11">&emsp;&emsp;return <FONT color="red">赤</FONT></span><br>
+	<span id="code12">&emsp;else if <FONT color="red">赤</FONT>の数 &lt; <FONT color="blue">青</FONT>の数:</span><br>
+	<span id="code13">&emsp;&emsp;return <FONT color="blue">青</FONT></span><br>
 	<span id="code14">終了</span><br>
 	<!--
 	<p>
