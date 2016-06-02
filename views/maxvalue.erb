@@ -10,15 +10,15 @@
 	<hr>
 	<div id="code">
 		<span class='bold'>データ</span><br>
-		<span>&emsp;入力 := [a0,a1,a2,...,a9]</span><br>
+		<span>&emsp;入力データ := [a0,a1,a2,...,a9]</span><br>
 		<p></p>
 		<span class='bold'>処理</span><br>
-		<span id='code0'>&emsp;max := 0</span><br><br>
-		<span id='code1'>&emsp;for i=1〜9:</span><br>
-		<span id='code2'>&emsp;&emsp;if 入力[max] &lt; 入力[i]:</span><br>
-		<span id='code3'>&emsp;&emsp;&emsp;max := i</span><br>
+		<span id='code0'>&emsp;max= 0</span><br>
+		<span id='code1'>&emsp;for 比較データ in 入力データ:</span><br>
+		<span id='code2'>&emsp;&emsp;if max &lt; 比較データ:</span><br>
+		<span id='code3'>&emsp;&emsp;&emsp;max = 比較データ</span><br>
 		<p></p>
-		<span id='code4'>&emsp;print "最大値は 入力[max]"</span><br>
+		<span id='code4'>&emsp;return max</span><br>
 		<span id='code5'>終了</span><br>
 	</div><!-- /code -->
 
