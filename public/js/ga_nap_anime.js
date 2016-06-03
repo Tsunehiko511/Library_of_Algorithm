@@ -58,33 +58,34 @@
 
 	function getCodeHighlight(k){
 		if(k==1){
-			return [8,8];
+			return [6,6];
 		}else if(k<=3){
-			return [12,13];
+			return [10,11];
 		}else if(k==4){
-			return [15,15];
+			return [13,13];
 		}else if(k==5){
-			return [12,13];
+			return [10,11];
 		}else if(k==6){
-			return [18,18];
+			return [16,16];
 		}else if(k==7){
-			return [19,19];
+			return [17,17];
 		}else if(k<=10){
-			return [22,22];
+			return [20,20];
 		}else if(k<=12){
-			return [23,24];
+			return [21,22];
 		}else if(k<=13){
-			return [26,26];
+			return [24,24];
 		}else if(k<=15){
-			return [28,30];
+			return [26,28];
 		}else if(k<=16){
-			return [31,31];
+			return [29,29];
 		}else if(k<=18){
-			return [34,35];
+			return [32,33];
 		}else if(k==21){
-			return [38,38];
+			return [36,36];
 		}else{
 			return [-1,-1];
 		}
 	}
+	document.getElementById('editor').style.visibility="visible";
 })();

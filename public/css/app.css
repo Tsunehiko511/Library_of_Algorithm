@@ -1,3 +1,4 @@
+
 #container {
 		overflow: hidden;
 }
@@ -35,6 +36,7 @@
 	font-family: sans-serif,"ＭＳ Ｐゴシック","MS PGothic";
 }
 #editor{
+	visibility: hidden;
 	font-size: 14px;
 }
 .avoid-clicks{
