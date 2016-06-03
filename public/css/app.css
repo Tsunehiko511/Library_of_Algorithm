@@ -7,23 +7,23 @@
 #anime{
 	display:inline-block;
 	width: 550px;
-	background-color: pink;
+	/*background-color: pink;*/
 	text-align: center;
 }
 #roulette_png,#ga_nap_png{
 	position: relative;
-	background-color: green;
+	/*background-color: green;*/
 }
 #ga_nap_png{
 	margin-top: 100px;
-	background-color: green;
+	/*background-color: green;*/
 }
 
 #code,#define{
 	display:inline-block;
 	float : left;
 	width: 440px;
-  background-color: red;
+  /*background-color: red;*/
 }
 
 #footer{
