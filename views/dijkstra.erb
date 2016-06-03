@@ -1,41 +1,42 @@
-﻿<link rel="stylesheet" href="/css/dijkstra.css">
-
-<div id="container">
+﻿<div id="container">
 	<div id="main">
 		<div id="subNav">
 			<h3>ダイクストラ法</h3>
 			<p>最短経路を求めるアルゴリズム</p>
 			<p>最短経路問題は、総当たりで解こうとすると膨大な時間がかかる。ダイクストラ法やその応用であるA*アルゴリズムは、最良優先探索、つまり、最もよさそうな選択肢から優先的に調べていくことで、大幅な効率化と計算時間の短縮が見込める。カーナビなど実用例も多い。</p>
 		</div>
-		<a href="/">戻る</a>　　<a>演習</a>　	　<a href="/">ホーム</a>
+		<a href="dijkstra">アルゴリズムの解説</a>　　<a href='dijkstra2'>演習問題</a>　	　<a href="/">ホーム</a>
 	</div><!-- /main -->
 	<hr>
 	<div id="code">
-		<span class='bold'>データ</span><br>
-		<span>&emsp;エッジ＝[1,6,2,4,4,1,7,5,2,3]</span><br>
-		<span>&emsp;&emsp;（→各辺の長さ）</span><br>
-		<span>&emsp;ノードのスコア＝[0,&infin;,&infin;,...,&infin;]</span><br>
-		<span>&emsp;&emsp;（→各頂点までの暫定最短距離）</span><br>
+		<h3>アルゴリズムの解説</h3>
+		<span class='bold'>初期化</span><br>
+		<span>&emsp;var 頂点のスコア＝[0,&infin;,&infin;,...,&infin;]</span><br>
+		<span>&emsp;&emsp;（→スタートから各頂点までの暫定距離）</span><br>
+		<span>&emsp;var 直前の頂点＝[なし,なし,なし,...,なし]</span><br>
+		<span>&emsp;&emsp;（→どこから来たか）</span><br>
+		<span>&emsp;var 処理済み＝[未,未,未,...,未]</span><br>
+		<span>&emsp;&emsp;（→調べ終わったら「済」にする）</span><br>
 		<p></p>
 		<span class='bold'>処理</span><br>
-		<span id='code0'>&emsp;未処理のノードがある限り:</span><br>
-		<span id='code1'>&emsp;&emsp;現在のノード＝スコアが最小のノード</span><br>
-		<span id='code2'>&emsp;&emsp;各未処理の隣接ノードについて:</span><br>
-		<span id='code3'>&emsp;&emsp;&emsp;暫定距離＝現在のノードのスコア＋エッジ</span><br>
-		<span id='code4'>&emsp;&emsp;&emsp;もし　隣接ノードのスコア＞暫定距離なら：</span><br>
-		<span id='code5'>&emsp;&emsp;&emsp;&emsp;隣接ノードのスコア＝暫定距離</span><br>
-		<span id='code6'>&emsp;&emsp;現在のノードを処理済みにする</span><br>
+		<span id='code0'>&emsp;while 未処理の頂点がある</span><br>
+		<span id='code1'>&emsp;&emsp;var 現在位置＝スコアが最小の頂点</span><br>
+		<span id='code2'>&emsp;&emsp;for each 未処理の隣接点</span><br>
+		<span id='code3'>&emsp;&emsp;&emsp;var 暫定スコア＝現在位置のスコア<br>
+		&emsp;&emsp;&emsp;&emsp;＋隣接点までの距離</span><br>
+		<span id='code4'>&emsp;&emsp;&emsp;if 隣接点のスコア＞暫定スコア</span><br>
+		<span id='code5'>&emsp;&emsp;&emsp;&emsp;隣接点のスコア＝暫定スコア<br>
+		&emsp;&emsp;&emsp;&emsp;隣接点の直前の頂点＝現在位置</span><br>
+		<span id='code6'>&emsp;&emsp;現在位置を処理済みにする</span><br>
+		<span id='code7'>&emsp;終了</span><br>
 		<p></p>
-		<span id='code7'>&emsp;ゴールノードの暫定距離が最短距離</span><br>
-		<span id='code8'>終了</span><br><br>
 	</div><!-- /code -->
 
 	<div id="anime">
 		<p>画面クリックで説明</p>
-		<canvas width="600" height="300" id="sample">
+		<canvas width="550" height="300" id="sample">
 			図形を表示するには、canvasタグをサポートしたブラウザが必要です。
 		</canvas>
 	</div><!-- /anime -->
 </div><!-- /container -->
-
 <script src='/js/dijkstra.js'></script>

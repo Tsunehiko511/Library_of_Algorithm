@@ -1,0 +1,13 @@
+#sample{
+	float: right;
+}
+#matrix{
+	margin: 20px 0px 20px 20px;
+	font-family: monospace;
+	font-size: 18px;
+	letter-spacing: 5px;
+	line-height: 1.2;
+}
+#myForm input{ font-size: inherit;}
+#myInput{ width: 80px;}
+

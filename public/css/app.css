@@ -5,27 +5,25 @@
 	z-index: 2;
 }
 #anime{
-
-	float : right;
-	width: 54%;
-	/*background-color: pink;*/
+	display:inline-block;
+	width: 550px;
+	background-color: pink;
+	text-align: center;
 }
 #roulette_png,#ga_nap_png{
 	position: relative;
-	/*background-color: green;*/
+	background-color: green;
 }
 #ga_nap_png{
-	position: relative;
-	top: 130px;
-	/*background-color: green;*/
+	margin-top: 100px;
+	background-color: green;
 }
 
 #code,#define{
+	display:inline-block;
 	float : left;
-	width: 44%;
-	/*overflow: scroll;*/   /* スクロール表示 */ 
-  height: 800px;
-  /*background-color: red;*/
+	width: 440px;
+  background-color: red;
 }
 
 #footer{
@@ -43,8 +41,15 @@
   pointer-events: none;
 }
 
-
-
+#sample {
+	cursor: pointer;
+}
+.bold{
+	font-weight: bold;
+}
+.monospace{
+	font-family: monospace;
+}
 .code_highlight {
     background-color:	#0b2bd7;
     /*background-color:yellow;*/
