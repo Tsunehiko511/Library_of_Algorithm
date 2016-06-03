@@ -16,6 +16,10 @@ get '/maxvalue' do
   erb :maxvalue
 end
 
+get '/anime_quicksort' do
+  erb :anime_quicksort
+end
+
 get '/dijkstra' do
   erb :dijkstra
 end
