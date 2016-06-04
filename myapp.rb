@@ -3,9 +3,13 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 get '/' do
-	@title = 'Library of Algorithms'
-	@subtitle = 'Algorithm is fun!!!'
-	erb :index
+  @title = 'Library of Algorithms'
+  @subtitle = 'Algorithm is fun!!!'
+  erb :index
+end
+
+get '/test' do
+  erb :test
 end
 
 get '/def_ga' do

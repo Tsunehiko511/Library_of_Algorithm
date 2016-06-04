@@ -1,0 +1,7 @@
+div.bar {
+   display: inline-block;
+   width: 20px;
+   height: 75px;   /* この数値は実行時に上書きされます */
+   background-color: teal;
+   margin-right: 2px;
+}
