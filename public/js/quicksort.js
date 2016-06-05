@@ -1,79 +1,51 @@
 (function(){
-	
-	var count_anime = -1; // インクリメントしてから描画するので、－1から始める
-	var max_anime = 12; // スライドの枚数
-	var values = []; // 入力
-	var maxValue = 0; // values[maxValue]がvaluesの最大値になる
-	var canvas = document.getElementById('sample');
-	var context = canvas.getContext('2d');
 
-	// タッチスクリーンなら
-	if (window.ontouchstart===null){
-		// 素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
-		canvas.addEventListener('touchstart',function(e){ e.preventDefault(); goNext();},false);
-	}
+var w = 550;
+var h = 350;
+var barPadding = 1;
 
-	// タッチスクリーンでないなら
-	else{
-		// 'click'(=onClick)を使わないのは、素早くクリックしたときにダブルクリックとみなされて画面が選択されるのを防ぐため
-		canvas.addEventListener('mousedown',function(e){ e.preventDefault();},false);
-		canvas.addEventListener('mouseup',goNext,false);
-	}
+// svg生成
+var svg = d3.select("anime")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
 
-	function goNext(){
+var dataset = [8,3,6,1,9,5];
 
-		// インクリメント
-		count_anime++;
+var graph = svg.selectAll("rect")
+							 .data(dataset)
+							 .enter()
+							 .append("rect")
+							 .attr("x", function(d, i){
+							 	return i * (w / dataset.length);
+							 })
+							 .attr("y", function(d){
+							 	return h -  d -100;
+							 })
+							 .attr("width", w / dataset.length - barPadding)
+							 .attr("height", function(d){
+							 	return d ;
+							 });
 
-		// 疑似コードのハイライトを消す
 
+var new_dataset = [3,1,5,6,8,9];
 
-		// 最後まで行ったら最初に戻す
-		if (count_anime>=max_anime){
-			count_anime = -1;
-		}
-
-		// まずはcanvasをクリアする
-		context.clearRect(0,0,canvas.width,canvas.height);
-
-		context.font = 'normal 18px sans-serif';
-		context.textBaseline = 'middle';
-		context.textAlign = 'center';
-
-		// バーの幅、バーとバーの隙間、バーの単位あたりの高さ
-		var barWidth = 30, barMargin = 5, barHeight = 7;
-
-		if (count_anime==0){
-			for (var i=0; i<10; i++){
-				values[i] = 1+Math.floor(Math.random()*20); // 1～20までの乱数
-			}
-		}
-		var n = count_anime-1;
-		if (n>=0){
-			if (n==0){
-				maxValue = n;
-			}
-			else{
-				if (values[maxValue]<values[n]){
-					maxValue = n;
-				}
-			}
-			context.fillStyle = 'black';
-			context.fillText('max = '+maxValue,110,220);
-			context.fillStyle = 'red';
-			context.fillRect(100,200-values[maxValue]*barHeight,barWidth,values[maxValue]*barHeight); //(x,y,w,h)
-			context.fillText(values[maxValue],100+barWidth/2,200-values[maxValue]*barHeight-20);
-		}
-		for (var i=0; i<10; i++){
-			context.fillStyle = (n==i) ? 'green' : 'blue';
-			context.fillRect(200+i*(barWidth+barMargin),200-values[i]*barHeight,barWidth,values[i]*barHeight);
-			context.fillText(values[i],200+barWidth/2+i*(barWidth+barMargin),200-values[i]*barHeight-20);
-			context.fillStyle = 'black';
-			context.fillText(i,200+barWidth/2+i*(barWidth+barMargin),220);
-		}
-
-	}
-
-	// まずは実行
-	goNext();
+graph.transition()
+		 .delay(400)
+		 .duration(1000)
+		 .attr("y", function(d){
+		 	return h - 20 * d -100;
+		 })
+		 .attr("width", w / dataset.length - barPadding)
+		 .attr("height", function(d){
+		 	return 20 * d ;
+		 });
+var pivot = dataset[2];
+graph.transition()
+		 .delay(1400)
+		 .duration(1000)
+		 .attr("x", function(d, i){
+		 	var barXPosition = ((i+1)%new_dataset.length) * (w / dataset.length);
+		 	return barXPosition;
+		 })
 })();
