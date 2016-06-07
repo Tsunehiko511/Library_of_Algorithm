@@ -3,11 +3,11 @@
 var w = 550;
 var h = 350;
 var barPadding = 60;
-var dataset = [9,3,6,1,8,5,4];
+var dataset = [6,3,9,1,8,5,4];
 var pivot = [];
 var swap_array = [];
 var new_dataset = copy(dataset);
-
+const SPEED = 500;
 
 // svg生成
 var svg = d3.select("anime")
@@ -49,30 +49,10 @@ var graph = svg.selectAll("circle")
 
 
 
-// 二つの配列の置換行列を一挙に取得する
-/*function getSwaps(array, new_array){
-	if (array.length<=1){
-		return 0;
-	}
-	var tmp = getLPR(new_array);
-	console.log(array);
-	console.log(new_array);
-	swap_array.push(getSwapNumber(array, new_array)); // arrayとnew_arrayのo置換行列を取得
-	console.log(swap_array);
-	pivot.push(tmp[1])
-	var left_side = tmp[0];
-	var right_side = tmp[2];
-	console.log("ok");
-	var new_left_side = copy(left_side);
-	var new_right_side = copy(right_side);
-	getSwaps(left_side, new_left_side);
-	getSwaps(right_side, new_right_side);
-}
-*/
 // 初期化
 function init(){
 	graph.transition()
-			 .duration(1000)
+			 .duration(SPEED)
 			 .attr("cx", function(d, i){
 			 	return i * (w / dataset.length) + barPadding;
 			 })
@@ -81,39 +61,53 @@ function init(){
 			 })
 			 .attr("fill", "black");
 	text.transition()
-			.duration(1000)
+			.duration(SPEED)
 			.attr("x", function(d, i){
 				return i * (w / dataset.length) + barPadding;
 			})
 }
 
 
-function move(swap_array){
-	graph.data(dataset).transition()
-			 .duration(1000)
-			 .attr("cx", function(d, i){
-			 	var point = swap_array[i][1];// 置換行列
-			 	console.log(point);
-			 	return point * (w / dataset.length) + barPadding;;
-			 });
-/*	text.transition()
-			.duration(1000).delay(1000)
+function move(times, swap_array){
+	if (times == pivot.length){
+		graph.transition()
+		 .duration(SPEED)
+		 .attr("cx", function(d, i){
+		 	var point = swap_array[i][1];// 置換行列
+		 	return point * (w / dataset.length) + barPadding;;
+		 })
+		.attr("fill", function(d, i){
+			return "black";
+		});
+	}else{
+		graph.transition()
+				 .duration(SPEED)
+				 .attr("cx", function(d, i){
+				 	var point = swap_array[i][1];// 置換行列
+				 	return point * (w / dataset.length) + barPadding;;
+				 });		
+	}
+	text.transition()
+			.duration(SPEED)
 			.attr("x", function(d, i){
 			 var point = swap_array[i][1];					
 			 var barXPosition = point * (w / dataset.length) + barPadding;
 			 return barXPosition;
-			});*/
-}
+			});
+};
 // ピボットの色を変える
+
 function drawBar(times,swap_array){
-	console.log(swap_array);
-	graph.attr("fill", function(d, i){
-				var l = swap_array.length;
-				if(l<=i){
-					return "black";					
-				}
+	console.log("times");
+	console.log(times);
+	console.log(pivot.length);
+
+	graph.transition()
+			.duration(SPEED).attr("fill", function(d, i){
 			 	var point = swap_array[i][1];
-			 	if (point == pivot[times]){
+		    if(decided(times,point,pivot,lefts,rights)){
+		    	return decided(times,point,pivot,lefts,rights);
+		    }			 	if (point == pivot[times]){
 			 		return "red";
 			 	}
 			 	else{
@@ -122,71 +116,85 @@ function drawBar(times,swap_array){
 			 });
 }
 
+function decided(times,point,pivot,lefts,rights){
+	for(var j=0; j<times;j++){
+		if(point==pivot[j]){
+			return "orange";
+		}
+		if(isYellow(lefts[j],pivot[j],point)==1){
+	  	return "orange";
+	  }
+		if(isYellow(rights[j],pivot[j],point)==1){
+	  	return "orange";
+	  }
+	}
+	return 0;
+}
+
+function isYellow(direction, pivot, point){
+	if(Math.abs(pivot-direction)==1 && point==direction){
+		return 1;
+	}
+	return 0;
+}
 //　ピボットを境に色を変える
 function leftDraw(times, swap_array){
-	var l = swap_array.length;
-	var tmp = turnArray(swap_array);
-	graph.attr("fill", function(d, i){
-		    var point = i;
-				if(l>i){
-					point = swap_array[i][1];
-				}
-				else{
+	graph.transition()
+			.duration(SPEED).attr("fill", function(d, i){
+				if (times == pivot.length){
 					return "black";
 				}
-			 	if (point < tmp[pivot[times]]){
+		    var point = swap_array[i][1];
+		    if(decided(times,point,pivot,lefts,rights)){
+		    	return decided(times,point,pivot,lefts,rights);
+		    }
+			 	if (lefts[times] <= point && point < pivot[times]){
 			 		return "green";
 			 	}
-			 	else if (point == tmp[pivot[times]]){
+			 	else if (point == pivot[times]){
 			 		return "red";
 			 	}
-			 	else{
-			 		return "blue"
+			 	else if (point<=rights[times]){
+			 		return "blue";
 			 	}
 			 });
 }
 init();
-var first = 0, step = 0, turn = 0;
+var step = 0, turn = 0;
 
-var swap_arrays = [dataset];
+var swap_arrays = [];
+var lefts = [];
+var rights = [];
 quicksort(new_dataset, 0, new_dataset.length-1);
+swap_arrays.push(dataset);
+var next_swap = getSwapNumber(dataset,swap_arrays[turn]);
 function view(){
-	console.log(dataset);
-	console.log(new_dataset);
-	console.log("動かせ");
-	var next_swap = getSwapNumber(swap_arrays[0],swap_arrays[turn+1]);
-	console.log(next_swap);
-	move(next_swap);
-	turn++;
-
-	if (first == 0){
-		// ピボット位置の取得
-		first = 1;
-	}
+	
 	switch(step){
 		case 0:
 		console.log("ピボットを塗れ");
-//	drawBar(turn,next_swap);
+		drawBar(turn,next_swap);
 		break;
 		case 1:
-		console.log(graph);
+		move(turn, next_swap);
 		break;
 		case 2:
 		console.log("色を塗れ");
-		//leftDraw(turn,next_swap);
-		break;
-		default:
+		leftDraw(turn,next_swap);
 		console.log("turnを増やせ");
 		turn++;
+		if(turn>=swap_arrays.length){
+			turn = 0;
+		}
+		next_swap = getSwapNumber(dataset,swap_arrays[turn]);
+		break;
+		default:
+		console.log("default");
 		break;
 	}
 	step++;
-	if(step>3){
+	if(step>2){
 		step = 0;
-	}
-	if(turn+1>=swap_array.length){
-		turn = 0;
-		init();
 	}
 }
 svg.on("click", view);
@@ -237,49 +245,12 @@ function quicksort(array_data, left, right){
 	var tmp = array_data;
 	if(left<right){
 		var pi = partition(tmp, left, right);
+		pivot.push(pi);
+		lefts.push(left);
+		rights.push(right);
 		quicksort(tmp, left, pi-1);
 		quicksort(tmp, pi+1, right);
 		return tmp
 	}
 }
-
-// left+ピボット+rightを返す
-/*function getLPR(new_array){
-	var p = partition(new_array, 0, new_array.length-1);
-	console.log("p");
-	console.log(p);
-	var left = [];
-	var right = [];
-	for(var i=0; i<new_array.length; i++){
-		if(i<p){
-			left.push(new_array[i]);
-		}
-		else if(p<i){
-			right.push(new_array[i]);
-		}
-	}
-	return [left,p,right];
-}
-*/
-// 配列をコピーする
-
-
-// arrayをchangeする
-/*
-function getT(array, change, size){
-	console.log("array");
-	console.log(array);
-	var a = copy(array);
-	var c = copy(array);
-	var i = 0
-	for(i = 0;i<size-change.length;i++){
-		c[change[i][1]] = a[change[i][0]];
-	}
-	for(;i<size;i++){
-		c[change[i][1]] = a[change[i][0]];
-	}
-	console.log("c");
-	console.log(c);
-	return c;
-}*/
 })();
