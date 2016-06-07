@@ -1,4 +1,142 @@
-var margin = {top: 230, right: 30, bottom: 230, left: 30},
+var width = 600,
+    height = 450;
+
+var n = 6,
+    index = d3.range(n),
+    data = [8,3,6,1,9,5];//shuffle(index.slice()); // 謎処理
+console.log(data);
+// x=0からwidthで240個に等間隔に分ける, a=-pi/4〜pi/4で0から240-1等間隔に分ける
+var x = d3.scale.ordinal().domain(index).rangePoints([0, width-50]);
+    //a = d3.scale.linear().domain([0, n - 1]).range([-Math.PI / 4, Math.PI / 4]);
+for (var i = 0; i<n ; i++){
+	console.log(x(i));
+}
+
+
+var svg = d3.select("test").append("svg")
+    .attr("width", width )
+    .attr("height", height)
+  .append("g");
+    //.attr("transform", "translate(" + margin.left + "," + (margin.top + height) + ")");
+
+var line = svg.selectAll("rect")
+    .data(data)
+  .enter().append("rect")
+		.attr("x", function(d, i){
+			return x(i);// * (width / data.length);
+		})
+		.attr("y", function(d){
+			return height -  30 * d;
+		})
+		.attr("width", width / (data.length) -50)
+		.attr("height", function(d){
+			return 30 * d;
+		});
+    //.attr("transform", function(d, i) { return "translate(" + x(i) + ")"; });
+/*
+    .attr("index", function(d, i) { return "i" + i; })
+    .attr("x2", function(d) { return height * Math.sin(a(d)); })
+    .attr("y2", function(d) { return -height * Math.cos(a(d)); })
+*/
+
+							 
+
+
+
+// Fisher–Yates shuffle　配列を混ぜる
+function shuffle(array) {
+  var i = array.length, j, t;
+  while (--i > 0) {
+    j = ~~(Math.random() * (i + 1));
+    t = array[j];
+    array[j] = array[i];
+    array[i] = t;
+  }
+  return array;
+}
+
+function quicksort(array) {
+  var actions = [];
+
+  function partition(left, right, pivot) {
+    var v = array[pivot];
+    swap(pivot, --right);
+    for (var i = left; i < right; ++i) if (array[i] <= v) swap(i, left++);
+    swap(left, right);
+    return left;
+  }
+
+  function swap(i, j) {
+    var t = array[i];
+    array[i] = array[j];
+    array[j] = t;
+    actions.push({type: "swap", i: i, j: j});
+  }
+
+  function recurse(left, right) {
+    if (left < right) {
+      var pivot = left + ~~(Math.random() * (right - left));
+      actions.push({type: "partition", pivot: pivot});
+      pivot = partition(left, right, pivot);
+      recurse(left, pivot);
+      recurse(pivot + 1, right);
+    }
+  }
+
+  recurse(0, array.length);
+  return actions;
+}
+
+var actions = quicksort(data).reverse();
+console.log(actions);
+console.log(data);
+
+
+function step(time) {
+  var action = actions.pop();
+  if (action) switch (action.type) {
+    case "partition": {
+      line.style("fill", function(d, i) { return i == action.pivot ? "red" : null; });
+      //step();
+      break;
+    }
+    case "swap": {
+    	if (action.i == action.j){
+    		step(time);
+    		break;
+    	};
+      var t = line[0][action.i];
+      line[0][action.i] = line[0][action.j];
+      line[0][action.j] = t;
+      console.log(action.i,action.j)
+      line.transition()
+          .duration(time)
+					.attr("x", function(d, i){
+						return x(i);// * (width / data.length);
+					});
+      		//.attr("transform", function(d, i) { return "translate(" + x(i) + ")"; });
+      break;
+    }
+  }
+  else{
+  	alert("end");
+	}
+};
+var test = document.getElementById('test')
+	// タッチスクリーンなら
+	if (window.ontouchstart===null){
+		// 素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
+		test.addEventListener('touchstart',function(e){ e.preventDefault(); step(500);},false);
+	}
+	// タッチスクリーンでないなら
+	else{
+		// 'click'(=onClick)を使わないのは、素早くクリックしたときにダブルクリックとみなされて画面が選択されるのを防ぐため
+		test.addEventListener('mousedown',function(e){ e.preventDefault();},false);
+		test.addEventListener('mouseup',function(){step(500);},false);
+	}
+
+
+/*var margin = {top: 230, right: 30, bottom: 230, left: 30},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -88,7 +226,7 @@ setInterval(function step() {
   }
 }, 200);
 
-
+*/
 /*var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
                           11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
 
