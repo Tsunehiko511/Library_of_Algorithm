@@ -57,7 +57,7 @@ function init(){
 			 	return i * (w / dataset.length) + barPadding;
 			 })
 			 .attr("r", function(d){
-			 	return 4 * d ;
+			 	return 4 * d+2 ;
 			 })
 			 .attr("fill", "black");
 	text.transition()
@@ -107,7 +107,8 @@ function drawBar(times,swap_array){
 			 	var point = swap_array[i][1];
 		    if(decided(times,point,pivot,lefts,rights)){
 		    	return decided(times,point,pivot,lefts,rights);
-		    }			 	if (point == pivot[times]){
+		    }
+		    if (point == pivot[times]){
 			 		return "red";
 			 	}
 			 	else{
@@ -197,7 +198,23 @@ function view(){
 		step = 0;
 	}
 }
-svg.on("click", view);
+
+var anime = document.getElementById('anime');
+
+// タッチスクリーンなら
+	if (window.ontouchstart===null){
+		// 素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
+		anime.addEventListener('touchstart',function(e){ e.preventDefault();view();},false);
+	}
+
+	// タッチスクリーンでないなら
+	else{
+		// 'click'(=onClick)を使わないのは、素早くクリックしたときにダブルクリックとみなされて画面が選択されるのを防ぐため
+		anime.addEventListener('mousedown',function(e){ e.preventDefault();},false);
+		anime.addEventListener('mouseup',view,false);
+	//	anime.addEventListener('mouseup',setCodeLine,false);
+	}
+// svg.on("click", view);
 
 function copy(array){
 	var tmp = [];
@@ -250,7 +267,37 @@ function quicksort(array_data, left, right){
 		rights.push(right);
 		quicksort(tmp, left, pi-1);
 		quicksort(tmp, pi+1, right);
-		return tmp
 	}
 }
+
+
+//コード
+/*
+var editor = ace.edit("editor");
+	function setCodeLine(){
+		var startline = getCodeHighlight(step)[0];
+		var endline = getCodeHighlight(step)[1];
+		var range = editor.getSession().highlightLines(startline, endline, "code_highlight");
+		if(range.id>3){
+			editor.getSession().removeMarker(range.id-1);
+		}
+	}
+
+	function getCodeHighlight(k){
+		if(k==1){
+			return [7,7];
+		}else if(k==2){
+			return [8,8];
+		}else if(k<=4){
+			return [9,10];
+		}else if(k==5){
+			return [7,7];
+		}else{
+			return [-1,-1];
+		}
+	}
+
+*/
+
+
 })();
