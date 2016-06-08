@@ -81,13 +81,10 @@
 		graph.transition()
 				.duration(SPEED).attr("fill", function(d, i){
 				 	var point = swap_array[i][1];
-				 	console.log("numbers[times]",numbers[times])
 			    if (point == numbers[times]){
-			    	console.log("red",d);
 				 		return "red";
 				 	}
 			    else if (point == numbers[times]+1){
-			    	console.log("blue",d);
 				 		return "blue";
 				 	}
 				 	else{
@@ -110,7 +107,6 @@
 	}
 	//　ピボットを境に色を変える
 	function drawDecide(swap_array,decided_count){
-		console.log("decided")
 		graph.transition()
 				.duration(SPEED).attr("stroke-width",5)
 				.attr("stroke", function(d, i){
@@ -177,7 +173,10 @@
 			if(step<0){
 				break;
 			}
-			if(action[turn]=="入れ替える"){
+			console.log("turn",turn-1);
+			console.log(action);
+			console.log(action[turn-1]);
+			if(action[turn-1]=="入れ替える"){
 				setCodeLine(12, 12);
 			}else{
 				setCodeLine(14, 14);
@@ -256,15 +255,12 @@
 	var editor = ace.edit("editor");
 	function setCodeLine(start, end){
 		if (turn==100){
-			console.log("コード")
 			var range = editor.getSession().highlightLines(-1, -1, "code_highlight");
 		}
 		else{
 			var range = editor.getSession().highlightLines(start, end, "code_highlight");
 		}
 		if(range.id>3){
-			console.log("range.id");
-			console.log(range.id);
 			editor.getSession().removeMarker(range.id-1);
 		}
 	}
