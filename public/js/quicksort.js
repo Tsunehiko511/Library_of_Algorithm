@@ -1,5 +1,5 @@
 (function(){
-	const SPEED = 500;
+	const SPEED = 400;
 	var w = 550, h = 350, barPadding = 60;
 	var dataset = [5,9,8,3,1,6,4];
 	var pivot = [], swap_array = [];
@@ -45,7 +45,7 @@
 	// 初期化
 	function init(){
 		graph.transition()
-				 .duration(SPEED)
+				 .duration(SPEED+400)
 				 .attr("cx", function(d, i){
 				 	return i * (w / dataset.length) + barPadding;
 				 })
@@ -54,7 +54,7 @@
 				 })
 				 .attr("fill", "black");
 		text.transition()
-				.duration(SPEED)
+				.duration(SPEED+400)
 				.attr("x", function(d, i){
 					return i * (w / dataset.length) + barPadding;
 				});
