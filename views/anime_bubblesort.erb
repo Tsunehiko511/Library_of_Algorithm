@@ -1,0 +1,60 @@
+<div id="container">
+<div id="main">
+	<div id="subNav">
+    	<h3>バブルソート</h3>
+        <p>数列を昇順（or 降順）に整列させるアルゴリズム<br>
+        隣り合う要素の大小を比較しながら整列させる。
+        </p>
+	</div>
+    <a>クイックソート</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
+</div><!-- /main -->
+<hr>
+<div id="code" class="codes">
+<div id="editor" class="avoid-clicks" style="width:100%; height: 400px">
+<b>//データ</b>
+ 配列 = [5,9,8,3,1,6,4]
+
+<b>//目的</b>
+ <span>配列を昇順に整列させる</span>
+
+<b>//処理</b>
+while 未確定要素がある:
+
+  for i in {0...未確定数-1}:
+    if 要素[i]>要素[i+1]:
+        右隣の要素と入れ替える
+    else:
+        入れ替えない
+  右端の要素を確定する
+終了
+</div>
+</div><!-- /code -->
+<div id="anime">
+    <p>画面クリックで説明</p>
+    <anime>
+
+    </anime>
+</div><!-- /anime -->
+<div id="sub">
+
+</div><!-- /sub -->
+</div><!-- /container -->
+<hr>
+<script src="/js/src-min/ace.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>-->
+<script>
+  var editor = ace.edit("editor");
+  editor.renderer.setShowGutter(false);
+  //editor.$blockScrolling = Infinity;
+  editor.setOptions({
+    //enableBasicAutocompletion: true,
+    //enableSnippets: true,
+    //_enableLiveAutocompletion: true
+  });
+  editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
+  editor.getSession().setMode("ace/mode/javascript");
+    document.getElementById('editor').style.visibility="visible";
+</script>
+<script src="/js/d3.min.js" type="text/javascript" ></script>
+<script src="/js/bubblesort.js" type="text/javascript" ></script>
+
