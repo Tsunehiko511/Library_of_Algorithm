@@ -7,23 +7,27 @@
         ピボットの決め方と，左右に分ける操作は多くのパターンが知られている。
         </p>
 	</div>
-    <a href="anime_quicksort">クイックソート</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
+    <a>クイックソート</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
 </div><!-- /main -->
 <hr>
 <div id="code" class="codes">
-<div id="editor" class="avoid-clicks" style="width:100%; height: 400px"><b>//データ</b>
-    配列
+<div id="editor" class="avoid-clicks" style="width:100%; height: 400px">
+<b>//データ</b>
+ 配列 = [5,9,8,3,1,6,4]
+
 <b>//目的</b>
-<span>配列を昇順に整列させる</span>
+ <span>配列を昇順に整列させる</span>
+
 <b>//処理</b>
-クイックソート関数(配列, left, right):
-　if left&lt;right:
-    ピボット = left〜rightのどれか
-    ピボットを基点に左右に分ける
-    クイックソート関数(配列, left, ピボット-1)
-    クイックソート関数(配列, ピボット+1, right)
+ left = 0
+ right = 要素の個数-1
 
-
+ クイックソート関数(配列, left, right):
+　 if left&lt;right:
+     ピボット = left〜rightのどれか
+     ピボットを基点に左右に分ける
+     クイックソート関数(配列, left, ピボット-1)
+     クイックソート関数(配列, ピボット+1, right)
 
 
 
