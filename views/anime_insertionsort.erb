@@ -1,12 +1,12 @@
 <div id="container">
 <div id="main">
 	<div id="subNav">
-    	<h3>バブルソート</h3>
+    	<h3>挿入ソート（Insertionsort）</h3>
         <p>数列を昇順（or 降順）に整列させるアルゴリズム<br>
-        隣り合う要素の大小を比較しながら整列させる。
+        整列してある配列に追加要素を適切な場所に挿入する。
         </p>
 	</div>
-    <a>バブルソート</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
+    <a>挿入ソート</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
 </div><!-- /main -->
 <hr>
 <div id="code" class="codes">
@@ -18,14 +18,14 @@
  <span>配列を昇順に整列させる</span>
 
 <b>//処理</b>
-while 未確定要素がある:
-
-  for i in {0...未確定数-1}:
-    if 配列[i]>配列[i+1]:
-        右隣の要素と入れ替える
-    else:
-        入れ替えない
-  右端の要素を確定する
+for i = 1〜要素数-1:
+  挿入要素 = 配列[i]
+  if 挿入要素 &lt; 左隣:
+     挿入場所 = i
+     while 挿入要素 &lt; 配列[挿入場所-1]:
+           比較した要素を右にずらす
+           挿入場所を一つ左
+     配列[挿入場所] = 挿入要素
 終了
 </div>
 </div><!-- /code -->
@@ -56,5 +56,5 @@ while 未確定要素がある:
     document.getElementById('editor').style.visibility="visible";
 </script>
 <script src="/js/d3.min.js" type="text/javascript" ></script>
-<script src="/js/bubblesort.js" type="text/javascript" ></script>
+<script src="/js/insertionsort.js" type="text/javascript" ></script>
 

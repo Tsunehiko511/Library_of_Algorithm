@@ -26,6 +26,9 @@ end
 get '/anime_bubblesort' do
   erb :anime_bubblesort
 end
+get '/anime_insertionsort' do
+  erb :anime_insertionsort
+end
 
 get '/dijkstra' do
   erb :dijkstra
