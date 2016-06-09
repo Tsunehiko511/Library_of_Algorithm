@@ -36,6 +36,9 @@ end
 get '/dijkstra2' do
   erb :dijkstra2
 end
+get '/a_star' do
+  erb :a_star
+end
 
 get '/anime_knn' do
   erb :anime_knn

@@ -1,0 +1,43 @@
+﻿<div id="container">
+	<div id="main">
+		<div id="subNav">
+			<h3>A*アルゴリズム</h3>
+			<p>最短経路を求めるアルゴリズム</p>
+			<p>A*（エースター）アルゴリズムはダイクストラ法を一般化したもので、処理の流れはダイクストラ法とほとんど同じ。違うのは、「ヒューリスティック関数」と呼ばれる推定値を用いる点。各頂点から目的地まで「最低でもこのくらい離れている」という推定を行うことで、探索に大まかな方向性を持たせることができ、効率的に計算できる。推定値を0にすれば、ダイクストラ法になる。</p>
+		</div>
+		<a>アルゴリズムの解説</a>　　<a>演習問題</a>　	　<a href="/">ホーム</a>
+	</div><!-- /main -->
+	<hr>
+	<div id="code">
+		<h3>アルゴリズムの解説</h3>
+		<span class='bold'>初期化</span><br>
+		<span>&emsp;各頂点について</span><br>
+		<span>&emsp;&emsp;S（スコア） （→スタート地点からの距離）</span><br>
+		<span>&emsp;&emsp;H（推定値） （→ゴールまでの推定距離）</span><br>
+		<span>&emsp;&emsp;直前の頂点 （→どこから来たか）</span><br>
+		<span>&emsp;&emsp;処理済みか （→true/false）</span><br>
+		<span>&emsp;スタート地点のスコア＝0</span><br>
+		<p></p>
+		<span class='bold'>処理</span><br>
+		<span id='code0'>&emsp;while 未処理の頂点がある</span><br>
+		<span id='code1'>&emsp;&emsp;現在位置＝（スコア＋推定値）が最小の頂点</span><br>
+		<span id='code2'>&emsp;&emsp;現在位置がゴールなら終了</span><br>
+		<span id='code3'>&emsp;&emsp;for each 隣接点</span><br>
+		<span id='code4'>&emsp;&emsp;&emsp;暫定スコア＝現在位置のスコア<br>
+		&emsp;&emsp;&emsp;&emsp;＋隣接点までの距離</span><br>
+		<span id='code5'>&emsp;&emsp;&emsp;if 隣接点のスコア＞暫定スコア</span><br>
+		<span id='code6'>&emsp;&emsp;&emsp;&emsp;隣接点のスコア＝暫定スコア<br>
+		&emsp;&emsp;&emsp;&emsp;隣接点の直前の頂点＝現在位置</span><br>
+		<span id='code7'>&emsp;&emsp;現在位置を処理済みにする</span><br>
+		<span id='code8'>&emsp;終了</span><br>
+		<p></p>
+	</div><!-- /code -->
+
+	<div id="anime">
+		<p>画面クリックで説明</p>
+		<canvas width="550" height="450" id="sample">
+			図形を表示するには、canvasタグをサポートしたブラウザが必要です。
+		</canvas>
+	</div><!-- /anime -->
+</div><!-- /container -->
+<script src='/js/a_star.js'></script>

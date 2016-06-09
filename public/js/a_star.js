@@ -3,76 +3,59 @@
 	var canvas = document.getElementById('sample');
 	var ctx = canvas.getContext('2d');
 	var obj = []; // document.getElementById('code'+i) オブジェクトを格納する配列
-	for (var i=0; i<8; i++){
-		obj[i] = document.getElementById('code'+i);
-	}
+	for (var i=0; i<9; i++) obj[i] = document.getElementById('code'+i);
 
 	var count_anime = 0;
 	var count_neighbor = 0;
 	var count_step = 0;
 
-	var w = canvas.width, h = canvas.height, w2 = w/8, h2 = h/4;
-	var radius = 33;
+	var w = canvas.width, h = canvas.height, w2 = w/6, h2 = h/6;
+	var boxWidth = 80, boxHeight = 70;
+	var d01 = 1, d12 = 6, d34 = 3, d45 = 5, d67 = 5, d78 = 3,
+	    d03 = 7, d14 = 2, d25 = 4, d36 = 3, d47 = 2, d58 = 6;
 	var node = [
 		{
 			x: w2, // ノードのx座標
-			y: 2*h2, // ノードのy座標
-			score: 0, // ノードのスコア（暫定最短距離）。スタートノードは0、他は無限大
-			txt: '0',
-			visited: false, // 処理済みか。すべての隣接ノードを調べ終えたら処理済みにする
-			distance: [0,1,5,0,0,0] // 各ノードまでの距離。0は未接続
+			y: h2, // ノードのy座標
+			distance: [0,d01,0,d03,0,0,0,0,0], // 各ノードまでの距離。0は未接続
+			heuristics: 4
 		},
-		{x: 3*w2, y: h2, score: Infinity, txt: '∞', visited: false, distance: [1,0,2,4,4,0], from: -1},
-		{x: 3*w2, y: 3*h2, score: Infinity, txt: '∞', visited: false, distance: [5,2,0,1,6,0], from: -1},
-		{x: 5*w2, y: h2, score: Infinity, txt: '∞', visited: false, distance: [0,4,1,0,5,2], from: -1},
-		{x: 5*w2, y: 3*h2, score: Infinity, txt: '∞', visited: false, distance: [0,4,6,5,0,3], from: -1},
-		{x: 7*w2, y: 2*h2, score: Infinity, txt: '∞', visited: false, distance: [0,0,0,2,3,0], from: -1}
+		{x: 3*w2, y: h2, distance: [d01,0,d12,0,d14,0,0,0,0], heuristics: 3},
+		{x: 5*w2, y: h2, distance: [0,d12,0,0,0,d25,0,0,0], heuristics: 2},
+		{x: w2, y: 3*h2, distance: [d03,0,0,0,d34,0,d36,0,0], heuristics: 3},
+		{x: 3*w2, y: 3*h2, distance: [0,d14,0,d34,0,d45,0,d47,0], heuristics: 2},
+		{x: 5*w2, y: 3*h2, distance: [0,0,d25,0,d45,0,0,0,d58], heuristics: 1},
+		{x: w2, y: 5*h2, distance: [0,0,0,d36,0,0,0,d67,0], heuristics: 2},
+		{x: 3*w2, y: 5*h2, distance: [0,0,0,0,d47,0,d67,0,d78], heuristics: 1},
+		{x: 5*w2, y: 5*h2, distance: [0,0,0,0,0,d58,0,d78,0], heuristics: 0}
 	];
 	var current; // 現在のノード
-	var goalNode = 5;
+	var goalNode = 8;
 
-	// タッチスクリーンなら
 	if (window.ontouchstart===null){
-		// e.preventDefault()で、素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
 		canvas.addEventListener('touchstart',function(e){ e.preventDefault(); goNext();},false);
-	}
-
-	// タッチスクリーンでないなら
-	else{
-		// 'click'(=onClick)を使わないのは、素早くクリックしたときにダブルクリックとみなされて画面が選択されるのを防ぐため
+	}else{
 		canvas.addEventListener('mousedown',function(e){ e.preventDefault();},false);
 		canvas.addEventListener('mouseup',goNext,false);
 	}
 
 	function goNext(){
-
-		// 疑似コードのハイライトを消す
-		for (var i=0; i<obj.length; i++){
-			obj[i].style.backgroundColor = 'transparent';
-		}
-
-		// まずはcanvasをクリアする
 		ctx.clearRect(0,0,canvas.width,canvas.height);
-
 		ctx.textBaseline = 'middle';
 		ctx.textAlign = 'center';
 		ctx.font = 'normal 16px sans-serif';
 		ctx.fillStyle = 'black';
-		ctx.fillText('スタート',w2,1.4*h2);
-		ctx.fillText('ゴール',w-w2,1.4*h2);
+		ctx.fillText('スタート',w2,h2-boxHeight/2-15);
+		ctx.fillText('ゴール',5*w2,5*h2+boxHeight/2+15);
 
-		var makeRed = {
-			edge: [
-				[0,0,0,0,0,0],
-				[0,0,0,0,0,0],
-				[0,0,0,0,0,0],
-				[0,0,0,0,0,0],
-				[0,0,0,0,0,0],
-				[0,0,0,0,0,0]
-			],
-			node: [0,0,0,0,0,0],
-			score: [0,0,0,0,0,0]
-		};
+		var mark = {edge: [], node: [], score: [], codes: []};
+		for (var i=0,I=node.length; i<I; i++){
+			mark.node[i] = 0;
+			mark.edge[i] = [];
+			for (var j=0; j<I; j++) mark.edge[i][j] = 0;
+			mark.score[i] = 0;
+		}
+		for (var i=0; i<obj.length; i++) mark.codes[i] = 0;
 
 		if (count_anime==0){
 			for (var i=0; i<node.length; i++){
@@ -85,32 +68,23 @@
 		}else if (count_anime==1){
 			var minScore = Infinity, flag = false;
 			for (var i=0; i<node.length; i++){
-				if (!node[i].visited && node[i].score<minScore){
+				if (!node[i].visited && node[i].score+node[i].heuristics<minScore){
 					current = i;
-					minScore = node[i].score;
+					minScore = node[i].score+node[i].heuristics;
 					flag = true;
 				}
 			}
 			if (!flag){
-				count_anime = 0;
-				count_neighbor = 0;
-				count_step = 0;
-				node[current].visited = true;
-				obj[7].style.backgroundColor = 'yellow';
-				current = goalNode;
-				while (node[current].from>=0){
-					if (node[current].from>current) makeRed.edge[current][node[current].from] = 1;
-					else makeRed.edge[node[current].from][current] = 1;
-					current = node[current].from;
-				}
-				obj[obj.length-1].style.backgroundColor = 'yellow';
+				count_anime = 5;
+				return goNext();
 			}else{
-				makeRed.node[current] = 1;
-				obj[1].style.backgroundColor = 'yellow';
+				mark.node[current] = 1;
+				mark.codes[1] = 1;
 				count_anime++;
+				if (current==goalNode) count_anime = 5;
 			}
 		}else if (count_anime==2){
-			while (node[current].distance[count_neighbor]===0 || node[count_neighbor].visited){
+			while (node[current].distance[count_neighbor]===0){
 				count_neighbor++;
 				if (count_neighbor>=node.length){
 					count_anime++;
@@ -118,21 +92,22 @@
 				}
 			}
 			var dist = node[current].distance[count_neighbor];
-			makeRed.node[current] = 1;
-			if (count_step<3) makeRed.score[current] = 1;
-			if (current>count_neighbor) makeRed.edge[count_neighbor][current] = 1;
-			else makeRed.edge[current][count_neighbor] = 1;
-			if (count_step<2) obj[count_step+3].style.backgroundColor = 'yellow';
+			mark.node[current] = 1;
+			if (count_step<3) mark.score[current] = 1;
+			if (current>count_neighbor) mark.edge[count_neighbor][current] = 1;
+			else mark.edge[current][count_neighbor] = 1;
+			if (count_step<2) mark.codes[count_step+4] = 1;
 			if (count_step>=1){
-				makeRed.score[count_neighbor] = 1;
-				node[count_neighbor].txt = node[count_neighbor].txt+'>'+(node[current].score+dist)+'?';
+				mark.score[count_neighbor] = 1;
+				if (node[count_neighbor].score<=node[current].score+dist) count_step++;
 			}
 			if (count_step>=2){
 				if (node[count_neighbor].score>node[current].score+dist){
+					node[count_neighbor].visited = false;
 					node[count_neighbor].score = node[current].score+dist;
 					node[count_neighbor].from = current;
-					obj[5].style.backgroundColor = 'yellow';
-				}else obj[4].style.backgroundColor = 'yellow';
+					mark.codes[6] = 1;
+				}else mark.codes[5] = 1;
 				node[count_neighbor].txt = node[count_neighbor].score;
 			}
 
@@ -143,18 +118,31 @@
 				if (count_neighbor>=node.length) count_anime++;
 			}
 		}else if (count_anime==3){
-			count_anime = 1;
+			count_anime -= 2;
 			count_neighbor = 0;
 			count_step = 0;
 			node[current].visited = true;
-			obj[6].style.backgroundColor = 'yellow';
+			mark.codes[7] = 1;
+		}else if (count_anime==5){
+			mark.node[current] = 1;
+			count_anime = 0;
+			count_neighbor = 0;
+			count_step = 0;
+			node[current].visited = true;
+			while (node[current].from>=0){
+				if (node[current].from>current) mark.edge[current][node[current].from] = 1;
+				else mark.edge[node[current].from][current] = 1;
+				current = node[current].from;
+			}
+			mark.codes[2] = 1;
+			mark.codes[8] = 1;
 		}
 
 		ctx.font = 'normal 20px sans-serif';
 		for (var i=0; i<node.length-1; i++){
 			for (var j=i+1; j<node.length; j++){
 				if (node[i].distance[j]>0){
-					if (makeRed.edge[i][j]){
+					if (mark.edge[i][j]){
 						ctx.lineWidth = 4;
 						ctx.strokeStyle = ctx.fillStyle = 'red';
 					}else{
@@ -179,31 +167,23 @@
 					}
 					var posX = (node[i].x+node[j].x)/2, posY = (node[i].y+node[j].y)/2;
 					if (node[i].x==node[j].x) posX -= 10;
-					else if (node[i].y>node[j].y) posX -= 10;
-					else if (node[i].y<node[j].y) posX += 10;
 					if (node[i].y==node[j].y) posY -= 12;
-					else if (node[i].x<node[j].x) posY -= 10;
-					else if (node[i].x>node[j].x) posY += 10;
-
-					if (i==1&&j==4){ posX -= 35; posY -= 30;}
-					if (i==2&&j==3){ posX -= 28; posY += 35;}
-
 					ctx.fillText(node[i].distance[j],posX,posY);
 				}
 			}
 		}
 
-		ctx.font = 'normal 26px sans-serif';
+		ctx.font = 'normal 20px sans-serif';
 		for (var i=0; i<node.length; i++){
 			ctx.beginPath();
-			ctx.arc(node[i].x,node[i].y,radius,0,2*Math.PI,false);
+			ctx.rect(node[i].x-boxWidth/2,node[i].y-boxHeight/2,boxWidth,boxHeight);
 			if (node[i].visited){
 				ctx.fillStyle = 'pink';
 			}else{
 				ctx.fillStyle = 'white';
 			}
 			ctx.fill();
-			if (makeRed.node[i]){
+			if (mark.node[i]){
 				ctx.lineWidth = 4;
 				ctx.strokeStyle = 'red';
 			}else{
@@ -211,14 +191,19 @@
 				ctx.strokeStyle = 'black';
 			}
 			ctx.stroke();
-			if (makeRed.score[i]){
+			if (mark.score[i]){
 				ctx.lineWidth = 4;
 				ctx.fillStyle = 'red';
 			}else{
 				ctx.lineWidth = 1;
 				ctx.fillStyle = 'black';
 			}
-			ctx.fillText(node[i].txt,node[i].x,node[i].y);
+			ctx.fillText('S='+node[i].txt,node[i].x,node[i].y-15,boxWidth);
+			ctx.fillStyle = 'black';
+			ctx.fillText('H='+node[i].heuristics,node[i].x,node[i].y+15,boxWidth);
+		}
+		for (var i=0; i<obj.length; i++){
+			obj[i].style.backgroundColor = mark.codes[i] ? 'yellow' : 'transparent';
 		}
 	}
 

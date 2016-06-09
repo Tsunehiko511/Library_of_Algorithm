@@ -185,27 +185,34 @@
 	function insertionsort(array_data){
 		for(var i = 1; i<array_data.length; i++){
 			var tmp = array_data[i];
+			
 			action.push({type:"選択",value:getSwapNumber(dataset,array_data),redPoint:i});
 			action.push({type:"比較1", value:0, redPoint:0});
+
 			if(tmp < array_data[i-1]){
 				var insert = i;
+
 				action.push({type:"比較2", value:0, redPoint:0});
+
 				while(tmp<array_data[insert-1] && insert>0){
 					array_data[insert] = array_data[insert-1];
 					var copy_tmp = copy(array_data);
 					copy_tmp[insert] =　tmp;	
 					insert --;
 					if(insert+1 != i){
+
 						action.push({type:"移動", value:getSwapNumber(dataset,copy_tmp), redPoint:insert+1});
 						action.push({type:"比較2", value:0, redPoint:0});
+
 					}
 				}
 				array_data[insert] = tmp;
 				var tmp2 = copy(array_data);
+
 				action.push({type:"移動", value:getSwapNumber(dataset,tmp2), redPoint:insert});
 				action.push({type:"比較2", value:0, redPoint:0});
 				action.push({type:"挿入", value:getSwapNumber(dataset,tmp2)});
-				//action.push({type:"", value:1});
+
 			}
 		}
 	}
