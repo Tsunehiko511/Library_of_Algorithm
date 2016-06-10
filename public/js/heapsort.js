@@ -1,6 +1,7 @@
 (function(){
 	const SPEED = 400;
-	var w = 550, h = 350, barPadding = 60;
+	const PLUS_Y = -30;
+	var w = 550, h = 400, barPadding = 60;
 //	var dataset = [5,9,8,3,1,6,4];
 	var dataset = [4,3,9,1,5,6,8];
 	//var dataset = [5,3,16,2,10,14];
@@ -24,11 +25,15 @@
 								 return i * (w / dataset.length) + barPadding;
 								})
 								.attr("y", function(d){
-								 return h/2+15+5 * d;
+								 return h/2+15+5 * d + PLUS_Y;
 								})
 								.text(function(d){
 									return d;
-								})
+								})	// text
+
+
+
+
 	// 円
 	var graph = svg.selectAll("circle")
 								 .data(dataset)
@@ -38,11 +43,40 @@
 								 	return i * (w / dataset.length) + barPadding;
 								 })
 								 .attr("cy", function(d){
-								 	return h/2;
+								 	return h/2 + PLUS_Y;
 								 })
 								 .attr("r", function(d){
 								 	return d;
-								 });
+								 });	// 円
+
+
+	var graph2 = svg.selectAll("rect")
+	.data(dataset)
+	.enter()
+	.append("rect")
+	.attr("x",function(d, i){
+		console.log("d");
+		console.log(d);
+		console.log("i",i);
+								 	return i * (w / dataset.length) + barPadding-25;
+	})
+.attr("y",function(d){
+	return 330;
+})
+.attr("width", function(d){
+	return 50;
+})
+.attr("height", function(d){
+	return 50;
+})
+.attr("fill",function(d){
+	return "white";
+})
+.attr("stroke",function(d){
+	return "black";
+})
+.attr("stroke-width",5);
+
 	/*
   var c1 = [100, 200, 3];
   var c2 = [200, 200, 3];
@@ -92,20 +126,11 @@
 					 	var point = swap_array_y[i][1];
 					 	console.log(decided);
 					 	if(point > decided){
-					 		return h/2;
+					 		return h/2 + PLUS_Y;
 					 	}
-					 	return h/2 - 130+40*point;
+					 	return h/2 - 130+40*point + PLUS_Y;
 					 });
-					 /*
-					 .attr("fill", function(d, i){
-					 	var point = swap_array[i][1];
-				    if (point >= decided){
-					 		return "orange";
-					 	}
-					 	else{
-					 		return "black";
-					 	}
-					 });*/
+
 		text.transition()
 				.duration(SPEED)
 				.attr("x", function(d, i){
@@ -116,13 +141,40 @@
 			 .attr("y", function(d, i){
 			 	var point = swap_array_y[i][1];
 			 	if(point > decided){
-			 		return h/2+15+5 * d;
+			 		return h/2+15+5 * d + PLUS_Y;
 			 	}
-			 	return h/2+15+5 * d- 130+40*point;
+			 	return h/2+15+5 * d- 130+40*point + PLUS_Y;
 			 });
 	};
 
 	function drawHeap(swap_array_x, swap_array_y, decided){
+		/*
+			var position = [];
+			for(var i = 0; i<dataset.length; i++){
+				position.push({x:swap_array_x[i][1], y:swap_array_y[i][1]})
+			};
+			var line=svg.selectAll("line").data(position).enter().append("line")
+        .attr("x1", function(d, i){
+        	return position[i].x* (w / dataset.length) + barPadding;
+        })
+        .attr("y1", function(d, i){
+        	return h/2 - 130+40*position[i].y + PLUS_Y;
+        })
+        .attr("x2", function(d, i){
+        	if(i+1<dataset.length){
+       		 	return position[i+1].x* (w / dataset.length) + barPadding;
+        	}
+        	return h/2;
+        })
+        .attr("y2", function(d, i){
+        	if(i+1<dataset.length){
+	        	return h/2 - 130+40*position[i+1].y + PLUS_Y;
+        	}
+        	return h/2;
+        })
+        .attr("stroke","blue")
+        .attr("stroke-width",1);*/
+
 			graph.transition()
 					 .duration(SPEED)
 					 .attr("cx", function(d, i){
@@ -134,9 +186,6 @@
 				    if (point >= decided){
 					 		return "orange";
 					 	}
-				    else if (point == decided-1){
-					 		return "green";
-					 	}
 					 	else{
 					 		return "black";
 					 	}
@@ -144,10 +193,10 @@
 				 .attr("cy", function(d, i){
 				 	var point = swap_array_y[i][1];
 				 	if(point >= decided){
-				 		return h/2;
+				 		return h/2 + PLUS_Y;
 				 	}
 				 	console.log(i,d,point, decided);
-				 	return h/2 - 130+40*point;
+				 	return h/2 - 130+40*point + PLUS_Y;
 				 });
 		text.transition()
 				.duration(SPEED)
@@ -159,12 +208,37 @@
 			 .attr("y", function(d, i){
 			 	var point = swap_array_y[i][1];
 			 	if(point >= decided){
-			 		return h/2+15+5 * d;
+			 		return h/2+15+5 * d + PLUS_Y;
 			 	}
-			 	return h/2+15+5 * d- 130+40*point;
+			 	return h/2+15+5 * d- 130+40*point + PLUS_Y;
 			 });
 	};
 
+	function move2(swap_array_x, swap_array_y, decided){
+			graph2.transition()
+					 .duration(SPEED)
+					 .attr("x", function(d, i){
+					 	var point = swap_array_x[i][1];// 置換行列
+					 	return point * (w / dataset.length) + barPadding-25;
+					 });
+	}
+	function drawHeap2(swap_array_x, swap_array_y, decided){
+			graph2.transition()
+					 .duration(SPEED)
+					 .attr("x", function(d, i){
+					 	var point = swap_array_x[i][1];// 置換行列
+					 	return point * (w / dataset.length) + barPadding-25;
+					 })
+					 .attr("fill", function(d, i){
+					 	var point = swap_array_x[i][1];
+				    if (point >= decided){
+					 		return "orange";
+					 	}
+					 	else{
+					 		return "white";
+					 	}
+					 });
+	};
 
 	function selected(swap_array_x, swap_array_y, decided){
 			graph.transition()
@@ -185,28 +259,26 @@
 					 		return "black";
 					 	}
 					 });
-					 /*
-				 .attr("cy", function(d, i){
-				 	var point = swap_array[i][1];
-				 	if (point == insert){
-					 	return h/2+100;
-				 	}
-				 	return h/2;
-				 });*/
-/*		text.transition()
-				.duration(SPEED)
-				.attr("x", function(d, i){
-				 var point = swap_array_x[i][1];					
-				 var barXPosition = point * (w / dataset.length) + barPadding;
-				 return barXPosition;
-				})*/
-/*			 .attr("y", function(d, i){
-			 	var point = swap_array[i][1];
-			 	if (point == insert){
-				 return h/2+15+5 * d + 100;
-			 	}
-					return h/2+15+5 * d;
-			 });*/
+	};
+	function selected2(swap_array_x, swap_array_y, decided){
+			graph2.transition()
+					 .duration(SPEED)
+
+					 .attr("fill", function(d, i){
+					 	var point = swap_array_y[i][1];
+				    if (point > decided){
+					 		return "orange";
+					 	}
+					 	else if (point == decided){
+					 		return "blue";
+					 	}
+				    else if (point == 0){
+					 		return "red";
+					 	}
+					 	else{
+					 		return "white";
+					 	}
+					 });
 	};
 
 
@@ -229,7 +301,7 @@
 					 })
 				 .attr("cy", function(d, i){
 				 	var point = swap_array_y[i][1];
-				 	return h/2;
+				 	return h/2 + PLUS_Y;
 				 });
 		text.transition()
 				.duration(SPEED)
@@ -240,8 +312,21 @@
 				})
 			 .attr("y", function(d, i){
 			 	var point = swap_array_y[i][1];
-					return h/2+15+5 * d;
+					return h/2+15+5 * d + PLUS_Y;
 			 });
+	};
+	function decide2(swap_array_x, swap_array_y, decided){
+			graph2.transition()
+					 .duration(SPEED)
+					 .attr("fill", function(d, i){
+					 	var point = swap_array_x[i][1];
+				    if (point >= decided){
+					 		return "orange";
+					 	}
+					 	else{
+					 		return "white";
+					 	}
+					 });
 	};
 
 
@@ -268,26 +353,32 @@
 			case "heapify":
 			console.log(type);
 			drawHeap(swap_array_x,swap_array_y, decided);
+			drawHeap2(swap_array_y,swap_array_y, decided);
 			break;
 			case "heapify2":
 			console.log(type);
 			drawHeap(swap_array_x,swap_array_y, decided);
+			drawHeap2(swap_array_y,swap_array_y, decided);
 			break;
 			case "select":
 			console.log(type);
 			selected(swap_array_x,swap_array_y, decided);
+			selected2(swap_array_y,swap_array_y, decided);
 			break;
 			case "swap":
 			console.log(type);
 			move(swap_array_x,swap_array_y, decided);
+			move2(swap_array_y,swap_array_y, decided);
 			break;
 			case "decide":
 			console.log(type);
 			decide(swap_array_x,swap_array_y, decided);
+			decide2(swap_array_x,swap_array_y, decided);
 			break;
 			case "初期化":
 			console.log(type);
 			decide(swap_array_x,swap_array_y, decided);
+			decide2(swap_array_x,swap_array_y, decided);
 			break;
 		}
 		step+=1;
