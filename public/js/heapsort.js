@@ -1,7 +1,8 @@
 (function(){
 	const SPEED = 400;
+	const DELAY = 300;
 	const PLUS_Y = -30;
-	var w = 550, h = 400, barPadding = 60;
+	var w = 550, h = 450, h2 = 375, barPadding = 60;
 //	var dataset = [5,9,8,3,1,6,4];
 	var dataset = [4,3,9,1,5,6,8];
 	//var dataset = [5,3,16,2,10,14];
@@ -12,12 +13,35 @@
 							.append("svg")
 							.attr("width", w+dataset.length*barPadding)
 							.attr("height", h);
+
+	var lines = d3.svg.line()
+    .x(function(d){ return d[0]; })
+    .y(function(d){ return d[1]; })
+
+  var line_group = svg.append("path")  // パスを追加
+	// 円
+	var circle = svg.selectAll("circle").data(dataset).enter().append("circle")
+								 .attr("cx", function(d, i){
+								 	return i * (w / dataset.length) + barPadding;
+								 })
+								 .attr("cy", h/2 + PLUS_Y)
+								 .attr("r", function(d){
+								 	return d;
+								 });
+	// 四角
+	var rect = svg.selectAll("rect").data(dataset).enter().append("rect")
+									.attr("x",function(d, i){
+										return i * (w / dataset.length) + barPadding-25;
+									})
+									.attr("y", h2)
+									.attr("width", 50)
+									.attr("height", 50)
+									.attr("fill", "white")
+									.attr("stroke", "black")
+									.attr("stroke-width",5);
 	// text
-	var text = svg.selectAll("text")
-								.data(dataset)
-								.enter()
-								.append("text")
-								.attr({// 真ん中若干下に配置されるように、文字色は白に。
+	var text1 = svg.selectAll("text.top").data(dataset).enter().append("text").attr("class", "top")
+								.attr({
 	               'text-anchor': "middle",
 	               "fill": "black",
 	              })
@@ -29,78 +53,26 @@
 								})
 								.text(function(d){
 									return d;
-								})	// text
-
-
-
-
-	// 円
-	var graph = svg.selectAll("circle")
-								 .data(dataset)
-								 .enter()
-								 .append("circle")
-								 .attr("cx", function(d, i){
-								 	return i * (w / dataset.length) + barPadding;
-								 })
-								 .attr("cy", function(d){
-								 	return h/2 + PLUS_Y;
-								 })
-								 .attr("r", function(d){
-								 	return d;
-								 });	// 円
-
-
-	var graph2 = svg.selectAll("rect")
-	.data(dataset)
-	.enter()
-	.append("rect")
-	.attr("x",function(d, i){
-		console.log("d");
-		console.log(d);
-		console.log("i",i);
-								 	return i * (w / dataset.length) + barPadding-25;
-	})
-.attr("y",function(d){
-	return 330;
-})
-.attr("width", function(d){
-	return 50;
-})
-.attr("height", function(d){
-	return 50;
-})
-.attr("fill",function(d){
-	return "white";
-})
-.attr("stroke",function(d){
-	return "black";
-})
-.attr("stroke-width",5);
-
-	/*
-  var c1 = [100, 200, 3];
-  var c2 = [200, 200, 3];
-  var carray = [c1, c2];
-
-  // line関数を定義 (x,y)は配列の[0],[1]とする。
-  var line = d3.svg.line()
-      .x(function(d) {return d[0];})
-      .y(function(d) {return d[1];});
-
-  // path要素を作成
-  var path = svg.append('path')
-      .attr({
-        'd': line(carray),
-        'stroke': 'lightgreen',
-        'stroke-width': 1,
-      });*/
-
-
-
+								});
+	var text2 = svg.selectAll("text.bottom")
+								.data(dataset)
+								.enter()
+								.append("text")
+								.attr("class", "bottom")
+								.attr({
+	               'text-anchor': "middle",
+	               "fill": "black",
+	              })
+								.attr("x", function(d, i){
+								 return i * (w / dataset.length) + barPadding;
+								})
+								.attr("y", h2+30)
+								.text(function(d){
+									return d;
+								});
 	// 初期化
 	function init(){
-		graph.transition()
-				 .duration(SPEED+400)
+		circle.transition().duration(SPEED+400)
 				 .attr("cx", function(d, i){
 				 	return i * (w / dataset.length) + barPadding;
 				 })
@@ -108,16 +80,14 @@
 				 	return 4 * d+2 ;
 				 })
 				 .attr("fill", "black");
-		text.transition()
-				.duration(SPEED+400)
+		text1.transition().duration(SPEED+400)
 				.attr("x", function(d, i){
 					return i * (w / dataset.length) + barPadding;
 				});
 	}
 
 	function move(swap_array_x, swap_array_y, decided){
-			graph.transition()
-					 .duration(SPEED)
+			circle.transition().duration(SPEED)
 					 .attr("cx", function(d, i){
 					 	var point = swap_array_x[i][1];// 置換行列
 					 	return point * (w / dataset.length) + barPadding;;
@@ -131,8 +101,7 @@
 					 	return h/2 - 130+40*point + PLUS_Y;
 					 });
 
-		text.transition()
-				.duration(SPEED)
+		text1.transition().duration(SPEED)
 				.attr("x", function(d, i){
 				 var point = swap_array_x[i][1];					
 				 var barXPosition = point * (w / dataset.length) + barPadding;
@@ -147,36 +116,144 @@
 			 });
 	};
 
-	function drawHeap(swap_array_x, swap_array_y, decided){
-		/*
-			var position = [];
-			for(var i = 0; i<dataset.length; i++){
-				position.push({x:swap_array_x[i][1], y:swap_array_y[i][1]})
-			};
-			var line=svg.selectAll("line").data(position).enter().append("line")
-        .attr("x1", function(d, i){
-        	return position[i].x* (w / dataset.length) + barPadding;
-        })
-        .attr("y1", function(d, i){
-        	return h/2 - 130+40*position[i].y + PLUS_Y;
-        })
-        .attr("x2", function(d, i){
-        	if(i+1<dataset.length){
-       		 	return position[i+1].x* (w / dataset.length) + barPadding;
-        	}
-        	return h/2;
-        })
-        .attr("y2", function(d, i){
-        	if(i+1<dataset.length){
-	        	return h/2 - 130+40*position[i+1].y + PLUS_Y;
-        	}
-        	return h/2;
-        })
-        .attr("stroke","blue")
-        .attr("stroke-width",1);*/
+ function drawLine(line_point, decided){
+ 	switch(decided){
+ 		case 7:
+		svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[1].x, line_point[1].y],
+				[line_point[1].x, line_point[1].y], [line_point[3].x, line_point[3].y],
+				[line_point[1].x, line_point[1].y], [line_point[4].x, line_point[4].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1)
+		svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[2].x, line_point[2].y],
+				[line_point[2].x, line_point[2].y], [line_point[5].x, line_point[5].y],
+				[line_point[2].x, line_point[2].y], [line_point[6].x, line_point[6].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1)
+    break;
+ 		case 6:
+		svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[1].x, line_point[1].y],
+				[line_point[1].x, line_point[1].y], [line_point[3].x, line_point[3].y],
+				[line_point[1].x, line_point[1].y], [line_point[4].x, line_point[4].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1);
+		svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[2].x, line_point[2].y],
+				[line_point[2].x, line_point[2].y], [line_point[5].x, line_point[5].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1);
+    break;
+ 		case 5:
+		svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[1].x, line_point[1].y],
+				[line_point[1].x, line_point[1].y], [line_point[3].x, line_point[3].y],
+				[line_point[1].x, line_point[1].y], [line_point[4].x, line_point[4].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1);
+		svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[2].x, line_point[2].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1);
+    break;
+ 		case 4:
+		svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[1].x, line_point[1].y],
+				[line_point[1].x, line_point[1].y], [line_point[3].x, line_point[3].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1);
+    svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[2].x, line_point[2].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1);
+    break;
+ 		case 3:
+		svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[1].x, line_point[1].y],
+				//[line_point[1].x, line_point[1].y], [line_point[3].x, line_point[3].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1);
+    svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[2].x, line_point[2].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1);
+    break;
+ 		case 2:
+		svg.append("path")  // パスを追加
+			.attr("d", lines([
+				[line_point[0].x, line_point[0].y], [line_point[1].x, line_point[1].y],
+				//[line_point[1].x, line_point[1].y], [line_point[3].x, line_point[3].y],
+				]))
+      .attr("stroke","black")
+      .attr("stroke-width",0)
+      .attr("fill", "none")
+      .transition(SPEED).delay(DELAY)
+      .attr("stroke-width",1);
 
-			graph.transition()
-					 .duration(SPEED)
+  }
+ }
+
+	function drawHeap(swap_array_x, swap_array_y, decided){
+      var line_point = [];
+      for(var i = 0;i<decided;i++){
+      	line_point.push(0);
+      }		
+			for(var i = 0; i<dataset.length; i++){
+				line_point[swap_array_y[i][1]] = {x:swap_array_x[i][1]* (w / dataset.length) + barPadding, y:h/2 - 130+40*swap_array_y[i][1] + PLUS_Y};
+			};
+			drawLine(line_point, decided);
+			circle.transition().duration(SPEED)
 					 .attr("cx", function(d, i){
 					 	var point = swap_array_x[i][1];// 置換行列
 					 	return point * (w / dataset.length) + barPadding;
@@ -192,14 +269,14 @@
 					 })
 				 .attr("cy", function(d, i){
 				 	var point = swap_array_y[i][1];
+				 	console.log("i:",i);
+				 	console.log("y:",point);
 				 	if(point >= decided){
 				 		return h/2 + PLUS_Y;
 				 	}
-				 	console.log(i,d,point, decided);
 				 	return h/2 - 130+40*point + PLUS_Y;
 				 });
-		text.transition()
-				.duration(SPEED)
+		text1.transition().duration(SPEED)
 				.attr("x", function(d, i){
 				 var point = swap_array_x[i][1];					
 				 var barXPosition = point * (w / dataset.length) + barPadding;
@@ -215,16 +292,20 @@
 	};
 
 	function move2(swap_array_x, swap_array_y, decided){
-			graph2.transition()
-					 .duration(SPEED)
+			rect.transition().duration(SPEED)
 					 .attr("x", function(d, i){
 					 	var point = swap_array_x[i][1];// 置換行列
 					 	return point * (w / dataset.length) + barPadding-25;
 					 });
+		text2.transition().duration(SPEED)
+				.attr("x", function(d, i){
+				 var point = swap_array_x[i][1];					
+				 var barXPosition = point * (w / dataset.length) + barPadding;
+				 return barXPosition;
+				})
 	}
 	function drawHeap2(swap_array_x, swap_array_y, decided){
-			graph2.transition()
-					 .duration(SPEED)
+			rect.transition().duration(SPEED)
 					 .attr("x", function(d, i){
 					 	var point = swap_array_x[i][1];// 置換行列
 					 	return point * (w / dataset.length) + barPadding-25;
@@ -238,12 +319,16 @@
 					 		return "white";
 					 	}
 					 });
+		text2.transition().duration(SPEED)
+				.attr("x", function(d, i){
+				 var point = swap_array_x[i][1];					
+				 var barXPosition = point * (w / dataset.length) + barPadding;
+				 return barXPosition;
+				})
 	};
 
 	function selected(swap_array_x, swap_array_y, decided){
-			graph.transition()
-					 .duration(SPEED)
-
+			circle.transition().duration(SPEED)
 					 .attr("fill", function(d, i){
 					 	var point = swap_array_y[i][1];
 				    if (point > decided){
@@ -261,9 +346,7 @@
 					 });
 	};
 	function selected2(swap_array_x, swap_array_y, decided){
-			graph2.transition()
-					 .duration(SPEED)
-
+			rect.transition().duration(SPEED)
 					 .attr("fill", function(d, i){
 					 	var point = swap_array_y[i][1];
 				    if (point > decided){
@@ -284,8 +367,9 @@
 
 
 	function decide(swap_array_x, swap_array_y, decided){
-			graph.transition()
-					 .duration(SPEED)
+		 	svg.selectAll("path").remove();
+
+			circle.transition().duration(SPEED)
 					 .attr("cx", function(d, i){
 					 	var point = swap_array_x[i][1];// 置換行列
 					 	return point * (w / dataset.length) + barPadding;;
@@ -299,12 +383,12 @@
 					 		return "black";
 					 	}
 					 })
+				 .attr("cy", h/2 + PLUS_Y);/*
 				 .attr("cy", function(d, i){
 				 	var point = swap_array_y[i][1];
 				 	return h/2 + PLUS_Y;
-				 });
-		text.transition()
-				.duration(SPEED)
+				 });*/
+			text1.transition().duration(SPEED)
 				.attr("x", function(d, i){
 				 var point = swap_array_x[i][1];					
 				 var barXPosition = point * (w / dataset.length) + barPadding;
@@ -316,8 +400,7 @@
 			 });
 	};
 	function decide2(swap_array_x, swap_array_y, decided){
-			graph2.transition()
-					 .duration(SPEED)
+			rect.transition().duration(SPEED)
 					 .attr("fill", function(d, i){
 					 	var point = swap_array_x[i][1];
 				    if (point >= decided){
@@ -337,11 +420,11 @@
 	init();
 
 	heapsort(new_dataset);
-	console.log(new_dataset);
-	console.log(action);
 
+
+	action.push({type:"終了", array_x:getSwapNumber(dataset,dataset), array_y:getSwapNumber(dataset,dataset), decided:dataset.length});
 	action.push({type:"初期化", array_x:getSwapNumber(dataset,dataset), array_y:getSwapNumber(dataset,dataset), decided:dataset.length});
-
+  console.log(action);
 
 	function view(){
 		var type = action[step].type;
@@ -350,32 +433,38 @@
 		var decided = action[step].decided;
 		//move(swap_array);
 		switch(type){
-			case "heapify":
-			console.log(type);
-			drawHeap(swap_array_x,swap_array_y, decided);
-			drawHeap2(swap_array_y,swap_array_y, decided);
+			case "compe":
+			setCodeLine(9, 9);
 			break;
-			case "heapify2":
+			case "heapify":
+			setCodeLine(10, 10);
 			console.log(type);
 			drawHeap(swap_array_x,swap_array_y, decided);
 			drawHeap2(swap_array_y,swap_array_y, decided);
 			break;
 			case "select":
+			setCodeLine(11, 11);
 			console.log(type);
 			selected(swap_array_x,swap_array_y, decided);
 			selected2(swap_array_y,swap_array_y, decided);
 			break;
 			case "swap":
+			setCodeLine(11, 11);
 			console.log(type);
 			move(swap_array_x,swap_array_y, decided);
 			move2(swap_array_y,swap_array_y, decided);
 			break;
 			case "decide":
+			setCodeLine(12, 12);
 			console.log(type);
 			decide(swap_array_x,swap_array_y, decided);
 			decide2(swap_array_x,swap_array_y, decided);
 			break;
+			case "終了":
+			setCodeLine(13, 13);
+			break;
 			case "初期化":
+			setCodeLine(-1, -1);
 			console.log(type);
 			decide(swap_array_x,swap_array_y, decided);
 			decide2(swap_array_x,swap_array_y, decided);
@@ -448,41 +537,34 @@
 		}
 	}
 	function buildHeap(array_data){
-		console.log("buildHeap");
 		for (var j=Math.floor(array_data.length/2) - 1 ; j>=0;j--){
 			heapify(array_data, j, array_data.length);
 		}
 
 	}
 	function heapsort(array_data){
-		console.log("buildHeap");
 		buildHeap(array_data);
 		var tmp = copy(array_data);
-		//action.push({type:"heapify", array:getSwapNumber(dataset,tmp), decided:array_data.length});
+		action.push({type:"compe", array:getSwapNumber(dataset,tmp), decided:array_data.length});
 		action.push({type:"heapify", array_y:getSwapNumber(dataset,tmp),array_x:getSwapNumber(dataset,makeHeap(tmp, array_data.length)), decided:array_data.length});
 		//console.log(makeHeap(tmp, array_data.length));
 		for(var i = array_data.length - 1; i>0 ; i--){
 			action.push({type:"select", array_y:getSwapNumber(dataset,tmp),array_x:getSwapNumber(dataset,makeHeap(tmp, i)), decided:i});
 
-			console.log("swap");
-			console.log(makeHeap(copy(array_data), i));
 			swap(array_data, 0, i)
 			tmp = copy(array_data);
-			console.log(makeHeap(copy(array_data), i));
 			action.push({type:"swap", array_y:getSwapNumber(dataset,tmp),array_x:getSwapNumber(dataset,makeHeap2(tmp, i)), decided:i});
 			action.push({type:"decide", array_x:getSwapNumber(dataset,tmp),array_y:getSwapNumber(dataset,makeHeap2(tmp, i)), decided:i});
 
-			console.log("heapify2");
 			heapify(array_data, 0, i);
 			tmp = copy(array_data);
-			console.log(makeHeap(copy(array_data), i));
-			action.push({type:"heapify2", array_y:getSwapNumber(dataset,tmp),array_x:getSwapNumber(dataset,makeHeap(tmp, i)), decided:i});
+			action.push({type:"compe", array:getSwapNumber(dataset,tmp), decided:array_data.length});
+			action.push({type:"heapify", array_y:getSwapNumber(dataset,tmp),array_x:getSwapNumber(dataset,makeHeap(tmp, i)), decided:i});
 		}
 		action.push({type:"decide", array_x:getSwapNumber(dataset,tmp),array_y:getSwapNumber(dataset,makeHeap(tmp, 0)), decided:0});
 	}
 
 	function makeHeap(array_data, decided){
-		console.log(decided);
 		var tmp = copy(array_data);
 		switch(decided){
 			case 7:
@@ -504,7 +586,6 @@
 		}
 	}
 	function makeHeap2(array_data, decided){
-		console.log(decided);
 		var tmp = copy(array_data);
 		switch(decided){
 			case 7:
@@ -514,21 +595,12 @@
 			case 5:
 			return [tmp[3],tmp[1],tmp[4],tmp[0],tmp[5],tmp[2],tmp[6]];
 			case 4:
-//			return [tmp[0],tmp[0],tmp[0],tmp[0],tmp[4],tmp[5],tmp[6]];
-			console.log("[tmp[3],tmp[1],tmp[0],tmp[2],tmp[4],tmp[5],tmp[6]]");
-			console.log([tmp[3],tmp[1],tmp[4],tmp[0],tmp[2],tmp[5],tmp[6]]);
 			return [tmp[3],tmp[1],tmp[4],tmp[0],tmp[2],tmp[5],tmp[6]];
 			case 3:
-			console.log("[tmp[1],tmp[0],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6]]");
-			console.log([tmp[1],tmp[0],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6]]);
 			return [tmp[3],tmp[1],tmp[0],tmp[2],tmp[4],tmp[5],tmp[6]];
 			case 2:
-			console.log("[tmp[1],tmp[0],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6]]");
-			console.log([tmp[1],tmp[0],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6]])
 			return [tmp[1],tmp[0],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6]];
 			case 1:
-			console.log("[tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6]]");
-			console.log([tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6]])
 			return [tmp[1],tmp[0],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6]];
 			case 0:
 			return [tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6]];
@@ -543,6 +615,4 @@
 			editor.getSession().removeMarker(range.id-1);
 		}
 	}
-
-
 })();

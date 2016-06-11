@@ -2,15 +2,15 @@
 <div id="main">
 	<div id="subNav">
     	<h3>ヒープソート（Heapsort）</h3>
-        <p>数列を昇順（or 降順）に整列させるアルゴリズム<br>
-          heapを作り，最大
+        <p>数列を昇順（or 降順）に整列させるアルゴリズム<br><br>
+          ヒープ構造（※後日説明予定）を利用して整列する。
         </p>
 	</div>
-    <a>挿入ソート</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
+    <a>ヒープソート</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
 </div><!-- /main -->
 <hr>
 <div id="code" class="codes">
-<div id="editor" class="avoid-clicks" style="width:100%; height: 450px">
+<div id="editor" class="avoid-clicks" style="width:100%; height: 480px">
 <b>//データ</b>
  配列 = [4,3,9,1,5,6,8];
 
@@ -19,21 +19,23 @@
 
 <b>//処理</b>
 
-！！！！！未完成！！！
-ヒープする
-入れ替える
-決定する
-
-
-
-
+while 未確定要素がある
+      未確定要素でヒープを作る
+      最大値(root)と最小値入れ替える。
+      入れ替えた最大値を確定済みとする
 終了
+
+
+
+
+
+"上の絵がヒープ構造の木表現"
+"下の絵がヒープ構造の配列表現"
 </div>
 </div><!-- /code -->
 <div id="anime">
     <p>画面クリックで説明</p>
     <anime>
-
     </anime>
 </div><!-- /anime -->
 <div id="sub">
@@ -58,4 +60,3 @@
 </script>
 <script src="/js/d3.min.js" type="text/javascript" ></script>
 <script src="/js/heapsort.js" type="text/javascript" ></script>
-
