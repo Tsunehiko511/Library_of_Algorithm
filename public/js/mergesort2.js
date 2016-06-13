@@ -3,12 +3,24 @@
 	var w = 550, h = 350, barPadding = 60;
 	var dataset = [9,5,8,3,6,4,1];
 	var new_dataset = copy(dataset);
+	var up_value = 60;
 
 	// svg生成
 	var svg = d3.select("anime")
 							.append("svg")
 							.attr("width", w+dataset.length*barPadding)
 							.attr("height", h);
+	// 円
+	var graph = svg.selectAll("rect").data(dataset).enter().append("rect")
+								 .attr("x", function(d, i){
+								 	return i * (w / dataset.length) + barPadding;
+								 })
+								 .attr("y", h/2)
+								 .attr("width", 50)
+								 .attr("height", 50)
+								 .attr("fill", "white")
+								 .attr("stroke", "black")
+								 .attr("stroke-width", 5);
 	// text
 	var text = svg.selectAll("text")
 								.data(dataset)
@@ -19,70 +31,88 @@
 	               "fill": "black",
 	              })
 								.attr("x", function(d, i){
-								 return i * (w / dataset.length) + barPadding;
+								 return i * (w / dataset.length) + barPadding+25;
 								})
 								.attr("y", function(d){
-								 return h/2+15+5 * d;
+								 return h/2 + 30;
 								})
 								.text(function(d){
 									return d;
 								})
-	// 円
-	var graph = svg.selectAll("circle")
-								 .data(dataset)
-								 .enter()
-								 .append("circle")
-								 .attr("cx", function(d, i){
-								 	return i * (w / dataset.length) + barPadding;
-								 })
-								 .attr("cy", function(d){
-								 	return h/2;
-								 })
-								 .attr("r", function(d){
-								 	return d;
-								 });
+
 	// 初期化
 	function init(){
-		graph.transition()
-				 .duration(SPEED+400)
-				 .attr("cx", function(d, i){
-				 	return i * (w / dataset.length) + barPadding;
-				 })
-				 .attr("r", function(d){
-				 	return 4 * d+2 ;
-				 })
-				 .attr("fill", "black");
-		text.transition()
-				.duration(SPEED+400)
-				.attr("x", function(d, i){
-					return i * (w / dataset.length) + barPadding;
-				});
 	}
 
 	function move(swap_array){
 			graph.transition()
 					 .duration(SPEED)
-					 .attr("cx", function(d, i){
+					 .attr("x", function(d, i){
 					 	var point = swap_array[i][1];// 置換行列
-					 	return point * (w / dataset.length) + barPadding;;
+					 	return point * (w / dataset.length) + barPadding;
 					 });
 		text.transition()
 				.duration(SPEED)
 				.attr("x", function(d, i){
 				 var point = swap_array[i][1];					
-				 var barXPosition = point * (w / dataset.length) + barPadding;
+				 var barXPosition = point * (w / dataset.length) + barPadding + 25;
 				 return barXPosition;
 				});
 	};
+	function move_init(swap_array){
+			graph.transition()
+					 .duration(SPEED)
+					 .attr("x", function(d, i){
+					 	var point = swap_array[i][1];// 置換行列
+					 	return point * (w / dataset.length) + barPadding;
+					 })
+					 .attr("y", h/2);
+		text.transition()
+				.duration(SPEED)
+				.attr("x", function(d, i){
+				 var point = swap_array[i][1];					
+				 var barXPosition = point * (w / dataset.length) + barPadding + 25;
+				 return barXPosition;
+				})
+				.attr("y", h/2 + 30);
+	};
+	function upGrade(start, end){
+		if(start==0 && end == 3){
+			up_value +=up_value;
+			return;
+		}
+		if(start == 4 && end == 5){
+			up_value = 60;
+			return
+		}
+	}
+
 	// ピボットの色を変える
 
-	function drawIndex(index_value){
+	function up(swap_array, start, end){
+		upGrade(start, end);
 		graph.transition()
-				.duration(SPEED).attr("fill", function(d, i){
-			    if (d == index_value){
-				 		return "red";
-				 	}
-				 });
+				.duration(SPEED)
+				.attr("y", function(d, i){
+					var point = swap_array[i][1];
+					if(point <=end){
+						return h/2-up_value;
+					}
+					else{
+						return h/2;
+					}
+				});
+		text.transition()
+				.duration(SPEED)
+				.attr("y", function(d, i){
+					var point = swap_array[i][1];
+					if(point <=end){
+						return h/2+30-up_value;
+					}
+					else{
+						return h/2+30;
+					}
+				});
 	}
 	function drawMin(min_value, index_value){
 		graph.transition()
@@ -120,6 +150,13 @@
 			drawMin(min_value, index_value);
 			setCodeLine(10, 10);
 			break;*/
+			case "start-end":
+			var swap_array = action[step].merge;
+			var start = action[step].start;
+			var end = action[step].end;
+			console.log(swap_array);
+			up(swap_array,start,end);
+			break;
 			case "Merge":
 			var swap_array = action[step].merge;
 			console.log(swap_array);
@@ -128,7 +165,7 @@
 			case "初期化":
 			var swap_array = action[step].merge;
 			console.log(swap_array);
-			move(swap_array);
+			move_init(swap_array);
 			break;
 			default:
 			break
@@ -192,8 +229,9 @@
 		var mid = Math.floor((start + end) / 2);
 		sortData(data, start,mid);
 		sortData(data, mid+1,end);
-
 		console.log("Merge:"+ start +"〜"+ end);
+		var tmp = copy(data);
+		action.push({type:"start-end", merge:getSwapNumber(dataset, tmp), start:start, end:end});
 		var tmp_array = copy(data);
 		var p = 0;
 		for (var index=start; index<=mid; index++){
@@ -220,6 +258,8 @@
 				index_R++;
 			}
 			k++;
+			tmp = copy(data);
+			//action.push({type:"Merge", merge:getSwapNumber(dataset, tmp)});
 		}
 		while (index_L < p){
 			data[k] = tmp_array[index_L];

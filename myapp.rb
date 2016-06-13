@@ -36,6 +36,10 @@ get '/anime_mergesort' do
   @title = 'mergesort'
   erb :anime_mergesort
 end
+get '/anime_mergesort2' do
+  @title = 'mergesort2'
+  erb :anime_mergesort2
+end
 get '/anime_selectsort' do
   @title = 'selectsort'
   erb :anime_selectsort
