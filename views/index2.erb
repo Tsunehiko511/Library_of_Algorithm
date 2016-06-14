@@ -1,0 +1,146 @@
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--[if lt ie 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style type="text/css">
+</style>
+
+<body>
+    <nav id="header" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+                <span class="sr-only">メニュー</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">PGColony</a>
+            </div>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="nav navbar-nav  navbar-right">
+                    <li><a id="contact" href="#">お問い合わせ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="container">
+            <h1>PGColony</h1>
+            <p>勉強会を始めて、プログラミング仲間を作ろう</p>
+        </div>
+    </div>
+    <div>
+        <div class="container text-center">
+            <div class="col-md-4">
+                <div>
+                    <i class="fa fa-users"></i>
+                </div>
+                <p>
+                    仲間や先生とつながる
+                </p>
+                <p>
+                    勉強会仲間を探せます。初心者は知り合いの経験者を誘うか、登録済みの経験者に勉強会の先生をお願いしてみよう。
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <i class="fa fa-flask"></i>
+                </div>
+                <p>
+                    勉強会を企画しよう
+                </p>
+                <p>
+                    「学びたい」を実現しよう。先生はスカウト、公募できます。学内、社内の勉強会に外部の人を招待して輪を広げよう！
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <i class="fa fa-pencil"></i>
+                </div>
+                <p>
+                    教材を作ろう
+                </p>
+                <p>
+                    学んだことをチュートリアルとして残そう。概要だけ先に投稿して、みんなが続きを読みたいか反応を見る事もできます。
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <p>
+            プログラミング勉強会の参加者募集中！
+        </p>
+    </div>
+    <div class="text-center">
+        <p>
+            利用者の声
+        </p>
+        <div class="container">
+            <div class="col-md-4">
+                <p>
+                    Aさん
+                </p>
+                <p>
+                    とても勉強になりました。
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    Bさん
+                </p>
+                <p>
+                    とても勉強になりました。
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    Cさん
+                </p>
+                <p>
+                    とても勉強になりました。
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="formArea">
+        <div class="container pt30">
+            <form>
+                <div class="form-group">
+                    <label for="mail" class="control-label">メールアドレス</label>
+                    <input type="email" class="form-control" id="mail" placeholder="メールアドレス">
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">お名前</label>
+                    <input type="text" class="form-control" id="name" placeholder="お名前">
+                </div>
+                <div class="form-group">
+                    <label for="body" class="control-label">お問い合わせ内容</label>
+                    <textarea id="body" name="body" class="form-control" rows="10"></textarea>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-default btn-lg">お問い合わせする</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container text-center">
+        <p>
+            Copyright &copy; 2015 LaQuda Inc. All rights reserved.
+        </p>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(document).on("click", "#contact", function() {
+                $(".navbar-toggle").click();
+                $('html,body').animate({ scrollTop: $("#formArea").offset().top - 50}, 'slow');
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
