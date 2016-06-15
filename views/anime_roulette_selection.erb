@@ -1,16 +1,28 @@
-<div id="container">
-<div id="main">
-		<div id="subNav">
-			<h3 onclick="test_alert()">ルーレット選択</h3>
-			<p>複数のなかからランダムに一つ選択するアルゴリズム</p>
-			<p>ものの価値の比率に応じてルーレット板を作成し，ルーレット板に矢を放ちランダム選択をする方法。<br>正確には，矢を放った後ルーレット板の領域を作る。<br>
-				遺伝的アルゴリズムの「選択」でよく利用される。</p>
-		</div>
-		<a href="/def_ga">戻る</a>　<a href="/anime_ga">遺伝的アルゴリズム</a>　<a>演習</a>　	　<a href="/">ホーム</a>
-</div><!-- /main -->
-<hr>
+<div class="container-fluid">
+  <div id="main" class="container-fluid">
+      <div id="subNav">
+      <h3 class="bold">ルーレット選択</h3>
+      <p>複数のなかからランダムに一つ選択するアルゴリズム</p>
+      <p>ものの価値の比率に応じてルーレット板を作成し，ルーレット板に矢を放ちランダム選択をする方法。<br>正確には，矢を放った後ルーレット板の領域を作る。<br>
+        遺伝的アルゴリズムの「選択」でよく利用される。</p>
+      </div>
+  </div><!-- /main -->
+  <br>
+  <br>
+  <!-- tab -->
+  <div class="tabbale">
+      <div id="content">
+          <ul class="nav nav-tabs">
+          <li class="active"><a href="#">アルゴリズムの解説</a></li>
+          <li><a style="color:#000000;pointer-events:none;"></a></li>
+          </ul>
+      </div>
+  </div>
+  <br>
+ 
 <div id="code" class="codes">
-<div id="editor" class="avoid-clicks" style="width:100%; height: 360px"><b>//データ</b>
+<div id="editor" class="avoid-clicks" style="height: 360px">
+<b>//データ</b>
 	<span>物群=[a,b,c,d,e]</span>
 	<span>物の価値群=[6,2,10,4,3]</span>
 

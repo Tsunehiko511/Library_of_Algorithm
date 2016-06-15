@@ -1,32 +1,56 @@
-﻿<link rel="stylesheet" href="/css/maxvalue.css">
-<div id="container">
-	<div id="main">
-		<div id="subNav">
-			<h3>最大値</h3>
+﻿<div class="container-fluid">
+  <div id="main" class="container-fluid">
+      <div id="subNav">
+			<h3 class="bold">最大値</h3>
 			<p>配列の中の最大値を求める。</p>
-		</div>
-		<a href="maxvalue">最大値</a>　　<a>演習問題</a>　	　<a href="/">ホーム</a>
-	</div><!-- /main -->
-	<hr>
-	<div id="code">
-		<span class='bold'>データ</span><br>
-		<span>&emsp;入力データ := [a0,a1,a2,...,a9]</span><br>
-		<p></p>
-		<span class='bold'>処理</span><br>
-		<span id='code0'>&emsp;max= 0</span><br>
-		<span id='code1'>&emsp;for 比較データ in 入力データ:</span><br>
-		<span id='code2'>&emsp;&emsp;if max &lt; 比較データ:</span><br>
-		<span id='code3'>&emsp;&emsp;&emsp;max = 比較データ</span><br>
-		<p></p>
-		<span id='code4'>&emsp;return max</span><br>
-		<span id='code5'>終了</span><br>
-	</div><!-- /code -->
+      </div>
+  </div><!-- /main -->
+  <br>
+  <br>
+  <!-- tab -->
+  <div class="tabbale">
+      <div id="content">
+          <ul class="nav nav-tabs">
+          <li class="active"><a href="#">アルゴリズムの解説</a></li>
+          <li><a style="color:#000000;pointer-events:none;"></a></li>
+          </ul>
+      </div>
+  </div>
+  <br>
 
+<div id="editor" class="avoid-clicks" style="height: 300px;">
+<b>//データ</b>
+	入力データ := [a0,a1,a2,...,a9]
+<b>//処理</b>
+ 最大値 = 0
+ for 比較データ in 入力データ:
+ 	if 最大値 &lt; 比較データ:
+	 最大値 = 比較データ
+ return 最大値
+ 終了
+</div><!-- /editor -->
 	<div id="anime">
 		<p>画面クリックで説明</p>
-		<canvas width="550" height="450" id="sample">
+		<canvas width="550" height="450" id="myCanvas">
 			図形を表示するには、canvasタグをサポートしたブラウザが必要です。
 		</canvas>
 	</div><!-- /anime -->
+
+<script src="/js/src-min/ace.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>-->
+<script>
+  var editor = ace.edit("editor");
+  editor.renderer.setShowGutter(false);
+  //editor.$blockScrolling = Infinity;
+  editor.setOptions({
+  	highlightActiveLine:false
+  	//enableBasicAutocompletion: true,
+    //enableSnippets: true,
+    //_enableLiveAutocompletion: true
+  });
+  editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
+  editor.getSession().setMode("ace/mode/javascript");
+    document.getElementById('editor').style.visibility="visible";
+</script>
+<script src='/js/maxvalue.js' ></script>
 </div><!-- /container -->
-<script src='/js/maxvalue.js'></script>

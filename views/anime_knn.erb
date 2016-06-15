@@ -1,14 +1,26 @@
 <script src="/js/app.js" type="text/javascript" ></script>
-<div id="container">
-<div id="main">
-		<div id="subNav">
-			<h3 onclick="test_alert()">k近傍法</h3>
+
+<div class="container-fluid">
+  <div id="main" class="container-fluid">
+    <div id="subNav">
+			<h3 class="bold">k近傍法</h3>
 			<p>テストデータのカテゴリーを推定する方法。</p>
 			<p>訓練データのなかからテストデータとの距離が短い順にk個取り出し、多数決によってテストデータのカテゴリーを推定する。</p>
-		</div>
-		<a href="anime_knn">k近傍法</a>　　<a href="que_knn">演習</a>　	　<a href="/">ホーム</a>
-</div><!-- /main -->
-<hr>
+    </div>
+  </div><!-- /main -->
+  <br>
+  <br>
+  <!-- tab -->
+  <div class="tabbale">
+    <div id="content">
+      <ul class="nav nav-tabs">
+      <li class="active"><a href="#">アルゴリズムの解説</a></li>
+      <li><a href="/que_knn">演習問題</a></li>
+      </ul>
+     </div>
+   </div> <!-- container -->
+   <br>
+
 <div id="code" class="codes">
 	<b>データ</b><br>
 		<span>&emsp;訓練データ := [(a0,b0),(a1,b1),...,,(a6,b6)]</span><br>

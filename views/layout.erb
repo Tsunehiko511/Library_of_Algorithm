@@ -1,37 +1,61 @@
 <!DOCTYPE html>
-<html lang='ja'>
-<head>
-	<meta charset='utf-8'>
-	<meta name="description" content="アルゴリズムを視覚的に理解するサイト">
-	<link rel="stylesheet" href="/css/app.css">
-	<script src="js/jquery-2.2.4.min.js"></script>
-	<script src="js/jquery.iframetracker.js"></script>	
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	  ga('create', 'UA-64867854-2', 'auto');
-	  ga('send', 'pageview');
-	</script>
-	<title>Library of Algorithms</title>
-	<script >
-  </script>
-</head>
-<body>
-	<div id="header">
-	<!-- <div id="footerNavLink"><a href="#footerNav"></a></div> -->
-	<!--<div id="footerNavLink"><a href="#footerNav"></a></div>-->
-		<h1>Library of Algorithms　α版</h1>
-	</div><!-- /header -->
-	<%= yield %>
-	<br>
-	<h3>アンケート</h3>
-	<a href="http://goo.gl/forms/UDfyKHdE4wjm3dBe2">1〜100の和がわかるあなたへ</a>
-	<div id="footer">
-	<div id="footerNav"></div>
-	<p id="copyright">&copy; 2016 S.T</p>	
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="アルゴリズムを視覚的に理解するサイト">
 
-</div><!-- /footer -->
-</body>
+    <title>Library of Algorithms</title>
+    <!-- BootstrapのCSS読み込み -->
+    <link rel="stylesheet" href="/css/app.css">
+   	<link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery読み込み -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+   	<script src="js/jquery-2.2.4.min.js"></script>
+
+    <!-- BootstrapのJS読み込み -->
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <!-- google analytics -->
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-64867854-2', 'auto');
+		  ga('send', 'pageview');
+		</script>
+  </head>
+	<body>
+		<!--ナヴィゲーションバー-->
+		<!--<nav class="navbar navbar-inverse navbar-fixed-top container-fluid">-->
+		<nav class="navbar navbar-inverse  container-fluid">
+			<div class="navbar-header">
+				<!--ブランド名-->
+				<a class="navbar-brand" href="/">Library of Algorithms</a>
+		    <!--トグルボタンの設置-->
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-content">
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+			</div>
+			<div id="nav-content" class="collapse navbar-collapse">
+				<!--メニューリスト-->
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/">
+							<span class="glyphicon glyphicon-home"></span>
+						</a></li>
+					<li><a href="/#about">ABOUT</a></li>
+					<li><a href="/#contents">CONTENTS</a></li>
+					<li><a href="/#contact">CONTACT</a></li>
+				</ul>
+			</div>
+		</nav>
+		<%= yield %>
+		<br>
+		<footer class="container-fluid">
+			<small><a href="/">Copyright (C) 2016 Shimanezumi All Rights Reserved.</a></small>
+	  </footer>
+	</body>
 </html>

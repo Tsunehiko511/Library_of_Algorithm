@@ -7,9 +7,6 @@ get '/' do
   @subtitle = 'Algorithm is fun!!!'
   erb :index
 end
-get '/index2' do
-  erb :index2
-end
 get '/test' do
   erb :test
 end

@@ -1,16 +1,27 @@
-<div id="container">
-<div id="main">
-	<div id="subNav">
-    	<h3>ヒープソート（Heapsort）</h3>
+<div class="container-fluid">
+  <div id="main" class="container-fluid">
+      <div id="subNav">
+        <h3 class="bold">ヒープソート（Heapsort）</h3>
         <p>数列を昇順（or 降順）に整列させるアルゴリズム<br><br>
           ヒープ構造を利用して整列する。
         </p>
-	</div>
-    <a>ヒープソート</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
-</div><!-- /main -->
-<hr>
+      </div>
+  </div><!-- /main -->
+  <br>
+  <br>
+  <!-- tab -->
+  <div class="tabbale">
+      <div id="content">
+          <ul class="nav nav-tabs">
+          <li class="active"><a href="#">アルゴリズムの解説</a></li>
+          <li><a style="color:#000000;pointer-events:none;"></a></li>
+          </ul>
+      </div>
+  </div>
+  <br>
+
 <div id="code" class="codes">
-<div id="editor" class="avoid-clicks" style="width:100%; height: 480px">
+<div id="editor" class="avoid-clicks" style="height: 480px">
 <b>//データ</b>
  配列 = [4,3,9,1,5,6,8];
 
@@ -20,9 +31,9 @@
 <b>//処理</b>
 
 while 未確定要素がある
-      未確定要素でヒープを作る
-      最大値(root)と末端を入れ替える。
-      入れ替えた最大値を確定済みとする
+  未確定要素でヒープを作る
+  最大値(root)と末端を入れ替える
+  入れ替えた最大値を確定済みとする
 終了
 
 

@@ -1,15 +1,26 @@
-﻿<div id="container">
-	<div id="main">
+﻿<div class="container-fluid">
+	<div id="main" class="container-fluid">
 		<div id="subNav">
-			<h3>A*アルゴリズム</h3>
+			<h3 class="bold">A*アルゴリズム</h3>
 			<p>最短経路を求めるアルゴリズム</p>
 			<p>A*（エースター）アルゴリズムはダイクストラ法を一般化したもので、処理の流れはダイクストラ法とほとんど同じ。違うのは、「ヒューリスティック関数」と呼ばれる推定値を用いる点。各頂点から目的地まで「最低でもこのくらい離れている」という推定を行うことで、探索に大まかな方向性を持たせることができ、効率的に計算できる。推定値を0にすれば、ダイクストラ法になる。</p>
 		</div>
-		<a>アルゴリズムの解説</a>　　<a>演習問題</a>　	　<a href="/">ホーム</a>
 	</div><!-- /main -->
-	<hr>
+	<br>
+	<br>
+  <!-- tab -->
+  <div class="tabbale">
+    <div id="content">
+      <ul class="nav nav-tabs">
+      <li class="active"><a href="#">アルゴリズムの解説</a></li>
+      <li><a href="" style="color:#000000;pointer-events:none;"></a></li>
+      </ul>
+     </div>
+   </div> <!-- container -->
+   <br>
+
+
 	<div id="code">
-		<h3>アルゴリズムの解説</h3>
 		<span class='bold'>初期化</span><br>
 		<span>&emsp;各頂点について</span><br>
 		<span>&emsp;&emsp;S（スコア） （→スタート地点からの距離）</span><br>

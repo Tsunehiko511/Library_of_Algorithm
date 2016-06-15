@@ -1,13 +1,29 @@
+h2 {
+	font-weight: bold;
+	font-size: 50px
+}
 
-#container {
-		overflow: hidden;
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #101010;
 }
+
+li {
+	font-size: 20px;
+	font-weight: 600;
+}
+a {
+	font-size: 18px;
+}
+
 #main,#subNav{
-	z-index: 2;
+	font-size: 18px
 }
+
 #anime{
 	display:inline-block;
-	width: 550px;
+	width: 500px;
 	/*background-color: pink;*/
 	text-align: center;
 }
@@ -23,27 +39,34 @@
 #code,#define{
 	display:inline-block;
 	float : left;
-	width: 440px;
+	width: 380px;
   /*background-color: red;*/
 }
 
-#footer{
-	 position:relative;
-	 bottom:0;
-}
+
 #code{
 	font-size: 18px;
 	font-family: sans-serif,"ＭＳ Ｐゴシック","MS PGothic";
 }
+
 #editor{
+	display:inline-block;
+	float : left;
+
+	width: 380px;
 	visibility: hidden;
 	font-size: 14px;
+	border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
 }
+
+
 .avoid-clicks{
   pointer-events: none;
 }
 
-#sample {
+#myCanvas {
 	cursor: pointer;
 }
 .bold{
@@ -57,4 +80,5 @@
     /*background-color:yellow;*/
     position: absolute;
 }
+
 
