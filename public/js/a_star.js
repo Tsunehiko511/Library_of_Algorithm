@@ -2,8 +2,6 @@
 	
 	var canvas = document.getElementById('sample');
 	var ctx = canvas.getContext('2d');
-	var obj = []; // document.getElementById('code'+i) オブジェクトを格納する配列
-	for (var i=0; i<9; i++) obj[i] = document.getElementById('code'+i);
 
 	var count_anime = 0;
 	var count_neighbor = 0;
@@ -55,7 +53,6 @@
 			for (var j=0; j<I; j++) mark.edge[i][j] = 0;
 			mark.score[i] = 0;
 		}
-		for (var i=0; i<obj.length; i++) mark.codes[i] = 0;
 
 		if (count_anime==0){
 			for (var i=0; i<node.length; i++){
@@ -79,7 +76,8 @@
 				return goNext();
 			}else{
 				mark.node[current] = 1;
-				mark.codes[1] = 1;
+				mark.codes[1] = 1;//始まり
+				setCodeLine(10,10);
 				count_anime++;
 				if (current==goalNode) count_anime = 5;
 			}
@@ -96,7 +94,12 @@
 			if (count_step<3) mark.score[current] = 1;
 			if (current>count_neighbor) mark.edge[count_neighbor][current] = 1;
 			else mark.edge[current][count_neighbor] = 1;
-			if (count_step<2) mark.codes[count_step+4] = 1;
+			if (count_step<2) {
+				mark.codes[count_step+4] = 1;setCodeLine(14,15);
+				if(count_step==1){
+					setCodeLine(17,17);
+				}
+			}
 			if (count_step>=1){
 				mark.score[count_neighbor] = 1;
 				if (node[count_neighbor].score<=node[current].score+dist) count_step++;
@@ -106,8 +109,10 @@
 					node[count_neighbor].visited = false;
 					node[count_neighbor].score = node[current].score+dist;
 					node[count_neighbor].from = current;
+					//4,7 隣接点のスコア＝暫定スコア,隣接点の直前の頂点＝現在位置 18,19
+					setCodeLine(18,19);
 					mark.codes[6] = 1;
-				}else mark.codes[5] = 1;
+				}else{setCodeLine(17,17); mark.codes[5] = 1;}//11 if 隣接点のスコア＞暫定スコア
 				node[count_neighbor].txt = node[count_neighbor].score;
 			}
 
@@ -123,6 +128,7 @@
 			count_step = 0;
 			node[current].visited = true;
 			mark.codes[7] = 1;
+			setCodeLine(21,21)
 		}else if (count_anime==5){
 			mark.node[current] = 1;
 			count_anime = 0;
@@ -136,6 +142,7 @@
 			}
 			mark.codes[2] = 1;
 			mark.codes[8] = 1;
+			setCodeLine(11,11)
 		}
 
 		ctx.font = 'normal 20px sans-serif';
@@ -202,8 +209,13 @@
 			ctx.fillStyle = 'black';
 			ctx.fillText('H='+node[i].heuristics,node[i].x,node[i].y+15,boxWidth);
 		}
-		for (var i=0; i<obj.length; i++){
-			obj[i].style.backgroundColor = mark.codes[i] ? 'yellow' : 'transparent';
+	}
+	// コードハイライト
+	var editor = ace.edit("editor");
+	function setCodeLine(start, end){
+		var range = editor.getSession().highlightLines(start, end, "code_highlight");
+		if(range.id>3){
+			editor.getSession().removeMarker(range.id-1);
 		}
 	}
 

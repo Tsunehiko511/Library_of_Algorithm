@@ -21,55 +21,59 @@
    </div> <!-- container -->
    <br>
 
-<div id="code" class="codes">
-	<b>データ</b><br>
-		<span>&emsp;訓練データ := [(a0,b0),(a1,b1),...,,(a6,b6)]</span><br>
-		<span>&emsp;カテゴリ := [<FONT color="red">赤</FONT>,<FONT color="blue">青</FONT>,...,<FONT color="red">赤</FONT>]</span>
-	<p></p>
-	<b>目的</b><br>
-		<span>&emsp;<FONT color="green">●</FONT>が<FONT color="red">赤</FONT>か<FONT color="blue">青</FONT>か予測する</span>
-	<p></p>
-	<b>処理</b><br>
-	<span id="code1">&emsp;for データ in 訓練データ:</span><br>
-	<span id="code2">&emsp;&emsp;各距離 = データと<FONT color="green">●</FONT>の距離</span><p></p>
-	<span id="code3"></span>
-	<p></p>
-	<span id="code4">&emsp;近傍の大きさ = ここでは3</span><br>
-	<span id="code5">&emsp;for 近傍内の要素:</span><br>
-	<span id="code6">&emsp;&emsp;if 要素のカテゴリ == <FONT color="red">赤</FONT>:</span><br>
-	<span id="code7">&emsp;&emsp;&emsp;<FONT color="red">赤</FONT>の数 += 1</span><br>
-	<span id="code8">&emsp;&emsp;else if 要素のカテゴリ == <FONT color="blue">青</FONT>:</span><br>
-	<span id="code9">&emsp;&emsp;&emsp;<FONT color="blue">青</FONT>の数 += 1</span>
-	<p></p>
-	<span id="code10">&emsp;if <FONT color="red">赤</FONT>の数 > <FONT color="blue">青</FONT>の数:</span><br>
-	<span id="code11">&emsp;&emsp;return <FONT color="red">赤</FONT></span><br>
-	<span id="code12">&emsp;else if <FONT color="red">赤</FONT>の数 &lt; <FONT color="blue">青</FONT>の数:</span><br>
-	<span id="code13">&emsp;&emsp;return <FONT color="blue">青</FONT></span><br>
-	<span id="code14">終了</span><br>
-	<!--
-	<p>
-		<input type="button" value="ステップ" onClick="start()">
-	</p>
-	-->
-</div><!-- /code -->
+<div id="editor" class="avoid-clicks" style="height: 460px">//データ
+ 訓練データ = [(a0,b0),(a1,b1),...,,(a6,b6)]
+ カテゴリ = [赤,青,...,赤]
+
+//目的</b><br>
+ 緑が赤か青か予測する
+
+//処理
+ for データ in 訓練データ:
+  各距離 = 各データと緑の距離
+  近傍の大きさ = ここでは3
+  
+  for 近傍内の要素:
+   if 要素のカテゴリ == 赤:
+     赤の数 += 1
+   else if 要素のカテゴリ == 青:
+     青の数 += 1
+
+  if赤の数 &gt; 青の数:
+    return 赤
+  else if 赤の数 &lt; 青の数:
+    return 青
+ 終了
+</div><!-- /editor -->
 
 <div id="anime">
 	<p>画面クリックで説明</p>
 	<canvas width="700" height="450px" id="sample" onClick="anime(3)">
 	図形を表示するには、canvasタグをサポートしたブラウザが必要です。
 	</canvas>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
 </div><!-- /anime -->
 <div id="sub">
 
 </div><!-- /sub -->
 </div><!-- /container -->
-<hr>
+
+<script src="/js/src-min/ace.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>-->
+<script>
+  var editor = ace.edit("editor");
+  editor.renderer.setShowGutter(false);
+  //editor.$blockScrolling = Infinity;
+  editor.setOptions({
+    //enableBasicAutocompletion: true,
+    //enableSnippets: true,
+    //_enableLiveAutocompletion: true
+  });
+  editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
+  editor.getSession().setMode("ace/mode/javascript");
+    document.getElementById('editor').style.visibility="visible";
+</script>
+<script src="/js/d3.min.js" type="text/javascript" ></script>
+
 <script src="/js/knn.js" type="text/javascript" ></script>
 

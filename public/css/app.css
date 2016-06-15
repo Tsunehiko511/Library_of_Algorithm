@@ -27,7 +27,7 @@ a {
 	/*background-color: pink;*/
 	text-align: center;
 }
-#roulette_png,#ga_nap_png{
+#roulette_png,#ga_nap_png, #def_ga {
 	position: relative;
 	/*background-color: green;*/
 }
