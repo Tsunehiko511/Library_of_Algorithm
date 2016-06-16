@@ -1,17 +1,27 @@
-<div id="container">
-<div id="main">
-	<div id="subNav">
-    	<h3>クイックソート</h3>
+<div class="container-fluid">
+  <div id="main" class="container-fluid">
+      <div id="subNav">
+      <h3 class="bold">クイックソート</h3>
         <p>数列を昇順（or 降順）に整列させるアルゴリズム<br>
         アルゴリズムは「<b>ピボットと呼ばれる基点を作り，ピボットより小さいものは左側へ，大きものは右側へ移動させる</b>」。<br>左側と右側のそれぞれに対して「<b>ピボットを作り，ピボットより小さいものは左側へ，大きものは右側へ移動させる</b>」を繰り返す。<br>
         ピボットの決め方と，左右に分ける操作は多くのパターンが知られている。
         </p>
-	</div>
-    <a>クイックソート</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
-</div><!-- /main -->
-<hr>
-<div id="code" class="codes">
-<div id="editor" class="avoid-clicks" style="width:100%; height: 400px">
+      </div>
+  </div><!-- /main -->
+  <br>
+  <br>
+  <!-- tab -->
+  <div class="tabbale">
+      <div id="content">
+          <ul class="nav nav-tabs">
+          <li class="active"><a href="#">アルゴリズムの解説</a></li>
+          <li><a style="color:#000000;pointer-events:none;"></a></li>
+          </ul>
+      </div>
+  </div>
+  <br>
+
+<div id="editor" class="avoid-clicks" style="height: 400px">
 <b>//データ</b>
  配列 = [5,9,8,3,1,6,4]
 
@@ -22,12 +32,12 @@
  left = 0
  right = 要素の個数-1
 
- クイックソート関数(配列, left, right):
+ クイックソート(配列, left, right):
 　 if left&lt;right:
-     ピボット = left〜rightのどれか
-     ピボットを基点に左右に分ける
-     クイックソート関数(配列, left, ピボット-1)
-     クイックソート関数(配列, ピボット+1, right)
+     pivot = left〜rightのどれか
+     pivotを基点に左右に分ける
+     クイックソート(配列, left, pivot-1)
+     クイックソート(配列, pivot+1, right)
 
 
 
@@ -50,8 +60,7 @@
         右側 = クイックソート関数(right)
 
         return 左側 + [ピポット] + 右側
-</div>
-</div><!-- /code -->
+</div><!-- /editor -->
 <div id="anime">
     <p>画面クリックで説明</p>
     <anime>
@@ -64,16 +73,10 @@
 </div><!-- /container -->
 <hr>
 <script src="/js/src-min/ace.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>-->
 <script>
   var editor = ace.edit("editor");
   editor.renderer.setShowGutter(false);
-  //editor.$blockScrolling = Infinity;
-  editor.setOptions({
-    //enableBasicAutocompletion: true,
-    //enableSnippets: true,
-    //_enableLiveAutocompletion: true
-  });
+  editor.setOptions({highlightActiveLine:false});
   editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
   editor.getSession().setMode("ace/mode/javascript");
     document.getElementById('editor').style.visibility="visible";

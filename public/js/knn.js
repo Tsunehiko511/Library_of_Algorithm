@@ -14,95 +14,76 @@ function anime(k){
 	switch(count_anime){
 		case 0:
 			runLines(6);
-            setColorLine(1);
-			setColorLine(2);
 			count_anime += 1;
+            setCodeLine(9,9);
 			break;
         case 1:
             delet();
             for (var t = 0; t<=6;t++){
                 draw_line(t,1,'black');
             }
-            deleteColorLine(1)
-            deleteColorLine(2)
-            setColorLine(3);
             count_anime += 1;
             break;
         case 2:
             draw_neighbor(k);
-            deleteColorLine(3)
-            setColorLine(4);
             count_anime += 1;
+            setCodeLine(10,10);
             break;
 		// 数を数える(赤)
 		case 3:
             delet();
             draw_neighbor(k);
-            deleteColorLine(4)
-            setColorLine(5);
-            setColorLine(6);
             draw_line(3,5,"orange");
 			count_anime += 1;
+            setCodeLine(13,13);
 			break;
 		case 4:
-            deleteColorLine(6);
-            setColorLine(7);
 			count_anime += 1;
+            setCodeLine(14,14);
 			break;
 		case 5:
             delet();
             draw_neighbor(k);
-            deleteColorLine(7);
-            setColorLine(6);
             draw_line(2,5,"orange");
 			count_anime += 1;
+            setCodeLine(13,13);
 			break;
 		case 6:
-            deleteColorLine(6);
-            setColorLine(7);
 			count_anime += 1;
+            setCodeLine(14,14);
 			break;
 		case 7:
             delet();
             draw_neighbor(k);
-            deleteColorLine(7);
-            setColorLine(8);
             draw_line(4,5,"orange");
 			count_anime += 1;
+            setCodeLine(15,15);
 			break;
 		case 8:
-            deleteColorLine(8);
-            setColorLine(9);
             count_anime += 1;
+            setCodeLine(16,16);
 			break;
 		case 9:
-            deleteColorLine(5);
-            deleteColorLine(9);
-            setColorLine(10);
 			count_anime += 1;
+            setCodeLine(18,18);
 			break;
 		case 10:
 			if(k==3){
 				draw_fact("red");
-                deleteColorLine(10);
-                setColorLine(11);
+            setCodeLine(19,19);
 			}else if(k==5){
 				draw_fact("blue");
-                deleteColorLine(10);
-                setColorLine(13);
 			}
 			count_anime += 1;
 			break;
         case 11:
-            deleteColorLine(11);
-            setColorLine(14);
             count_anime += 1;
             break;
 		default:
 			delet();
 			draw_base();
 			count_anime = 0;
-			color_lines(15);
+            setCodeLine(22,22);
 			break;
 	}
 }
@@ -247,8 +228,17 @@ function draw_fact(color){
   }
 }
 
-var count = 1;
 
+// コードハイライト
+var editor = ace.edit("editor");
+function setCodeLine(start, end){
+    var range = editor.getSession().highlightLines(start, end, "code_highlight");
+    if(range.id>3){
+        editor.getSession().removeMarker(range.id-1);
+    }
+}
+
+/*
 function setColorLine(n){
     document.getElementById('code'+ n).style.backgroundColor = 'Yellow';
 }
@@ -286,4 +276,4 @@ function color_line(){
 function start(){
 	color_line();
 	//setInterval("color_line()",1000);
-}
+}*/

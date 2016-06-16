@@ -2,10 +2,7 @@
 	
 	var canvas = document.getElementById('sample');
 	var ctx = canvas.getContext('2d');
-	var obj = []; // document.getElementById('code'+i) オブジェクトを格納する配列
-	for (var i=0; i<8; i++){
-		obj[i] = document.getElementById('code'+i);
-	}
+
 
 	var count_anime = 0;
 	var count_neighbor = 0;
@@ -45,11 +42,6 @@
 	}
 
 	function goNext(){
-
-		// 疑似コードのハイライトを消す
-		for (var i=0; i<obj.length; i++){
-			obj[i].style.backgroundColor = 'transparent';
-		}
 
 		// まずはcanvasをクリアする
 		ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -96,17 +88,17 @@
 				count_neighbor = 0;
 				count_step = 0;
 				node[current].visited = true;
-				obj[7].style.backgroundColor = 'yellow';
+				setCodeLine(19, 19);// obj[7].style.backgroundColor = 'yellow';
 				current = goalNode;
 				while (node[current].from>=0){
 					if (node[current].from>current) makeRed.edge[current][node[current].from] = 1;
 					else makeRed.edge[node[current].from][current] = 1;
 					current = node[current].from;
 				}
-				obj[obj.length-1].style.backgroundColor = 'yellow';
+				setCodeLine(19, 19); // 終了
 			}else{
 				makeRed.node[current] = 1;
-				obj[1].style.backgroundColor = 'yellow';
+				setCodeLine(9, 9);// obj[1].style.backgroundColor = 'yellow';
 				count_anime++;
 			}
 		}else if (count_anime==2){
@@ -122,7 +114,12 @@
 			if (count_step<3) makeRed.score[current] = 1;
 			if (current>count_neighbor) makeRed.edge[count_neighbor][current] = 1;
 			else makeRed.edge[current][count_neighbor] = 1;
-			if (count_step<2) obj[count_step+3].style.backgroundColor = 'yellow';
+			if (count_step<2) {	
+				setCodeLine(12+count_step, 13+count_step);
+				if(count_step==1){
+					setCodeLine(13+count_step, 13+count_step);
+				}
+			}// obj[count_step+3].style.backgroundColor = 'yellow';
 			if (count_step>=1){
 				makeRed.score[count_neighbor] = 1;
 				node[count_neighbor].txt = node[count_neighbor].txt+'>'+(node[current].score+dist)+'?';
@@ -131,8 +128,8 @@
 				if (node[count_neighbor].score>node[current].score+dist){
 					node[count_neighbor].score = node[current].score+dist;
 					node[count_neighbor].from = current;
-					obj[5].style.backgroundColor = 'yellow';
-				}else obj[4].style.backgroundColor = 'yellow';
+					setCodeLine(15, 16); // obj[5].style.backgroundColor = 'yellow';
+				}else setCodeLine(15, 16);// obj[4].style.backgroundColor = 'yellow';
 				node[count_neighbor].txt = node[count_neighbor].score;
 			}
 
@@ -147,7 +144,7 @@
 			count_neighbor = 0;
 			count_step = 0;
 			node[current].visited = true;
-			obj[6].style.backgroundColor = 'yellow';
+			setCodeLine(18, 18) // 処理済みにする
 		}
 
 		ctx.font = 'normal 20px sans-serif';
@@ -219,6 +216,14 @@
 				ctx.fillStyle = 'black';
 			}
 			ctx.fillText(node[i].txt,node[i].x,node[i].y);
+		}
+	}
+	// コードハイライト
+	var editor = ace.edit("editor");
+	function setCodeLine(start, end){
+		var range = editor.getSession().highlightLines(start, end, "code_highlight");
+		if(range.id>3){
+			editor.getSession().removeMarker(range.id-1);
 		}
 	}
 
