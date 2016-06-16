@@ -2,6 +2,9 @@ h2 {
 	font-weight: bold;
 	font-size: 50px
 }
+body {
+		visibility: hidden;
+}
 footer {
   text-align: center;
   padding: 30px;
@@ -48,7 +51,7 @@ svg {
 	float : left;
 
 	width: 380px;
-	visibility: hidden;
+	/*visibility: hidden;*/
 	font-size: 14px;
 	border-radius: 10px;
   -webkit-border-radius: 10px;
