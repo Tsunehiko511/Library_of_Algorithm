@@ -478,7 +478,7 @@
 
 
 	var anime = document.getElementById('anime');
-	anime.addEventListener('click',view(),false);
+	anime.addEventListener('click',function(){view()},false);
 	/*
 	// タッチスクリーンなら
 	if (window.ontouchstart===null){
