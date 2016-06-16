@@ -1,14 +1,14 @@
 (function(){
 	const SPEED = 400;
-	var w = 530, h = 350, barPadding = 60;
+	var w = 500, h = 350, barPadding = 60;
 	var dataset = [5,9,8,3,1,6,4];
 	var new_dataset = copy(dataset);
 
 	// svg生成
-	var svg = d3.select("anime")
-							.append("svg")
+	var svg = d3.select("anime").selectAll("svg");
+/*							.append("svg")
 							.attr("width", w+dataset.length+50)
-							.attr("height", h);
+							.attr("height", h);*/
 	// text
 	var text = svg.selectAll("text")
 								.data(dataset)
@@ -39,7 +39,7 @@
 								 	return h/2-50;
 								 })
 								 .attr("r", function(d){
-								 	return 4 * d+2 ;
+								 	return 3 * d+5 ;
 								 });
 	// 初期化
 	function init(){
@@ -49,7 +49,7 @@
 				 	return i * (w / dataset.length) + barPadding;
 				 })
 				 .attr("r", function(d){
-				 	return 4 * d+2 ;
+				 	return 3 * d+5 ;
 				 })
 				 .attr("fill", "black");
 		text.transition()
