@@ -58,6 +58,9 @@
 		}
 	}
 
+		var anime = document.getElementById('anime');
+	anime.addEventListener('click',function(){changeIMG();changeLINE();},false);
+	/*
 	var anime = document.getElementById('anime');
 	// タッチスクリーンなら
 	if (window.ontouchstart===null){
@@ -70,7 +73,7 @@
 		anime.addEventListener('mousedown',function(e){ e.preventDefault();},false);
 		anime.addEventListener('mouseup',changeIMG,false);
 		anime.addEventListener('mouseup',changeLINE,false);
-	}
+	}*/
 
 
 	// コードハイライト

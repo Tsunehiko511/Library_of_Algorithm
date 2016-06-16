@@ -10,6 +10,8 @@
 	var cnv = document.getElementById('myCanvas');
 	var ctx = cnv.getContext('2d');
 
+	cnv.addEventListener('click',function(){goNext();},false);
+	/*
 	// タッチスクリーンなら
 	if (window.ontouchstart===null){
 		// 素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
@@ -21,7 +23,7 @@
 		// 'click'(=onClick)を使わないのは、素早くクリックしたときにダブルクリックとみなされて画面が選択されるのを防ぐため
 		cnv.addEventListener('mousedown',function(e){ e.preventDefault();},false);
 		cnv.addEventListener('mouseup',goNext,false);
-	}
+	}*/
 
 	function goNext(){
 

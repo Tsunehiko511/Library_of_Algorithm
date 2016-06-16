@@ -28,6 +28,9 @@
 	var current; // 現在のノード
 	var goalNode = 5;
 
+
+	canvas.addEventListener('click',function(){goNext();},false);
+	/*
 	// タッチスクリーンなら
 	if (window.ontouchstart===null){
 		// e.preventDefault()で、素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
@@ -39,7 +42,7 @@
 		// 'click'(=onClick)を使わないのは、素早くクリックしたときにダブルクリックとみなされて画面が選択されるのを防ぐため
 		canvas.addEventListener('mousedown',function(e){ e.preventDefault();},false);
 		canvas.addEventListener('mouseup',goNext,false);
-	}
+	}*/
 
 	function goNext(){
 

@@ -178,7 +178,9 @@
 		}
 	}
 
-
+	var anime = document.getElementById('anime');
+	anime.addEventListener('click',function(){view()},false);
+	/*
 	var anime = document.getElementById('anime');
 	// タッチスクリーンなら
 	if (window.ontouchstart===null){
@@ -190,7 +192,7 @@
 		// 'click'(=onClick)を使わないのは、素早くクリックしたときにダブルクリックとみなされて画面が選択されるのを防ぐため
 		anime.addEventListener('mousedown',function(e){ e.preventDefault();},false);
 		anime.addEventListener('mouseup',view,false);
-	}
+	}*/
 
 	function copy(array){
 		var tmp = [];

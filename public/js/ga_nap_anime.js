@@ -6,6 +6,8 @@
 	//画像番号用のグローバル変数
 	var cnt=1;
 
+	photo.addEventListener('click',function(){changeIMG();setCodeLine();},false);
+	/*
 	// タッチスクリーンなら
 	if (window.ontouchstart===null){
 		// 素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
@@ -18,7 +20,7 @@
 		photo.addEventListener('mousedown',function(e){ e.preventDefault();},false);
 		photo.addEventListener('mouseup',changeIMG,false);
 		photo.addEventListener('mouseup',setCodeLine,false);
-	}
+	}*/
 
 	setCodeLine();
 

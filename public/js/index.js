@@ -140,19 +140,6 @@
 		}
 	}
 
-	/*
-	var anime = document.getElementById('anime');
-	// タッチスクリーンなら
-	if (window.ontouchstart===null){
-		// 素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
-		anime.addEventListener('touchstart',function(e){ e.preventDefault();view();},false);
-	}
-	// タッチスクリーンでないなら
-	else{
-		// 'click'(=onClick)を使わないのは、素早くクリックしたときにダブルクリックとみなされて画面が選択されるのを防ぐため
-		anime.addEventListener('mousedown',function(e){ e.preventDefault();},false);
-		anime.addEventListener('mouseup',view,false);
-	}*/
 
 	function copy(array){
 		var tmp = [];

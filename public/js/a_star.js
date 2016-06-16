@@ -30,12 +30,15 @@
 	var current; // 現在のノード
 	var goalNode = 8;
 
+	canvas.addEventListener('click',function(){goNext()},false);
+	/*
 	if (window.ontouchstart===null){
 		canvas.addEventListener('touchstart',function(e){ e.preventDefault(); goNext();},false);
 	}else{
 		canvas.addEventListener('mousedown',function(e){ e.preventDefault();},false);
 		canvas.addEventListener('mouseup',goNext,false);
 	}
+	*/
 
 	function goNext(){
 		ctx.clearRect(0,0,canvas.width,canvas.height);
