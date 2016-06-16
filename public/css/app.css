@@ -23,13 +23,13 @@ a {
 
 #anime{
 	display:inline-block;
-	width: 570px;
+	width: 575px;
 	/*background-color: pink;*/
 	text-align: center;
 }
 
 svg {
-	width: 570px;
+	width: 575px;
 	/*background-color: green;*/
 }
 
