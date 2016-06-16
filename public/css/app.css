@@ -24,7 +24,7 @@ a {
 #anime{
 	display:inline-block;
 	width: 500px;
-	/*background-color: pink;*/
+	background-color: pink;
 	text-align: center;
 }
 #ga_nap_png, #def_ga {
@@ -38,6 +38,8 @@ a {
 
 
 #editor{
+	background-color: green;
+
 	display:inline-block;
 	float : left;
 

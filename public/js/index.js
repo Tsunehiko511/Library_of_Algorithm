@@ -1,6 +1,6 @@
 (function(){
 	const SPEED = 400;
-	var w = 550, h = 350, barPadding = 60;
+	var w = 450, h = 350, barPadding = 60;
 	var dataset = [5,9,8,3,1,6,4];
 	var new_dataset = copy(dataset);
 
@@ -39,7 +39,7 @@
 								 	return h/2;
 								 })
 								 .attr("r", function(d){
-								 	return 4 * d+2 ;
+								 	return 3 * d+2 ;
 								 });
 	// 初期化
 	function init(){
@@ -49,7 +49,7 @@
 				 	return i * (w / dataset.length) + barPadding;
 				 })
 				 .attr("r", function(d){
-				 	return 4 * d+2 ;
+				 	return 3 * d+2 ;
 				 })
 				 .attr("fill", "black");
 		text.transition()
