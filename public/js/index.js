@@ -7,7 +7,7 @@
 	// svg生成
 	var svg = d3.select("anime")
 							.append("svg")
-							.attr("width", w+dataset.length*barPadding)
+							.attr("width", w+dataset.length)
 							.attr("height", h);
 	// text
 	var text = svg.selectAll("text")
