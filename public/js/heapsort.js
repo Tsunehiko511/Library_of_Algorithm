@@ -476,8 +476,10 @@
 		}
 	}
 
-/*
+
 	var anime = document.getElementById('anime');
+	anime.addEventListener('click',view(),false);
+	/*
 	// タッチスクリーンなら
 	if (window.ontouchstart===null){
 		// 素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
