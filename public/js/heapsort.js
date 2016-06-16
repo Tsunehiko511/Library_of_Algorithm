@@ -2,7 +2,7 @@
 	const SPEED = 400;
 	const DELAY = 300;
 	const PLUS_Y = -30;
-	var w = 620, h = 450, h2 = 375, barPadding = 60;
+	var w = 550, h = 450, h2 = 375, barPadding = 60;
 //	var dataset = [5,9,8,3,1,6,4];
 	var dataset = [4,3,9,1,5,6,8];
 	//var dataset = [5,3,16,2,10,14];
@@ -11,7 +11,7 @@
 	// svg生成
 	var svg = d3.select("anime")
 							.append("svg")
-							.attr("width", w+dataset.length)
+							.attr("width", w+dataset.length+50)
 							.attr("height", h);
 
 	var lines = d3.svg.line()

@@ -23,6 +23,7 @@
 		  ga('create', 'UA-64867854-2', 'auto');
 		  ga('send', 'pageview');
 		</script>
+
   </head>
 	<body>
 		<!--ナヴィゲーションバー-->
@@ -30,7 +31,7 @@
 		<nav class="navbar navbar-inverse  container-fluid">
 			<div class="navbar-header">
 				<!--ブランド名-->
-				<a class="navbar-brand" href="/"><b>Library of Algorithms</b></a>
+				<a class="navbar-brand" href="/" style="font-size:20px;"><b>Library of Algorithms　β版</b></a>
 		    <!--トグルボタンの設置-->
 		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-content">
 		      <span class="icon-bar"></span>
@@ -44,16 +45,22 @@
 					<li><a href="/">
 							<span class="glyphicon glyphicon-home"></span>
 						</a></li>
-					<li><a href="/#about">ABOUT</a></li>
+					<li><a href="/#detail">ABOUT</a></li>
 					<li><a href="/#contents">CONTENTS</a></li>
 					<li><a href="/#contact">CONTACT</a></li>
 				</ul>
 			</div>
 		</nav>
 		<%= yield %>
-		<footer class="container-fluid">
+		<div class="message-area">
+			<div class="container text-center"><br><br><br>
+				<div><a class="btn btn-primary btn-lg" role="button" href="https://docs.google.com/forms/d/1Q7Af956TDKC571sixp8PGjb4YSOuvqdVKL2gZTbNJxw/viewform">サイトにないアルゴリズムが知りたい方へ
+				</a></div>
+			</div><br><br><br><br>
+		</div><!-- /form -->
 
-<div id="share" >
+		<footer class="container-fluid">
+<div id="share" class="container-fluid text-center">
 <ul>
 <!-- Twitter -->
 <li class="share-twitter">
@@ -77,12 +84,7 @@
 </li>
 </ul>
 </div>
-
-
-
-
-
-			<small><a href="/">Copyright (C) 2016 Shimanezumi All Rights Reserved.</a></small>
+			<small><a href="/">&copy; 2016 Library of Algorithms.</a></small>
 	  </footer>
 	</body>
 </html>

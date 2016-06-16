@@ -1,13 +1,13 @@
 (function(){
 	const SPEED = 400;
-	var w = 550, h = 350, barPadding = 60;
+	var w = 530, h = 350, barPadding = 60;
 	var dataset = [5,9,8,3,1,6,4];
 	var new_dataset = copy(dataset);
 
 	// svg生成
 	var svg = d3.select("anime")
 							.append("svg")
-							.attr("width", w+dataset.length)
+							.attr("width", w+dataset.length+50)
 							.attr("height", h);
 	// text
 	var text = svg.selectAll("text")
@@ -22,7 +22,7 @@
 								 return i * (w / dataset.length) + barPadding;
 								})
 								.attr("y", function(d){
-								 return h/2+15+5 * d;
+								 return h/2+15+5 * d-50;
 								})
 								.text(function(d){
 									return d;
@@ -36,7 +36,7 @@
 								 	return i * (w / dataset.length) + barPadding;
 								 })
 								 .attr("cy", function(d){
-								 	return h/2;
+								 	return h/2-50;
 								 })
 								 .attr("r", function(d){
 								 	return 4 * d+2 ;
@@ -78,9 +78,9 @@
 				 .attr("cy", function(d, i){
 				 	var point = swap_array[i][1];
 				 	if (point == insert){
-					 	return h/2+100;
+					 	return h/2+100-50;
 				 	}
-				 	return h/2;
+				 	return h/2-50;
 				 });
 		text.transition()
 				.duration(SPEED)
@@ -92,9 +92,9 @@
 			 .attr("y", function(d, i){
 			 	var point = swap_array[i][1];
 			 	if (point == insert){
-				 return h/2+15+5 * d + 100;
+				 return h/2+15+5 * d + 100-50;
 			 	}
-					return h/2+15+5 * d;
+					return h/2+15+5 * d-50;
 			 });
 	};
 
@@ -113,24 +113,24 @@
 		switch(type){
 			case "選択":
 			move(swap_array, point);
-			setCodeLine(9,9);
+			setCodeLine(4,4);
 			break;
 			case "比較1":
-			setCodeLine(10,10);
+			setCodeLine(5,5);
 			break;
 			case "比較2":
-			setCodeLine(12,12);
+			setCodeLine(7,7);
 			break;
 			case "移動":
-			setCodeLine(13,14);
+			setCodeLine(8,9);
 			move(swap_array, point);
 			break;
 			case "挿入":
-			setCodeLine(15,15);
+			setCodeLine(10,10);
 			move(swap_array, point);
 			break;
 			case "初期化":
-			setCodeLine(16,16);
+			setCodeLine(11,11);
 			move(swap_array, point);
 			break;
 		}

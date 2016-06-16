@@ -5,6 +5,11 @@ require 'sinatra/reloader'
 get '/' do
   @title = 'Library of Algorithms'
   @subtitle = 'Algorithm is fun!!!'
+  "ただいま作成中"
+end
+get '/index' do
+  @title = 'Library of Algorithms'
+  @subtitle = 'Algorithm is fun!!!'
   erb :index
 end
 

@@ -1,15 +1,13 @@
+
 <!--header-->
 <header class="jumbotron">
 
 <div class="container">
-<div id="editor" class="avoid-clicks" style="height: 400px"> 
-<b>//データ</b>
-配列 = [5,9,8,3,1,6,4]
+    <h1><b>A better way !</b></h1>
+    <p>　<b>擬似コード</b>と<b>イラスト</b>でアリゴリズムを理解する。</p>
+<div id="editor" class="avoid-clicks" style="height: 260px"> 
+"例：挿入ソート"
 
-<b>//目的</b>
-<span>配列を昇順に整列させる</span>
-
-<b>//処理</b>
 for i = 1〜要素数-1:
   挿入要素 = 配列[i]
   if 挿入要素 &lt; 左隣:
@@ -20,43 +18,40 @@ for i = 1〜要素数-1:
     配列[挿入場所] = 挿入要素
 終了
 
-
-"例：挿入ソート"
     </div><!-- /editor -->
     <div id="anime">
         <anime>
         </anime>
     </div><!-- /anime -->
 </div>
-
+<a id="detail"></a>
 	<div class="container">
-		<h1>Algorithm is fun!</h1>
-		<p><b>Library of Algorithms</b> は 擬似コードと<b>art</b> で理解する学習サイトです</p>
 		<p><a href="/#detail" class="btn btn-lg midashi-btn" role="button">もっと詳しく &raquo;</a></p>
-        <a name="detail"></a>
 	</div>
 </header>
-
-
-<a name="contents"></a>
-<div class="container main-content">
-	<div class="row">
-		<div class="col-md-9 content-area">
-		</div><!--content-area-->
-		<div class="col-md-3 sidebar">
-		</div><!--sidebar-->
-	</div>
+<div id="about" class="main-content container">
+    <h2 class="title">より良い方法</h2><!-- /title -->
+    <div class="row">
+        <div class="col-md-4 sidebar">
+            <p><img src="/img/code.svg" class="panel-body img-responsive center-block"/></p>
+        </div><!--sidebar-->
+        <div class="col-md-8 content-area">
+            <p>よく知られているように，<b>アルゴリズム</b>を学べば<b>より良い方法</b>に巡り会える。しかし，既存の学習ツールはアニメーションのような<b>動的な概要説明</b>か実装コードによる<b>静的で複雑な説明</b>に偏っている。本サイトはアルゴリズムの学習ツールとして<b>より良い方法</b>を提供する。</p>
+        </div><!--content-area-->
+    </div>
 </div>
+<a name="contents"></a>
 
 
 <div id="content">
     <div class="container">
-        <h2 class="title">多彩なコンテンツ</h2>
-        <!-- /title -->
-        <p style="text-align: center;">以下のコンテンツによりアルゴリズムのスキルを高めることができます。<br>
-        	簡単なものから高度なレベルまでこれらの範囲と頻繁に技術的なインタビューに求められます。</p>
+        <h2 class="title">CONTENTS</h2><!-- /title -->
+        <p class="container" style="text-align: center">
+            本サイトは図解と擬似コードの連携により，<b>動的で詳細な説明</b>を行うコンテンツを生成した。</p>
+
         <div class="row">
         </div>
+        <br>
         <!-- /text-box -->
         <div class="row">
         	<a href="/anime_bubblesort">
@@ -153,9 +148,50 @@ for i = 1〜要素数-1:
 
 
 
-<a name="contact"></a>
+
+
 <div class="message-area text-center">
-    <p class="message-font pt30">CONTACT</p>
+    <p class=" message-font pt30">利用者の声</p>
+    <div class="container ptb50">
+        <div class="information user-description col-md-4">
+            <div class="icon">
+                <image style="background-color:#fff;" src="/img/人1.svg" class="img-circle " width="100px" height="100px"/>
+            </div>
+            <p class="title">
+                学生
+            </p>
+            <p class="body">
+                アニメーションが綺麗でわかりやすい。
+            </p>
+        </div>
+        <div class="information user-description col-md-4">
+            <div class="icon">
+                <image style="background-color:#fff;" src="/img/人2.svg" class="img-circle " width="100px" height="100px"/>
+            </div>
+            <p class="title">
+                会社員
+            </p>
+            <p class="body">
+                ダイクストラ法の流れがわかった。
+            </p>
+        </div>
+        <div class="information user-description col-md-4">
+            <div class="icon">
+                <image style="background-color:#fff;" src="/img/人3.svg" class="img-circle " width="100px" height="100px"/>
+            </div>
+            <p class="title">
+                職業不明
+            </p>
+            <p class="body">
+                ありそうでなかったサイト。<br>これからに期待！
+            </p>
+        </div>
+    </div>
+</div>
+
+<a name="contact"></a>
+<div class=" text-center">
+    <h2>CONTACT</h2>
     <div class="container ptb50">
         <div class="information user-description col-md-12">
             <div class="icon">
@@ -165,73 +201,18 @@ for i = 1〜要素数-1:
                 shimazu tsinehiko
             </p>
             <p class="body">
-            	Founder
+                Founder
             </p>
-            <a href="https://twitter.com/simanezumi1989"><image style="background-color:#55ACEE" src="/img/TwitterLogo_white.png" class="img-circle " width="50px" height="50px"/></a>　　
-            <a href="https://aboutme.google.com/u/0/?referer=gplus"><image style="background-color:#DD4B39;" src="/img/google.svg" class="img-circle " width="50px" height="50px"/></a>
+            <a href="https://twitter.com/simanezumi1989"><image style="background-color:#55ACEE" src="/img/TwitterLogo_white.png" class="img-circle circle-border" width="50px" height="50px"/></a>　
+            <a title="はてなブログ" href="http://simanezumi1989.hatenablog.com"><image style="background-color:#fff" src="/img/hatenablog-logo.svg" class="img-circle circle-border" width="50px" height="50px"/></a>　
+            <a href="https://aboutme.google.com/u/0/?referer=gplus"><image style="background-color:#DD4B39;" src="/img/google.svg" class="img-circle circle-border" width="50px" height="50px"/></a>
         </div>
     </div>
 </div>
-<!--
-<div class="message-area text-center">
-    <p class="message-font pt30">利用者の声</p>
-    <div class="container ptb50">
-        <div class="information user-description col-md-4">
-            <div class="icon">
-                <span class="img-circle member-image " style="image:url(/img/mypf.png);background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');"></span>
-            </div>
-            <p class="title">
-                Aさん
-            </p>
-            <p class="body">
-                とても勉強になりました。
-            </p>
-        </div>
-        <div class="information user-description col-md-4">
-            <div class="icon">
-                <span class="img-circle member-image" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');"></span>
-            </div>
-            <p class="title">
-                Bさん
-            </p>
-            <p class="body">
-                とても勉強になりました。
-            </p>
-        </div>
-        <div class="information user-description col-md-4">
-            <div class="icon">
-                <span class="img-circle member-image" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');"></span>
-            </div>
-            <p class="title">
-                Cさん
-            </p>
-            <p class="body">
-                とても勉強になりました。
-            </p>
-        </div>
-    </div>
-</div>
--->
-<a name="form"></a>
-<div id="container">
-	<div id="main">
-		</div><!-- /main -->
-	<div id="sub">
-	</div><!-- /sub -->
-  <div class="container text-center">
-    <h2 class="message-font pt30"></h2>
-    <br>
-    <br>
-    <div><a class="btn btn-primary btn-lg" role="button" href="https://docs.google.com/forms/d/1Q7Af956TDKC571sixp8PGjb4YSOuvqdVKL2gZTbNJxw/viewform">他のアルゴリズムも知りたい方へ</a></div><br>
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-</div><!-- /container -->
-<div class="container">
-	<!--<iframe src="https://docs.google.com/forms/d/1Q7Af956TDKC571sixp8PGjb4YSOuvqdVKL2gZTbNJxw/viewform?embedded=true" width="100%" height="1000px" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>-->
-</div>
+
+
+
+
 <script src="/js/src-min/ace.js"></script>
 <script>
   var editor = ace.edit("editor");
@@ -239,7 +220,7 @@ for i = 1〜要素数-1:
   editor.setOptions({highlightActiveLine:false});
   editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
   editor.getSession().setMode("ace/mode/javascript");
-    document.getElementById('editor').style.visibility="visible";
+  document.getElementById('editor').style.visibility="visible";
 </script>
 
 

@@ -1,13 +1,13 @@
 (function(){
 	const SPEED = 400;
-	var w = 550, h = 350, barPadding = 60;
+	var w = 620, h = 350, barPadding = 60;
 	var dataset = [9,5,8,3,6,4,1];
 	var new_dataset = copy(dataset);
 
 	// svg生成
 	var svg = d3.select("anime")
 							.append("svg")
-							.attr("width", w+dataset.length*barPadding)
+							.attr("width", w+dataset.length)
 							.attr("height", h);
 	// text
 	var text = svg.selectAll("text")

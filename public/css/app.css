@@ -5,7 +5,7 @@ h2 {
 
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 30px;
   background: #101010;
 }
 
@@ -138,3 +138,16 @@ a {
 	text-decoration:none;
 	color:#ffffff;
 }
+
+/*アンケート+写真*/
+.message-area {
+    background-color: #eee; 
+}
+.message-area .message-font {
+    color: #333; 
+    font-weight: 600;
+}
+.message-font {
+    font-size: 30px;
+}
+
