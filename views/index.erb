@@ -1,33 +1,248 @@
+<!--header-->
+<header class="jumbotron">
+
+<div class="container">
+<div id="editor" class="avoid-clicks" style="height: 400px"> 
+<b>//データ</b>
+配列 = [5,9,8,3,1,6,4]
+
+<b>//目的</b>
+<span>配列を昇順に整列させる</span>
+
+<b>//処理</b>
+for i = 1〜要素数-1:
+  挿入要素 = 配列[i]
+  if 挿入要素 &lt; 左隣:
+    挿入場所 = i
+    while 挿入要素 &lt; 配列[挿入場所-1]:
+         比較した要素を右にずらす
+         挿入場所を一つ左
+    配列[挿入場所] = 挿入要素
+終了
+
+
+"例：挿入ソート"
+    </div><!-- /editor -->
+    <div id="anime">
+        <anime>
+        </anime>
+    </div><!-- /anime -->
+</div>
+
+	<div class="container">
+		<h1>Algorithm is fun!</h1>
+		<p><b>Library of Algorithms</b> は 擬似コードと<b>art</b> で理解する学習サイトです</p>
+		<p><a href="/#detail" class="btn btn-lg midashi-btn" role="button">もっと詳しく &raquo;</a></p>
+        <a name="detail"></a>
+	</div>
+</header>
+
+
+<a name="contents"></a>
+<div class="container main-content">
+	<div class="row">
+		<div class="col-md-9 content-area">
+		</div><!--content-area-->
+		<div class="col-md-3 sidebar">
+		</div><!--sidebar-->
+	</div>
+</div>
+
+
+<div id="content">
+    <div class="container">
+        <h2 class="title">多彩なコンテンツ</h2>
+        <!-- /title -->
+        <p style="text-align: center;">以下のコンテンツによりアルゴリズムのスキルを高めることができます。<br>
+        	簡単なものから高度なレベルまでこれらの範囲と頻繁に技術的なインタビューに求められます。</p>
+        <div class="row">
+        </div>
+        <!-- /text-box -->
+        <div class="row">
+        	<a href="/anime_bubblesort">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/bubblesort.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">バブルソート</div>
+                </div>
+            </div>
+          </a>
+          <a href="/anime_quicksort">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/quicksort.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">クイックソート</div>
+                </div>
+            </div>
+          </a>
+          <a href="/anime_heapsort">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/heapsort.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">ヒープソート</div>
+                </div>
+            </div>
+          </a>
+        </div>
+        <div class="row">
+        	<a href="/anime_insertionsort">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/insertionsort.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">挿入ソート</div>
+                </div>
+            </div>
+          </a>
+          <a href="/anime_selectsort">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/selectsort.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">選択ソート</div>
+                </div>
+            </div>
+          </a>
+          <a href="/maxvalue">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/maxvalue.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">最大値</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/dijkstra">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/dijkstra.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">ダイクストラ法</div>
+                </div>
+            </div>
+          </a>
+          <a href="a_star">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/A*.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">A*アルゴリズム</div>
+                </div>
+            </div>
+          </a>
+          <a href="def_ga">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/ナップザック.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">遺伝的アルゴリズム</div>
+                </div>
+            </div>
+          </a>
+        </div>
+        <div class="row">
+        	<a href="anime_knn">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <img src="/img/k近傍法.png" class="panel-body img-responsive center-block"/>
+                    <div class="panel-footer">k近傍法</div>
+                </div>
+            </div>
+          </a>
+        </div>
+        <!-- /panel-box -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /content -->
+
+
+
+<a name="contact"></a>
+<div class="message-area text-center">
+    <p class="message-font pt30">CONTACT</p>
+    <div class="container ptb50">
+        <div class="information user-description col-md-12">
+            <div class="icon">
+                <image src="/img/mypf.png" class="img-circle member-image" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');"></image>
+            </div>
+            <p class="title">
+                shimazu tsinehiko
+            </p>
+            <p class="body">
+            	Founder
+            </p>
+            <a href="https://twitter.com/simanezumi1989"><image style="background-color:#55ACEE" src="/img/TwitterLogo_white.png" class="img-circle " width="50px" height="50px"/></a>　　
+            <a href="https://aboutme.google.com/u/0/?referer=gplus"><image style="background-color:#DD4B39;" src="/img/google.svg" class="img-circle " width="50px" height="50px"/></a>
+        </div>
+    </div>
+</div>
+<!--
+<div class="message-area text-center">
+    <p class="message-font pt30">利用者の声</p>
+    <div class="container ptb50">
+        <div class="information user-description col-md-4">
+            <div class="icon">
+                <span class="img-circle member-image " style="image:url(/img/mypf.png);background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');"></span>
+            </div>
+            <p class="title">
+                Aさん
+            </p>
+            <p class="body">
+                とても勉強になりました。
+            </p>
+        </div>
+        <div class="information user-description col-md-4">
+            <div class="icon">
+                <span class="img-circle member-image" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');"></span>
+            </div>
+            <p class="title">
+                Bさん
+            </p>
+            <p class="body">
+                とても勉強になりました。
+            </p>
+        </div>
+        <div class="information user-description col-md-4">
+            <div class="icon">
+                <span class="img-circle member-image" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');"></span>
+            </div>
+            <p class="title">
+                Cさん
+            </p>
+            <p class="body">
+                とても勉強になりました。
+            </p>
+        </div>
+    </div>
+</div>
+-->
+<a name="form"></a>
 <div id="container">
 	<div id="main">
-			<div id="subNav">
-				<span>Library of Algorithm</span>は 視覚化と擬似コードによってアルゴリズムを理解するサイトです。<br><br>
-			</div>
-			<br>
-			<h3>サイトを作った理由</h3>
-			<p>知らないアルゴリズムの勉強や実装って難しい。アニメーションを見ても結局コードに落とし込めない。<br>
-				だから下の図のような立ち位置のサイトあったらいいな。。。っと思ったから</p>
-			<img src="/img/index.png">
-			<h3>ターゲット</h3>
-			<p>
-				・アルゴリズムが好きな人<br>
-				・プログラミングの勉強法で「とにかく何か作る」って書いてあるけど，なにを作ったらいいのかわからない初心者〜中級者<br>
-				・データサイエンス系コンペや競技プログラミングに出てみたいけどその前に練習したい人<br>
-				・「遺伝的アルゴリズム」「A*アルゴリズム」とか言葉では知っているけど実装までは。。。という人<br>
-			</p>
 		</div><!-- /main -->
 	<div id="sub">
-		<h3>サンプル</h3>
-		　<span style="color:red">new</span>　<a href="a_star">A*アルゴリズム</a><br>
-		　<span style="color:red">new</span>　<a href="anime_heapsort">ヒープソート</a><br>
-		　<span style="color:red">new</span>　<a href="anime_insertionsort">挿入ソート</a><br>
-		　<span style="color:red">new</span>　<a href="anime_bubblesort">バブルソート</a><br>
-		　<span style="color:red">new</span>　<a href="anime_selectsort">選択ソート</a>
-		<br><br>
-		<a href="maxvalue">最大値</a>
-		<a href="dijkstra">ダイクストラ法</a>
-		<a href="anime_knn">K近傍法</a>
-		<a href="def_ga">遺伝的アルゴリズム</a>
-		<a href="anime_quicksort">クイックソート</a>		<!--<a href="anime_quicksort">クイックソート</a>-->
 	</div><!-- /sub -->
+  <div class="container text-center">
+    <h2 class="message-font pt30"></h2>
+    <br>
+    <br>
+    <div><a class="btn btn-primary btn-lg" role="button" href="https://docs.google.com/forms/d/1Q7Af956TDKC571sixp8PGjb4YSOuvqdVKL2gZTbNJxw/viewform">他のアルゴリズムも知りたい方へ</a></div><br>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
 </div><!-- /container -->
+<div class="container">
+	<!--<iframe src="https://docs.google.com/forms/d/1Q7Af956TDKC571sixp8PGjb4YSOuvqdVKL2gZTbNJxw/viewform?embedded=true" width="100%" height="1000px" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>-->
+</div>
+<script src="/js/src-min/ace.js"></script>
+<script>
+  var editor = ace.edit("editor");
+  editor.renderer.setShowGutter(false);
+  editor.setOptions({highlightActiveLine:false});
+  editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
+  editor.getSession().setMode("ace/mode/javascript");
+    document.getElementById('editor').style.visibility="visible";
+</script>
+
+
+<link href="/css/index.css" rel="stylesheet">
+<script src="/js/d3.min.js" type="text/javascript" ></script>
+<script src="/js/index.js" type="text/javascript" ></script>

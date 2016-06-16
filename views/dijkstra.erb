@@ -1,36 +1,45 @@
-﻿<div id="container">
-	<div id="main">
+﻿<div class="container-fluid">
+	<div id="main" class="container-fluid">
 		<div id="subNav">
-			<h3>ダイクストラ法</h3>
+			<h3 class="bold">ダイクストラ法</h3>
 			<p>最短経路を求めるアルゴリズム</p>
 			<p>最短経路問題は、総当たりで解こうとすると膨大な時間がかかる。ダイクストラ法やその応用であるA*アルゴリズムは、最良優先探索、つまり、最もよさそうな選択肢から優先的に調べていくことで、大幅な効率化と計算時間の短縮が見込める。カーナビなど実用例も多い。</p>
 		</div>
-		<a href="dijkstra">アルゴリズムの解説</a>　　<a href='dijkstra2'>演習問題</a>　	　<a href="/">ホーム</a>
 	</div><!-- /main -->
-	<hr>
-	<div id="code">
-		<h3>アルゴリズムの解説</h3>
-		<span class='bold'>初期化</span><br>
-		<span>&emsp;var 頂点のスコア＝[0,&infin;,&infin;,...,&infin;]</span><br>
-		<span>&emsp;&emsp;（→スタートから各頂点までの暫定距離）</span><br>
-		<span>&emsp;var 直前の頂点＝[なし,なし,なし,...,なし]</span><br>
-		<span>&emsp;&emsp;（→どこから来たか）</span><br>
-		<span>&emsp;var 処理済み＝[未,未,未,...,未]</span><br>
-		<span>&emsp;&emsp;（→調べ終わったら「済」にする）</span><br>
-		<p></p>
-		<span class='bold'>処理</span><br>
-		<span id='code0'>&emsp;while 未処理の頂点がある</span><br>
-		<span id='code1'>&emsp;&emsp;var 現在位置＝スコアが最小の頂点</span><br>
-		<span id='code2'>&emsp;&emsp;for each 未処理の隣接点</span><br>
-		<span id='code3'>&emsp;&emsp;&emsp;var 暫定スコア＝現在位置のスコア<br>
-		&emsp;&emsp;&emsp;&emsp;＋隣接点までの距離</span><br>
-		<span id='code4'>&emsp;&emsp;&emsp;if 隣接点のスコア＞暫定スコア</span><br>
-		<span id='code5'>&emsp;&emsp;&emsp;&emsp;隣接点のスコア＝暫定スコア<br>
-		&emsp;&emsp;&emsp;&emsp;隣接点の直前の頂点＝現在位置</span><br>
-		<span id='code6'>&emsp;&emsp;現在位置を処理済みにする</span><br>
-		<span id='code7'>&emsp;終了</span><br>
-		<p></p>
-	</div><!-- /code -->
+	<br>
+	<br>
+  <!-- tab -->
+  <div class="tabbale">
+    <div id="content">
+      <ul class="nav nav-tabs">
+      <li class="active"><a href="#">アルゴリズムの解説</a></li>
+      <li><a href="/dijkstra2">演習問題</a></li>
+      </ul>
+     </div>
+   </div> <!-- container -->
+   <br>
+
+	<div id="editor" class="avoid-clicks" style="height: 400px"><b>//初期化</b>
+ var 頂点のスコア = [0,&infin;,&infin;,...,&infin;]
+ （→スタートから各頂点までの暫定距離）
+ var 直前の頂点 = [なし,なし,なし,...,なし]
+ （→どこから来たか）
+ var 処理済み = [未,未,未,...,未]
+ （→調べ終わったら「済」にする）
+<b>//処理</b>
+ while 未処理の頂点がある
+	var 現在位置 = スコアが最小の頂点
+
+	for each 未処理の隣接点
+	 var 暫定スコア = 現在位置のスコア
+					  + 隣接点までの距離
+		if 隣接点のスコア&gt;暫定スコア
+			隣接点のスコア = 暫定スコア
+			隣接点の直前の頂点 = 現在位置
+
+	現在位置を処理済みにする
+ 終了
+	</div><!-- /editor -->
 
 	<div id="anime">
 		<p>画面クリックで説明</p>
@@ -39,4 +48,13 @@
 		</canvas>
 	</div><!-- /anime -->
 </div><!-- /container -->
+<script src="/js/src-min/ace.js"></script>
+<script>
+  var editor = ace.edit("editor");
+  editor.renderer.setShowGutter(false);
+  editor.setOptions({highlightActiveLine:false});
+  editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
+  editor.getSession().setMode("ace/mode/javascript");
+    document.getElementById('editor').style.visibility="visible";
+</script>
 <script src='/js/dijkstra.js'></script>

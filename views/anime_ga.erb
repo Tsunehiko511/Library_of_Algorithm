@@ -1,19 +1,31 @@
-<div id="container">
-<div id="main">
-	<div id="subNav">
-    	<h3>ナップザック問題(遺伝的アルゴリズム)</h3>
-        <p>価値と重さが決まっている複数の品物を容量が一定のナップザックに詰め込むとき、ナップザック内の価値の和が最大となる組み合わせはのは何であるかを求める問題。<br>
-        具体的には、容量15kgのナップザックがあり，周囲の入れ物（箱）に書かれている数字が価値と重さを表しています。</p>
-	</div>
-    <a href="def_ga">遺伝的アルゴリズム</a>　　<a href="/anime_ga">ナップザック問題</a>　　<a>演習問題</a>　    　<a href="/">ホーム</a>
-</div><!-- /main -->
-<hr>
-<div id="code" class="codes">
-<div id="editor" class="avoid-clicks" style="width:100%; height: 800px"><b>//データ</b>
-<span>重さ群 = [12,2,1, 4,1]</span>
-<span>価値群 = [ 4,2,1,10,2]</span>
+<div class="container-fluid">
+    <div id="main" class="container-fluid">
+        <div id="subNav">
+            <h3 class="bold">ナップザック問題（<a href="/def_ga">遺伝的アルゴリズム</a>）</h3>
+                <p>価値と重さが決まっている複数の品物を容量が一定のナップザックに詰め込むとき、ナップザック内の価値の和が最大となる組み合わせはのは何であるかを求める問題。</p>
+                <p>具体的には、容量15kgのナップザックがあり，周囲の入れ物（箱）に書かれている数字が価値と重さを表しています。</p>
+        </div>
+    </div><!-- /main -->
+    <br>
+    <br>
+    <!-- tab -->
+    <div class="tabbale">
+        <div id="content">
+            <ul class="nav nav-tabs">
+    　　　       <li class="active"><a href="#">アルゴリズムの解説</a></li>
+    　　　       <li><a style="color:#000000;pointer-events:none;"></a></li>
+            </ul>
+        </div>
+    </div>
+    <br>
+
+
+<div id="editor" class="avoid-clicks" style="width:440px;height: 800px">
+<b>//データ</b>
+ <span>重さ群 = [12,2,1, 4,1]</span>
+ <span>価値群 = [ 4,2,1,10,2]</span>
 <b>//目的</b>
-<span>ナップザック内の価値が高くなる入れ物リストを求める</span>
+ <span>ナップザック内の価値が高くなる入れ物リストを求める</span>
 <b>//処理</b>
 リスト群 = [[有,無,有,無,無],...,[無,有,無,有,有]]
 while 世代数&lt;指定数:
@@ -46,9 +58,7 @@ while 世代数&lt;指定数:
     // 世代交代
     リスト群 = 子供世代
 最後の世代で総価値が最大のものが解となる
-
-</div>
-</div><!-- /code -->
+</div><!-- /editor -->
 <div id="anime">
     <p>画面クリックで説明</p>
 	<img id="ga_nap_png" width="100%" height="450px" src="/img/ga_nap_anime/ga_nap_anime.1.png">
@@ -60,16 +70,10 @@ while 世代数&lt;指定数:
 </div><!-- /container -->
 <hr>
 <script src="/js/src-min/ace.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>-->
 <script>
   var editor = ace.edit("editor");
   editor.renderer.setShowGutter(false);
-  //editor.$blockScrolling = Infinity;
-  editor.setOptions({
-    //enableBasicAutocompletion: true,
-    //enableSnippets: true,
-    //_enableLiveAutocompletion: true
-  });
+  editor.setOptions({highlightActiveLine:false});
   editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
   editor.getSession().setMode("ace/mode/javascript");
 </script>

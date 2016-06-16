@@ -1,16 +1,26 @@
 ﻿<link rel="stylesheet" href="/css/dijkstra2.css">
-<div id="container">
-	<div id="main">
+<div class="container-fluid">
+	<div id="main" class="container-fluid">
 		<div id="subNav">
-			<h3>ダイクストラ法</h3>
+			<h3 class="bold">ダイクストラ法</h3>
 			<p>最短経路を求めるアルゴリズム</p>
 			<p>最短経路問題は、総当たりで解こうとすると膨大な時間がかかる。ダイクストラ法やその応用であるA*アルゴリズムは、最良優先探索、つまり、最もよさそうな選択肢から優先的に調べていくことで、大幅な効率化と計算時間の短縮が見込める。カーナビなど実用例も多い。</p>
 		</div>
-		<a href="dijkstra">アルゴリズムの解説</a>　　<a href='dijkstra2'>演習問題</a>　	　<a href="/">ホーム</a>
 	</div><!-- /main -->
-	<hr>
+	<br>
+	<br>
+  <!-- tab -->
+  <div class="tabbale">
+    <div id="content">
+      <ul class="nav nav-tabs">
+      <li><a href="/dijkstra">アルゴリズムの解説</a></li>
+      <li class="active"><a>演習問題</a></li>
+      </ul>
+     </div>
+   </div> <!-- container -->
+   <br>
+   
 	<div id='content'>
-		<h3>演習問題</h3>
 		<canvas width="550" height="300" id="sample">
 			図形を表示するには、canvasタグをサポートしたブラウザが必要です。
 		</canvas>

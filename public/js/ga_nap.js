@@ -1,115 +1,84 @@
-// setColorLine(1);
+(function(){
+	var editor = ace.edit("editor");
+	//画像を配列に格納する
+	var img = new Array();
 
-var editor = ace.edit("editor");
+	img[0] = new Image();
+	img[0].src = "/img/ga_nap/ga_nap.1.png";
+	for(var i=1; i<=15;i++){
+		img[i] = new Image();
+		img[i].src = "/img/ga_nap/ga_nap."+i+".png";
+	}
+	img[16] = new Image();
+	img[16].src = "/img/ga_nap/ga_nap.15.png";
 
-//画像を配列に格納する
-var img = new Array();
+	//画像番号用のグローバル変数
+	var cnt=1;
 
-img[0] = new Image();
-img[0].src = "/img/ga_nap/ga_nap.1.png";
-for(var i=1; i<=15;i++){
-	img[i] = new Image();
-	img[i].src = "/img/ga_nap/ga_nap."+i+".png";
-}
-img[16] = new Image();
-img[16].src = "/img/ga_nap/ga_nap.15.png";
 
-//画像番号用のグローバル変数
-var cnt=1;
+	//画像切り替え関数
+	function changeIMG(){
+	  //画像番号を進める
+	  if (cnt == 16){
+	  	cnt=1;
+	  }
+	  else{
+	  	cnt++;
+	  }
+	  //画像を切り替える
+	  document.getElementById("def_ga").src=img[cnt].src;
+	}
+	function changeLINE(){
+		if(cnt==1){
+			setCodeLine(6,6);
+		}
+		else if(cnt<=5){
+			setCodeLine(8,8);
+		}
+		else if(cnt==6){
+			setCodeLine(9,9);
+		}
+		else if(cnt<=10){
+			setCodeLine(10,10);
+		}
+		else if(cnt<=13){
+			setCodeLine(11,11);
+		}
+		else if(cnt==14){
+			setCodeLine(7,7);
+		}
+		else if(cnt==15){
+			setCodeLine(12,12);
+		}
+		else if(cnt==16){
+			setCodeLine(13,13);
+		}
+		else{
+			setCodeLine(12,12);
+		}
+	}
 
-//画像切り替え関数
-function changeIMG(){
-  //画像番号を進める
-  if (cnt == 16){
-  	cnt=1;
-  }
-  else{
-  	cnt++;
-  }
-  //画像を切り替える
-  document.getElementById("ga_nap_png").src=img[cnt].src;
-}
-function changeLINE(){
-	if(cnt==1){
-		deleteColorLine(8);
-		setColorLine(1);
+	var anime = document.getElementById('anime');
+	// タッチスクリーンなら
+	if (window.ontouchstart===null){
+		// 素早くタップしたときにダブルタップとみなされて拡大されるのを防ぐ
+		anime.addEventListener('touchstart',function(e){ e.preventDefault();changeLINE();changeIMG();},false);
 	}
-	else if(cnt<=5){
-		setColorLine(2);
-		deleteColorLine(1);
-		setColorLine(3);
-	}
-	else if(cnt==6){
-		deleteColorLine(3);
-		setColorLine(4);
-
-	}
-	else if(cnt<=10){
-		deleteColorLine(4);
-		setColorLine(5);
-	}
-	else if(cnt<=13){
-		deleteColorLine(5);
-		setColorLine(6);
-	}
-	else if(cnt==14){
-		deleteColorLine(6);
-	}
-	else if(cnt==15){
-		deleteColorLine(2);
-		setColorLine(7);
-	}
-	else if(cnt==16){
-		deleteColorLine(7);
-		setColorLine(8);
-	}
+	// タッチスクリーンでないなら
 	else{
-		deleteColorLine(8);
+		// 'click'(=onClick)を使わないのは、素早くクリックしたときにダブルクリックとみなされて画面が選択されるのを防ぐため
+		anime.addEventListener('mousedown',function(e){ e.preventDefault();},false);
+		anime.addEventListener('mouseup',changeIMG,false);
+		anime.addEventListener('mouseup',changeLINE,false);
 	}
-}
-function setCodeLine(){
-	var startline = getCodeHighlight(cnt)[0];
-	var endline = getCodeHighlight(cnt)[1];
-	var range = editor.getSession().highlightLines(startline, endline, "code_highlight");
-	console.log(range.id);
-	if(range.id>3){
-		editor.getSession().removeMarker(range.id-1);
-	}
-}
-function setColorLine(n){
-	if(n<-1){
-		return 0;
-	}
-	document.getElementById('code'+ n).style.backgroundColor = 'Yellow';
-}
-function deleteColorLine(n){
-	if(n<-1){
-		return 0;
-	}
-	document.getElementById('code'+ n).style.backgroundColor = 'transparent';
-}
-function getCnt(){
-	return cnt;
-}
-function getCodeHighlight(k){
-	if(k==1){
-		return [9,16];
-	}else if(k<=5){
-		return [23,32];
-	}else if(k==6){
-		return [33,34];
-	}else if(k<=10){
-		return [36,56];
-	}else if(k<=13){
-		return [58,64];
-	}else if(k==15){
-		return [70,70];
-	}else{
-		return [-1,-1];
-	}
-}
 
 
+	// コードハイライト
+	function setCodeLine(start, end){
+		var range = editor.getSession().highlightLines(start, end, "code_highlight");
+		if(range.id>3){
+			editor.getSession().removeMarker(range.id-1);
+		}
+	}
 
-
-
+})();
