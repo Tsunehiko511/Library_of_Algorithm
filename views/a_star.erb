@@ -19,7 +19,6 @@
    </div> <!-- container -->
    <br>
 
-
 	<div id="editor" class="avoid-clicks" style="height: 450px">//初期化
  各頂点について
   S（スコア） （→スタート地点からの距離）
@@ -56,13 +55,7 @@
 <script>
   var editor = ace.edit("editor");
   editor.renderer.setShowGutter(false);
-  //editor.$blockScrolling = Infinity;
-  editor.setOptions({
-  	highlightActiveLine:false
-  	//enableBasicAutocompletion: true,
-    //enableSnippets: true,
-    //_enableLiveAutocompletion: true
-  });
+  editor.setOptions({highlightActiveLine:false});
   editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
   editor.getSession().setMode("ace/mode/javascript");
     document.getElementById('editor').style.visibility="visible";

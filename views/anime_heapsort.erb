@@ -20,7 +20,6 @@
   </div>
   <br>
 
-<div id="code" class="codes">
 <div id="editor" class="avoid-clicks" style="height: 480px">
 <b>//データ</b>
  配列 = [4,3,9,1,5,6,8];
@@ -42,8 +41,7 @@ while 未確定要素がある
 
 "上の絵がヒープ構造の木表現"
 "下の絵がヒープ構造の配列表現"
-</div>
-</div><!-- /code -->
+</div><!-- /editor -->
 <div id="anime">
     <p>画面クリックで説明</p>
     <anime>
@@ -55,16 +53,10 @@ while 未確定要素がある
 </div><!-- /container -->
 <hr>
 <script src="/js/src-min/ace.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>-->
 <script>
   var editor = ace.edit("editor");
   editor.renderer.setShowGutter(false);
-  //editor.$blockScrolling = Infinity;
-  editor.setOptions({
-    //enableBasicAutocompletion: true,
-    //enableSnippets: true,
-    //_enableLiveAutocompletion: true
-  });
+  editor.setOptions({highlightActiveLine:false});
   editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
   editor.getSession().setMode("ace/mode/javascript");
     document.getElementById('editor').style.visibility="visible";

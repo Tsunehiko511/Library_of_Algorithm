@@ -35,25 +35,17 @@
 	 結果
  終了
 </div><!-- /editor -->
-
 <div id="anime">
 	<p>画面クリックで説明</p>
 	<img id="def_ga" width="100%" height="400px" src="/img/ga_nap/ga_nap.1.png">
 </div><!-- /anime -->
-
 </div><!-- /container -->
 
 <script src="/js/src-min/ace.js"></script>
 <script>
   var editor = ace.edit("editor");
   editor.renderer.setShowGutter(false);
-  //editor.$blockScrolling = Infinity;
-  editor.setOptions({
-  	highlightActiveLine:false
-  	//enableBasicAutocompletion: true,
-    //enableSnippets: true,
-    //_enableLiveAutocompletion: true
-  });
+  editor.setOptions({highlightActiveLine:false});
   editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
   editor.getSession().setMode("ace/mode/javascript");
     document.getElementById('editor').style.visibility="visible";

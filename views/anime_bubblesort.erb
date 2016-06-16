@@ -20,7 +20,6 @@
    </div> <!-- container -->
    <br>
 
-<div id="code" class="codes">
 <div id="editor" class="avoid-clicks" style="height: 400px">
 <b>//データ</b>
  配列 = [5,9,8,3,1,6,4]
@@ -38,8 +37,7 @@ while 未確定要素がある:
         入れ替えない
   右端の要素を確定する
 終了
-</div>
-</div><!-- /code -->
+</div><!-- /editor -->
 <div id="anime">
     <p>画面クリックで説明</p>
     <anime>
@@ -56,12 +54,7 @@ while 未確定要素がある:
 <script>
   var editor = ace.edit("editor");
   editor.renderer.setShowGutter(false);
-  //editor.$blockScrolling = Infinity;
-  editor.setOptions({
-    //enableBasicAutocompletion: true,
-    //enableSnippets: true,
-    //_enableLiveAutocompletion: true
-  });
+  editor.setOptions({highlightActiveLine:false});
   editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
   editor.getSession().setMode("ace/mode/javascript");
     document.getElementById('editor').style.visibility="visible";

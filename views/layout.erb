@@ -4,14 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="アルゴリズムを視覚的に理解するサイト">
-
-    <title>Library of Algorithms</title>
+    <meta name="description" content="アルゴリズムを視覚的に理解するサイト。アニメーションや擬似コードを使いアルゴリズムを直感的に理解することと，実際にコードに落とし込む架け橋となるサイト">
+    <title><%=@title%></title>
     <!-- BootstrapのCSS読み込み -->
     <link rel="stylesheet" href="/css/app.css">
    	<link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- jQuery読み込み -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
    	<script src="js/jquery-2.2.4.min.js"></script>
 
     <!-- BootstrapのJS読み込み -->
@@ -32,7 +30,7 @@
 		<nav class="navbar navbar-inverse  container-fluid">
 			<div class="navbar-header">
 				<!--ブランド名-->
-				<a class="navbar-brand" href="/">Library of Algorithms</a>
+				<a class="navbar-brand" href="/"><b>Library of Algorithms</b></a>
 		    <!--トグルボタンの設置-->
 		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-content">
 		      <span class="icon-bar"></span>
@@ -53,8 +51,37 @@
 			</div>
 		</nav>
 		<%= yield %>
-		<br>
 		<footer class="container-fluid">
+
+<div id="share" >
+<ul>
+<!-- Twitter -->
+<li class="share-twitter">
+<a href="http://twitter.com/home?status=https://library-of-algorithm.herokuapp.com" target="_blank">Twitter</a>
+</li>
+<!-- Facebook -->	
+<li class="share-facebook">
+<a href="https://www.facebook.com/sharer/sharer.php?u=https://library-of-algorithm.herokuapp.com" target="_blank">Facebook</a>
+</li>
+<!-- Google+ -->
+<li class="share-google">
+<a href="https://plus.google.com/share?url=https://library-of-algorithm.herokuapp.com" target="_blank">Google+</a>
+</li>
+<!-- はてなブックマーク -->
+<li class="share-hatena">
+<a href="http://b.hatena.ne.jp/add?mode=confirm&url=https://library-of-algorithm.herokuapp.com&title=https://library-of-algorithm.herokuapp.com" target="_blank">はてブ</a>
+</li>
+<!-- Pocket -->
+<li class="share-pocket">
+<a href="http://getpocket.com/edit?url=https://library-of-algorithm.herokuapp.com" target="_blank">Pocket</a>
+</li>
+</ul>
+</div>
+
+
+
+
+
 			<small><a href="/">Copyright (C) 2016 Shimanezumi All Rights Reserved.</a></small>
 	  </footer>
 	</body>

@@ -19,7 +19,6 @@
   </div>
   <br>
  
-<div id="code" class="codes">
 <div id="editor" class="avoid-clicks" style="height: 400px">
 <b>//データ</b>
  配列 = [4,5,8,9,6,1,3];
@@ -33,8 +32,7 @@ for 要素 in 配列:
     最小値 = 先頭から右側の最小値
     先頭と最小値を入れ替える
 終了
-</div>
-</div><!-- /code -->
+</div><!-- /editor -->
 <div id="anime">
     <p>画面クリックで説明</p>
     <anime>
@@ -43,16 +41,10 @@ for 要素 in 配列:
 </div><!-- /container -->
 <hr>
 <script src="/js/src-min/ace.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>-->
 <script>
   var editor = ace.edit("editor");
   editor.renderer.setShowGutter(false);
-  //editor.$blockScrolling = Infinity;
-  editor.setOptions({
-    //enableBasicAutocompletion: true,
-    //enableSnippets: true,
-    //_enableLiveAutocompletion: true
-  });
+  editor.setOptions({highlightActiveLine:false});
   editor.setTheme("ace/theme/monokai");//clouds,monokai,chrome
   editor.getSession().setMode("ace/mode/javascript");
     document.getElementById('editor').style.visibility="visible";
