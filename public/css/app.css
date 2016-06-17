@@ -28,6 +28,9 @@ a {
 	width: 575px;
 	/*background-color: pink;*/
 	text-align: center;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 svg {
