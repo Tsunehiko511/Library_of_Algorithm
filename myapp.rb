@@ -8,6 +8,11 @@ get '/' do
   erb :index
 end
 
+get '/ballgame' do
+  @title = 'ballgame'
+  erb :ballgame
+end
+
 get '/def_ga' do
   @title = '遺伝的アルゴリズム'
   erb :def_ga
